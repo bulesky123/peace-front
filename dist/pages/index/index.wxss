@@ -1,0 +1,108 @@
+.index_container {
+  padding-bottom: 120rpx;
+}
+.index_container.hasMusicBox {
+  padding-bottom: 220rpx;
+}
+.index_container .banner_list {
+  height: 375rpx;
+  margin-top: 20rpx;
+}
+.index_container .banner_list__item__img {
+  width: 92%;
+  height: 375rpx;
+  position: relative;
+  left: 4%;
+  border-radius: 20rpx;
+}
+.index_container .index_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  width: 100%;
+  height: 128rpx;
+  background-color: #d43c33;
+  box-sizing: border-box;
+}
+.index_container .index_header .index_header__logo {
+  width: 284rpx;
+  height: 50rpx;
+}
+.index_container .handle_list {
+  overflow: hidden;
+  margin-top: 40rpx;
+  padding: 0 40rpx;
+}
+.index_container .handle_list .handle_list__item {
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+.index_container .handle_list .handle_list__item .handle_list__item__icon-wrap {
+  background-color: #d43c33;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.index_container .handle_list .handle_list__item .handle_list_item__icon {
+  margin-left: 5rpx;
+}
+.index_container .handle_list .handle_list__item .handle_list__item__text {
+  font-size: 24rpx;
+}
+.index_container .recommend_playlist {
+  padding: 40rpx;
+  overflow: hidden;
+}
+.index_container .recommend_playlist .recommend_playlist__title {
+  margin-bottom: 30rpx;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item {
+  position: relative;
+  width: 32%;
+  float: left;
+  margin-bottom: 30rpx;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item:nth-child(3n-1) {
+  margin: 0 2% 30rpx 2%;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item .recommend_playlist__item__cover__num {
+  font-size: 20rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 0;
+  font-weight: 700;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item .recommend_playlist__item__cover__num .at-icon-sound {
+  margin-right: 10rpx;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item .recommend_playlist__item__cover {
+  display: block;
+  width: 100%;
+  height: 200rpx;
+  border-radius: 12rpx;
+  box-shadow: 0 0 20rpx #8F8F8F;
+}
+.index_container .recommend_playlist .recommend_playlist__content .recommend_playlist__item .recommend_playlist__item__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  height: 72rpx;
+}
