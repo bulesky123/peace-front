@@ -2,12 +2,14 @@ const path = require("path");
 const config = {
   projectName: "taro-music",
   date: "2019-3-19",
-  designWidth: 750,
+  designWidth: 414,
   deviceRatio: {
     "640": 2.34 / 2,
     "750": 1,
-    "828": 1.81 / 2
+    "828": 1.81 / 2,
+    '414': 2 / 1,
   },
+  onePxTransform: true,
   sourceRoot: "src",
   outputRoot: "dist",
   plugins: [],

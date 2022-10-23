@@ -1,8 +1,8 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "taro-music",
+	"projectname": "peace-front",
 	"description": "",
-	"appid": "wxd50c761c9bb71742",
+	"appid": "wx93cd60b8c9e6f94d",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,

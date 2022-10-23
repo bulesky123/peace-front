@@ -1,31 +1,61 @@
 export default {
   pages: [
-    "pages/index/index",
+    "pages/in/index",
+    "pages/home/index",
+    "pages/analysis/index",
+    "pages/community/index",
+    "pages/shop/index",
     "pages/my/index",
-    // "pages/user/index",
+    "pages/house/index",
   ],
   window: {
     backgroundTextStyle: "light",
-    navigationBarBackgroundColor: "#d43c33",
+    navigationBarBackgroundColor: "#2154F4",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "white",
   },
   requiredBackgroundModes: ["audio"],
+  tabBar: {
+    color: '#2B2E33',
+    selectedColor: '#2154F4',
+    list: [
+      {
+        pagePath: 'pages/home/index',
+        text: '首页',
+        iconPath: './assets/images/home.png',
+        selectedIconPath: './assets/images/home_active.png',
+      },
+      {
+        pagePath: 'pages/analysis/index',
+        text: '统计',
+        iconPath: './assets/images/tongji.png',
+        selectedIconPath: './assets/images/tongji_active.png',
+      },
+      {
+        pagePath: 'pages/community/index',
+        text: '社区',
+        iconPath: './assets/images/shequ.png',
+        selectedIconPath: './assets/images/shequ_active.png',
+      },
+      {
+        pagePath: 'pages/shop/index',
+        text: '店铺',
+        iconPath: './assets/images/dianpu.png',
+        selectedIconPath: './assets/images/dianpu_active.png',
+      },
+      {
+        pagePath: 'pages/my/index',
+        text: '我的',
+        iconPath: './assets/images/my.png',
+        selectedIconPath: './assets/images/my_active.png',
+      }
+    ],
+  },
   // "subpackages": [
   //   {
   //     "root": "pages/packageA",
   //     "pages": [
-  //       "pages/videoDetail/index",
-  //       // "pages/djprogramListDetail/index",
-  //       // "pages/search/index",
-  //       // "pages/searchResult/index",
-  //       // "pages/songDetail/index",
-  //       // "pages/playListDetail/index",
-  //       // "pages/login/index",
-  //       // "pages/myFans/index",
-  //       // "pages/myFocus/index",
-  //       // "pages/myEvents/index",
-  //       // "pages/recentPlay/index",
+  //       "pages/house/index",
   //     ]
   //   }
   // ]

@@ -16,5 +16,4 @@
      modules[moduleName] = files(key).default
    }
  })
-console.log(modules, 'modules')
  export default modules

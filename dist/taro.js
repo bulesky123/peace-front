@@ -27,7 +27,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 if (typeof Object.assign !== 'function') {
   // Must be writable: true, enumerable: false, configurable: true
   Object.assign = function (target) {
@@ -36,12 +35,9 @@ if (typeof Object.assign !== 'function') {
       // TypeError if undefined or null
       throw new TypeError('Cannot convert undefined or null to object');
     }
-
     var to = Object(target);
-
     for (var index = 1; index < arguments.length; index++) {
       var nextSource = arguments[index];
-
       if (nextSource != null) {
         // Skip over if undefined or null
         for (var nextKey in nextSource) {
@@ -52,81 +48,61 @@ if (typeof Object.assign !== 'function') {
         }
       }
     }
-
     return to;
   };
 }
-
 if (typeof Object.defineProperties !== 'function') {
   Object.defineProperties = function (obj, properties) {
     function convertToDescriptor(desc) {
       function hasProperty(obj, prop) {
         return Object.prototype.hasOwnProperty.call(obj, prop);
       }
-
       function isCallable(v) {
         // NB: modify as necessary if other values than functions are callable.
         return typeof v === 'function';
       }
-
       if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(desc) !== 'object' || desc === null) {
         throw new TypeError('bad desc');
       }
-
       var d = {};
       if (hasProperty(desc, 'enumerable')) d.enumerable = !!desc.enumerable;
-
       if (hasProperty(desc, 'configurable')) {
         d.configurable = !!desc.configurable;
       }
-
       if (hasProperty(desc, 'value')) d.value = desc.value;
       if (hasProperty(desc, 'writable')) d.writable = !!desc.writable;
-
       if (hasProperty(desc, 'get')) {
         var g = desc.get;
-
         if (!isCallable(g) && typeof g !== 'undefined') {
           throw new TypeError('bad get');
         }
-
         d.get = g;
       }
-
       if (hasProperty(desc, 'set')) {
         var s = desc.set;
-
         if (!isCallable(s) && typeof s !== 'undefined') {
           throw new TypeError('bad set');
         }
-
         d.set = s;
       }
-
       if (('get' in d || 'set' in d) && ('value' in d || 'writable' in d)) {
         throw new TypeError('identity-confused descriptor');
       }
-
       return d;
     }
-
     if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(obj) !== 'object' || obj === null) throw new TypeError('bad obj');
     properties = Object(properties);
     var keys = Object.keys(properties);
     var descs = [];
-
     for (var i = 0; i < keys.length; i++) {
       descs.push([keys[i], convertToDescriptor(properties[keys[i]])]);
     }
-
     for (var _i = 0; _i < descs.length; _i++) {
       Object.defineProperty(obj, descs[_i][0], descs[_i][1]);
     }
-
     return obj;
   };
 }
-
 var ENV_TYPE = {
   WEAPP: 'WEAPP',
   WEB: 'WEB',
@@ -142,80 +118,62 @@ var _env = null; // 一个taro项目肯定运行同样的环境
 
 function getEnv() {
   if (_env) return _env;
-
   if (typeof jd !== 'undefined' && jd.getSystemInfo) {
     _env = ENV_TYPE.JD;
     return ENV_TYPE.JD;
   }
-
   if (typeof qq !== 'undefined' && qq.getSystemInfo) {
     _env = ENV_TYPE.QQ;
     return ENV_TYPE.QQ;
   }
-
   if (typeof tt !== 'undefined' && tt.getSystemInfo) {
     _env = ENV_TYPE.TT;
     return ENV_TYPE.TT;
   }
-
   if (typeof wx !== 'undefined' && wx.getSystemInfo) {
     _env = ENV_TYPE.WEAPP;
     return ENV_TYPE.WEAPP;
   }
-
   if (typeof swan !== 'undefined' && swan.getSystemInfo) {
     _env = ENV_TYPE.SWAN;
     return ENV_TYPE.SWAN;
   }
-
   if (typeof my !== 'undefined' && my.getSystemInfo) {
     _env = ENV_TYPE.ALIPAY;
     return ENV_TYPE.ALIPAY;
   }
-
   if (typeof ks !== 'undefined' && ks.getSystemInfo) {
     _env = ENV_TYPE.KWAI;
     return ENV_TYPE.KWAI;
   }
-
   if (typeof global !== 'undefined' && global.__fbGenNativeModule) {
     _env = ENV_TYPE.RN;
     return ENV_TYPE.RN;
   }
-
   if (typeof window !== 'undefined') {
     _env = ENV_TYPE.WEB;
     return ENV_TYPE.WEB;
   }
-
   return 'Unknown environment';
 }
-
 var Chain = /*#__PURE__*/function () {
   function Chain(requestParams) {
     var interceptors = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
     var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Chain);
-
     this.index = index;
     this.requestParams = requestParams;
     this.interceptors = interceptors;
   }
-
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Chain, [{
     key: "proceed",
     value: function proceed(requestParams) {
       this.requestParams = requestParams;
-
       if (this.index >= this.interceptors.length) {
         throw new Error('chain 参数错误, 请勿直接修改 request.chain');
       }
-
       var nextInterceptor = this._getNextInterceptor();
-
       var nextChain = this._getNextChain();
-
       var p = nextInterceptor(nextChain);
       var res = p.catch(function (err) {
         return Promise.reject(err);
@@ -234,23 +192,18 @@ var Chain = /*#__PURE__*/function () {
       return new Chain(this.requestParams, this.interceptors, this.index + 1);
     }
   }]);
-
   return Chain;
 }();
-
 var Link = /*#__PURE__*/function () {
   function Link(interceptor) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, Link);
-
     this.taroInterceptor = interceptor;
     this.chain = new Chain();
   }
-
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(Link, [{
     key: "request",
     value: function request(requestParams) {
       var _this = this;
-
       this.chain.interceptors = this.chain.interceptors.filter(function (interceptor) {
         return interceptor !== _this.taroInterceptor;
       });
@@ -268,10 +221,8 @@ var Link = /*#__PURE__*/function () {
       this.chain = new Chain();
     }
   }]);
-
   return Link;
 }();
-
 function timeoutInterceptor(chain) {
   var requestParams = chain.requestParams;
   var p;
@@ -293,12 +244,11 @@ function timeoutInterceptor(chain) {
   if (p !== undefined && typeof p.abort === 'function') res.abort = p.abort;
   return res;
 }
-
 function logInterceptor(chain) {
   var requestParams = chain.requestParams;
   var method = requestParams.method,
-      data = requestParams.data,
-      url = requestParams.url; // eslint-disable-next-line no-console
+    data = requestParams.data,
+    url = requestParams.url; // eslint-disable-next-line no-console
 
   console.log("http ".concat(method || 'GET', " --> ").concat(url, " data: "), data);
   var p = chain.proceed(requestParams);
@@ -310,17 +260,14 @@ function logInterceptor(chain) {
   if (typeof p.abort === 'function') res.abort = p.abort;
   return res;
 }
-
 var interceptors = /*#__PURE__*/Object.freeze({
   __proto__: null,
   timeoutInterceptor: timeoutInterceptor,
   logInterceptor: logInterceptor
 });
-
 function Behavior(options) {
   return options;
 }
-
 function getPreload(current) {
   return function (key, val) {
     if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(key) === 'object') {
@@ -330,45 +277,40 @@ function getPreload(current) {
     }
   };
 }
-
 function getInitPxTransform(taro) {
   return function (config) {
     var _config$designWidth = config.designWidth,
-        designWidth = _config$designWidth === void 0 ? 750 : _config$designWidth,
-        _config$deviceRatio = config.deviceRatio,
-        deviceRatio = _config$deviceRatio === void 0 ? {
-      640: 2.34 / 2,
-      750: 1,
-      828: 1.81 / 2
-    } : _config$deviceRatio;
+      designWidth = _config$designWidth === void 0 ? 750 : _config$designWidth,
+      _config$deviceRatio = config.deviceRatio,
+      deviceRatio = _config$deviceRatio === void 0 ? {
+        640: 2.34 / 2,
+        750: 1,
+        828: 1.81 / 2
+      } : _config$deviceRatio;
     taro.config = taro.config || {};
     taro.config.designWidth = designWidth;
     taro.config.deviceRatio = deviceRatio;
   };
 }
-
 function getPxTransform(taro) {
   return function (size) {
     var _ref = taro.config || {},
-        _ref$designWidth = _ref.designWidth,
-        designWidth = _ref$designWidth === void 0 ? 750 : _ref$designWidth,
-        _ref$deviceRatio = _ref.deviceRatio,
-        deviceRatio = _ref$deviceRatio === void 0 ? {
-      640: 2.34 / 2,
-      750: 1,
-      828: 1.81 / 2
-    } : _ref$deviceRatio;
-
+      _ref$designWidth = _ref.designWidth,
+      designWidth = _ref$designWidth === void 0 ? 750 : _ref$designWidth,
+      _ref$deviceRatio = _ref.deviceRatio,
+      deviceRatio = _ref$deviceRatio === void 0 ? {
+        640: 2.34 / 2,
+        750: 1,
+        828: 1.81 / 2
+      } : _ref$deviceRatio;
     if (!(designWidth in deviceRatio)) {
       throw new Error("deviceRatio \u914D\u7F6E\u4E2D\u4E0D\u5B58\u5728 ".concat(designWidth, " \u7684\u8BBE\u7F6E\uFF01"));
     }
-
     return parseInt(size, 10) * deviceRatio[designWidth] + 'rpx';
   };
 }
+
 /* eslint-disable camelcase */
-
-
 var Taro = {
   Behavior: Behavior,
   getEnv: getEnv,
@@ -418,8 +360,8 @@ Taro.pxTransform = getPxTransform(Taro);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tarojs_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js");
 /* eslint-disable no-undef */
- // @ts-ignore
 
+// @ts-ignore
 Component(Object(_tarojs_runtime__WEBPACK_IMPORTED_MODULE_0__["createRecursiveComponentConfig"])());
 
 /***/ }),
@@ -439,10 +381,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /* eslint-disable no-undef */
-
-var runtime_1 = __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js"); // @ts-ignore
-
-
+var runtime_1 = __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js");
+// @ts-ignore
 Component(runtime_1.createRecursiveComponentConfig('custom-wrapper'));
 
 /***/ }),
@@ -545,8 +485,9 @@ var WebView = 'web-view';
 var Block = 'block';
 var Map = 'map';
 var Slot = 'slot';
-var CustomWrapper = 'custom-wrapper'; // For React.createElement's type
+var CustomWrapper = 'custom-wrapper';
 
+// For React.createElement's type
 var Editor = 'editor';
 var MatchMedia = 'match-media';
 var FunctionalPageNavigator = 'functional-page-navigator';
@@ -574,7 +515,6 @@ var KeyboardAccessory = 'keyboard-accessory';
 /* harmony import */ var _tarojs_shared__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/shared */ "./node_modules/@tarojs/shared/dist/shared.esm.js");
 
 var needPromiseApis = new Set(['authPrivateMessage', 'disableAlertBeforeUnload', 'enableAlertBeforeUnload', 'getBackgroundFetchData', 'getGroupEnterInfo', 'getShareInfo', 'getWeRunData', 'join1v1Chat', 'openVideoEditor', 'saveFileToDisk', 'scanItem', 'setEnable1v1Chat', 'setWindowSize', 'sendBizRedPacket', 'startFacialRecognitionVerify', 'openCustomerServiceChat']);
-
 function initNativeApi(taro) {
   Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_0__[/* processApis */ "r"])(taro, wx, {
     needPromiseApis: needPromiseApis,
@@ -585,7 +525,6 @@ function initNativeApi(taro) {
   });
   taro.cloud = wx.cloud;
 }
-
 var components = {
   // ======== 调整属性 ========
   Progress: {
@@ -927,8 +866,8 @@ Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_0__[/* mergeInternalComponents */
 /* unused harmony export render */
 /* unused harmony export unmountComponentAtNode */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return unstable_batchedUpdates; });
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var react_reconciler__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-reconciler */ "./node_modules/react-reconciler/cjs/react-reconciler.production.min.js");
 /* harmony import */ var react_reconciler__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_reconciler__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var scheduler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! scheduler */ "./node_modules/scheduler/cjs/scheduler.production.min.js");
@@ -941,55 +880,43 @@ Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_0__[/* mergeInternalComponents */
 
 
 
-
 function isEventName(s) {
   return s[0] === 'o' && s[1] === 'n';
 }
-
 var IS_NON_DIMENSIONAL = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord/i;
-
 function updateProps(dom, oldProps, newProps) {
   var i;
-
   for (i in oldProps) {
     if (!(i in newProps)) {
       setProperty(dom, i, null, oldProps[i]);
     }
   }
-
   var isFormElement = dom instanceof _tarojs_runtime__WEBPACK_IMPORTED_MODULE_4__["FormElement"];
-
   for (i in newProps) {
     if (oldProps[i] !== newProps[i] || isFormElement && i === 'value') {
       setProperty(dom, i, newProps[i], oldProps[i]);
     }
   }
-} // function eventProxy (e: CommonEvent) {
+}
+// function eventProxy (e: CommonEvent) {
 //   const el = document.getElementById(e.currentTarget.id)
 //   const handlers = el!.__handlers[e.type]
 //   handlers[0](e)
 // }
-
-
 function setEvent(dom, name, value, oldValue) {
   var isCapture = name.endsWith('Capture');
   var eventName = name.toLowerCase().slice(2);
-
   if (isCapture) {
     eventName = eventName.slice(0, -7);
   }
-
   var compName = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* capitalize */ "c"])(Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* toCamelCase */ "t"])(dom.tagName.toLowerCase()));
-
   if (eventName === 'click' && compName in _tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* internalComponents */ "g"]) {
     eventName = 'tap';
   }
-
   if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* isFunction */ "j"])(value)) {
     if (!oldValue) {
       dom.addEventListener(eventName, value, isCapture);
     }
-
     if (eventName === 'regionchange') {
       dom.__handlers.begin[0] = value;
       dom.__handlers.end[0] = value;
@@ -1000,22 +927,17 @@ function setEvent(dom, name, value, oldValue) {
     dom.removeEventListener(eventName, oldValue);
   }
 }
-
 function setStyle(style, key, value) {
   if (key[0] === '-') {
     style.setProperty(key, value.toString());
   }
-
   style[key] = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* isNumber */ "k"])(value) && IS_NON_DIMENSIONAL.test(key) === false ? value + 'px' : value == null ? '' : value;
 }
-
 function setProperty(dom, name, value, oldValue) {
   var _a, _b, _c, _d;
-
   name = name === 'className' ? 'class' : name;
   if (name === 'key' || name === 'children' || name === 'ref') ;else if (name === 'style') {
     var style = dom.style;
-
     if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* isString */ "m"])(value)) {
       style.cssText = value;
     } else {
@@ -1023,7 +945,6 @@ function setProperty(dom, name, value, oldValue) {
         style.cssText = '';
         oldValue = null;
       }
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* isObject */ "l"])(oldValue)) {
         for (var i in oldValue) {
           if (!(value && i in value)) {
@@ -1031,7 +952,6 @@ function setProperty(dom, name, value, oldValue) {
           }
         }
       }
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* isObject */ "l"])(value)) {
         for (var _i in value) {
           if (!oldValue || value[_i] !== oldValue[_i]) {
@@ -1045,7 +965,6 @@ function setProperty(dom, name, value, oldValue) {
   } else if (name === 'dangerouslySetInnerHTML') {
     var newHtml = (_b = (_a = value) === null || _a === void 0 ? void 0 : _a.__html) !== null && _b !== void 0 ? _b : '';
     var oldHtml = (_d = (_c = oldValue) === null || _c === void 0 ? void 0 : _c.__html) !== null && _d !== void 0 ? _d : '';
-
     if (newHtml || oldHtml) {
       if (oldHtml !== newHtml) {
         dom.innerHTML = newHtml;
@@ -1059,15 +978,12 @@ function setProperty(dom, name, value, oldValue) {
     }
   }
 }
+
 /* eslint-disable @typescript-eslint/indent */
-
-
 var now = scheduler__WEBPACK_IMPORTED_MODULE_3__["unstable_now"];
-
 function returnFalse() {
   return false;
 }
-
 var hostConfig = {
   createInstance: function createInstance(type) {
     return _tarojs_runtime__WEBPACK_IMPORTED_MODULE_4__["document"].createElement(type);
@@ -1125,8 +1041,8 @@ var hostConfig = {
   unhideInstance: function unhideInstance(instance, props) {
     var styleProp = props.style;
     var display = (styleProp === null || styleProp === void 0 ? void 0 : styleProp.hasOwnProperty('display')) ? styleProp.display : null;
-    display = display == null || typeof display === 'boolean' || display === '' ? '' : ('' + display).trim(); // eslint-disable-next-line dot-notation
-
+    display = display == null || typeof display === 'boolean' || display === '' ? '' : ('' + display).trim();
+    // eslint-disable-next-line dot-notation
     instance.style['display'] = display;
   },
   clearContainer: function clearContainer(element) {
@@ -1158,33 +1074,25 @@ var hostConfig = {
   supportsHydration: false
 };
 var TaroReconciler = react_reconciler__WEBPACK_IMPORTED_MODULE_2___default()(hostConfig);
-
 if (true) {
   var foundDevTools = TaroReconciler.injectIntoDevTools({
     bundleType: 1,
     version: '17.0.2',
     rendererPackageName: 'taro-react'
   });
-
   if (!foundDevTools) {
     // eslint-disable-next-line no-console
     console.info('%cDownload the React DevTools ' + 'for a better development experience: ' + 'https://reactjs.org/link/react-devtools', 'font-weight:bold');
   }
 }
-
 var ContainerMap = new WeakMap();
-
 var Root = /*#__PURE__*/function () {
   function Root(renderer, domContainer) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Root);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Root);
     this.renderer = renderer;
-    this.internalRoot = renderer.createContainer(domContainer, 0
-    /** LegacyRoot: react-reconciler/src/ReactRootTags.js */
-    , false, null);
+    this.internalRoot = renderer.createContainer(domContainer, 0 /** LegacyRoot: react-reconciler/src/ReactRootTags.js */, false, null);
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Root, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Root, [{
     key: "render",
     value: function render(children, cb) {
       this.renderer.updateContainer(children, this.internalRoot, null, cb);
@@ -1196,26 +1104,20 @@ var Root = /*#__PURE__*/function () {
       this.renderer.updateContainer(null, this.internalRoot, null, cb);
     }
   }]);
-
   return Root;
 }();
-
 function render(element, domContainer, cb) {
   var oldRoot = ContainerMap.get(domContainer);
-
   if (oldRoot != null) {
     return oldRoot.render(element, cb);
   }
-
   var root = new Root(TaroReconciler, domContainer);
   ContainerMap.set(domContainer, root);
   return root.render(element, cb);
 }
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
-
-
 var unstable_batchedUpdates = TaroReconciler.batchedUpdates;
-
 function unmountComponentAtNode(dom) {
   Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_5__[/* ensure */ "f"])(dom && [1, 8, 9, 11].includes(dom.nodeType), 'unmountComponentAtNode(...): Target container is not a DOM element.');
   var root = ContainerMap.get(dom);
@@ -1227,23 +1129,17 @@ function unmountComponentAtNode(dom) {
   }, null);
   return true;
 }
-
 function findDOMNode(comp) {
   if (comp == null) {
     return null;
   }
-
   var nodeType = comp.nodeType;
-
   if (nodeType === 1 || nodeType === 3) {
     return comp;
   }
-
   return TaroReconciler.findHostInstance(comp);
 }
-
 var portalType = typeof Symbol === 'function' && Symbol.for ? Symbol.for('react.portal') : 0xeaca;
-
 function createPortal(children, containerInfo, key) {
   return {
     $$typeof: portalType,
@@ -1253,7 +1149,6 @@ function createPortal(children, containerInfo, key) {
     implementation: null
   };
 }
-
 var index = {
   render: render,
   unstable_batchedUpdates: unstable_batchedUpdates,
@@ -1331,24 +1226,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useTabItemTap", function() { return useTabItemTap; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useTitleClick", function() { return useTitleClick; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "window", function() { return window$1; });
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_set__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/set */ "./node_modules/@babel/runtime/helpers/esm/set.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/get */ "./node_modules/@babel/runtime/helpers/esm/get.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/wrapNativeSuper */ "./node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toArray */ "./node_modules/@babel/runtime/helpers/esm/toArray.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/@babel/runtime/helpers/esm/createSuper.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_set__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/set */ "./node_modules/@babel/runtime/helpers/esm/set.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/get */ "./node_modules/@babel/runtime/helpers/esm/get.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/wrapNativeSuper */ "./node_modules/@babel/runtime/helpers/esm/wrapNativeSuper.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toArray */ "./node_modules/@babel/runtime/helpers/esm/toArray.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/@babel/runtime/helpers/esm/createSuper.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 /* harmony import */ var inversify__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! inversify */ "./node_modules/inversify/es/inversify.js");
 /* harmony import */ var _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @tarojs/shared */ "./node_modules/@tarojs/shared/dist/shared.esm.js");
+
 
 
 
@@ -1394,15 +1290,14 @@ if (false) {} else {
       //     typeof self === "object" ? self :
       //         typeof this === "object" ? this :
       //             Function("return this;")();
-      var exporter = makeExporter(Reflect); // if (typeof root.Reflect === "undefined") {
+      var exporter = makeExporter(Reflect);
+      // if (typeof root.Reflect === "undefined") {
       //     root.Reflect = Reflect;
       // }
       // else {
       //     exporter = makeExporter(root.Reflect, exporter);
       // }
-
       factory(exporter);
-
       function makeExporter(target, previous) {
         return function (key, value) {
           if (typeof target[key] !== "function") {
@@ -1412,22 +1307,19 @@ if (false) {} else {
               value: value
             });
           }
-
           if (previous) previous(key, value);
         };
       }
     })(function (exporter) {
-      var hasOwn = Object.prototype.hasOwnProperty; // feature test for Symbol support
-
+      var hasOwn = Object.prototype.hasOwnProperty;
+      // feature test for Symbol support
       var supportsSymbol = typeof Symbol === "function";
       var toPrimitiveSymbol = supportsSymbol && typeof Symbol.toPrimitive !== "undefined" ? Symbol.toPrimitive : "@@toPrimitive";
       var iteratorSymbol = supportsSymbol && typeof Symbol.iterator !== "undefined" ? Symbol.iterator : "@@iterator";
       var supportsCreate = typeof Object.create === "function"; // feature test for Object.create support
-
       var supportsProto = {
         __proto__: []
       } instanceof Array; // feature test for __proto__ support
-
       var downLevel = !supportsCreate && !supportsProto;
       var HashMap = {
         // create an object in dictionary mode (a.k.a. "slow" mode in v8)
@@ -1450,19 +1342,15 @@ if (false) {} else {
         } : function (map, key) {
           return map[key];
         }
-      }; // Load global or shim versions of Map, Set, and WeakMap
-
+      };
+      // Load global or shim versions of Map, Set, and WeakMap
       var functionPrototype = Object.getPrototypeOf(Function);
-      var usePolyfill = (typeof process === "undefined" ? "undefined" : Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(process)) === "object" && process.env && process.env["REFLECT_METADATA_USE_MAP_POLYFILL"] === "true";
-
+      var usePolyfill = (typeof process === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(process)) === "object" && process.env && process.env["REFLECT_METADATA_USE_MAP_POLYFILL"] === "true";
       var _Map = !usePolyfill && typeof Map === "function" && typeof Map.prototype.entries === "function" ? Map : CreateMapPolyfill();
-
       var _Set = !usePolyfill && typeof Set === "function" && typeof Set.prototype.entries === "function" ? Set : CreateSetPolyfill();
-
-      var _WeakMap = !usePolyfill && typeof WeakMap === "function" ? WeakMap : CreateWeakMapPolyfill(); // [[Metadata]] internal slot
+      var _WeakMap = !usePolyfill && typeof WeakMap === "function" ? WeakMap : CreateWeakMapPolyfill();
+      // [[Metadata]] internal slot
       // https://rbuckton.github.io/reflect-metadata/#ordinary-object-internal-methods-and-internal-slots
-
-
       var Metadata = new _WeakMap();
       /**
        * Applies a set of decorators to a property of a target object.
@@ -1503,7 +1391,6 @@ if (false) {} else {
        *             Object.getOwnPropertyDescriptor(Example.prototype, "method")));
        *
        */
-
       function decorate(decorators, target, propertyKey, attributes) {
         if (!IsUndefined(propertyKey)) {
           if (!IsArray(decorators)) throw new TypeError();
@@ -1518,10 +1405,9 @@ if (false) {} else {
           return DecorateConstructor(decorators, target);
         }
       }
-
-      exporter("decorate", decorate); // 4.1.2 Reflect.metadata(metadataKey, metadataValue)
+      exporter("decorate", decorate);
+      // 4.1.2 Reflect.metadata(metadataKey, metadataValue)
       // https://rbuckton.github.io/reflect-metadata/#reflect.metadata
-
       /**
        * A default metadata decorator factory that can be used on a class, class member, or parameter.
        * @param metadataKey The key for the metadata entry.
@@ -1562,17 +1448,14 @@ if (false) {} else {
        *     }
        *
        */
-
       function metadata(metadataKey, metadataValue) {
         function decorator(target, propertyKey) {
           if (!IsObject(target)) throw new TypeError();
           if (!IsUndefined(propertyKey) && !IsPropertyKey(propertyKey)) throw new TypeError();
           OrdinaryDefineOwnMetadata(metadataKey, metadataValue, target, propertyKey);
         }
-
         return decorator;
       }
-
       exporter("metadata", metadata);
       /**
        * Define a unique metadata entry on the target.
@@ -1613,13 +1496,11 @@ if (false) {} else {
        *     }
        *
        */
-
       function defineMetadata(metadataKey, metadataValue, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryDefineOwnMetadata(metadataKey, metadataValue, target, propertyKey);
       }
-
       exporter("defineMetadata", defineMetadata);
       /**
        * Gets a value indicating whether the target object or its prototype chain has the provided metadata key defined.
@@ -1655,13 +1536,11 @@ if (false) {} else {
        *     result = Reflect.hasMetadata("custom:annotation", Example.prototype, "method");
        *
        */
-
       function hasMetadata(metadataKey, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryHasMetadata(metadataKey, target, propertyKey);
       }
-
       exporter("hasMetadata", hasMetadata);
       /**
        * Gets a value indicating whether the target object has the provided metadata key defined.
@@ -1697,13 +1576,11 @@ if (false) {} else {
        *     result = Reflect.hasOwnMetadata("custom:annotation", Example.prototype, "method");
        *
        */
-
       function hasOwnMetadata(metadataKey, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryHasOwnMetadata(metadataKey, target, propertyKey);
       }
-
       exporter("hasOwnMetadata", hasOwnMetadata);
       /**
        * Gets the metadata value for the provided metadata key on the target object or its prototype chain.
@@ -1739,13 +1616,11 @@ if (false) {} else {
        *     result = Reflect.getMetadata("custom:annotation", Example.prototype, "method");
        *
        */
-
       function getMetadata(metadataKey, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryGetMetadata(metadataKey, target, propertyKey);
       }
-
       exporter("getMetadata", getMetadata);
       /**
        * Gets the metadata value for the provided metadata key on the target object.
@@ -1781,13 +1656,11 @@ if (false) {} else {
        *     result = Reflect.getOwnMetadata("custom:annotation", Example.prototype, "method");
        *
        */
-
       function getOwnMetadata(metadataKey, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryGetOwnMetadata(metadataKey, target, propertyKey);
       }
-
       exporter("getOwnMetadata", getOwnMetadata);
       /**
        * Gets the metadata keys defined on the target object or its prototype chain.
@@ -1822,13 +1695,11 @@ if (false) {} else {
        *     result = Reflect.getMetadataKeys(Example.prototype, "method");
        *
        */
-
       function getMetadataKeys(target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryMetadataKeys(target, propertyKey);
       }
-
       exporter("getMetadataKeys", getMetadataKeys);
       /**
        * Gets the unique metadata keys defined on the target object.
@@ -1863,13 +1734,11 @@ if (false) {} else {
        *     result = Reflect.getOwnMetadataKeys(Example.prototype, "method");
        *
        */
-
       function getOwnMetadataKeys(target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
         return OrdinaryOwnMetadataKeys(target, propertyKey);
       }
-
       exporter("getOwnMetadataKeys", getOwnMetadataKeys);
       /**
        * Deletes the metadata entry from the target object with the provided key.
@@ -1905,13 +1774,10 @@ if (false) {} else {
        *     result = Reflect.deleteMetadata("custom:annotation", Example.prototype, "method");
        *
        */
-
       function deleteMetadata(metadataKey, target, propertyKey) {
         if (!IsObject(target)) throw new TypeError();
         if (!IsUndefined(propertyKey)) propertyKey = ToPropertyKey(propertyKey);
-        var metadataMap = GetOrCreateMetadataMap(target, propertyKey,
-        /*Create*/
-        false);
+        var metadataMap = GetOrCreateMetadataMap(target, propertyKey, /*Create*/false);
         if (IsUndefined(metadataMap)) return false;
         if (!metadataMap.delete(metadataKey)) return false;
         if (metadataMap.size > 0) return true;
@@ -1921,108 +1787,84 @@ if (false) {} else {
         Metadata.delete(target);
         return true;
       }
-
       exporter("deleteMetadata", deleteMetadata);
-
       function DecorateConstructor(decorators, target) {
         for (var i = decorators.length - 1; i >= 0; --i) {
           var decorator = decorators[i];
           var decorated = decorator(target);
-
           if (!IsUndefined(decorated) && !IsNull(decorated)) {
             if (!IsConstructor(decorated)) throw new TypeError();
             target = decorated;
           }
         }
-
         return target;
       }
-
       function DecorateProperty(decorators, target, propertyKey, descriptor) {
         for (var i = decorators.length - 1; i >= 0; --i) {
           var decorator = decorators[i];
           var decorated = decorator(target, propertyKey, descriptor);
-
           if (!IsUndefined(decorated) && !IsNull(decorated)) {
             if (!IsObject(decorated)) throw new TypeError();
             descriptor = decorated;
           }
         }
-
         return descriptor;
       }
-
       function GetOrCreateMetadataMap(O, P, Create) {
         var targetMetadata = Metadata.get(O);
-
         if (IsUndefined(targetMetadata)) {
           if (!Create) return undefined;
           targetMetadata = new _Map();
           Metadata.set(O, targetMetadata);
         }
-
         var metadataMap = targetMetadata.get(P);
-
         if (IsUndefined(metadataMap)) {
           if (!Create) return undefined;
           metadataMap = new _Map();
           targetMetadata.set(P, metadataMap);
         }
-
         return metadataMap;
-      } // 3.1.1.1 OrdinaryHasMetadata(MetadataKey, O, P)
+      }
+      // 3.1.1.1 OrdinaryHasMetadata(MetadataKey, O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinaryhasmetadata
-
-
       function OrdinaryHasMetadata(MetadataKey, O, P) {
         var hasOwn = OrdinaryHasOwnMetadata(MetadataKey, O, P);
         if (hasOwn) return true;
         var parent = OrdinaryGetPrototypeOf(O);
         if (!IsNull(parent)) return OrdinaryHasMetadata(MetadataKey, parent, P);
         return false;
-      } // 3.1.2.1 OrdinaryHasOwnMetadata(MetadataKey, O, P)
+      }
+      // 3.1.2.1 OrdinaryHasOwnMetadata(MetadataKey, O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinaryhasownmetadata
-
-
       function OrdinaryHasOwnMetadata(MetadataKey, O, P) {
-        var metadataMap = GetOrCreateMetadataMap(O, P,
-        /*Create*/
-        false);
+        var metadataMap = GetOrCreateMetadataMap(O, P, /*Create*/false);
         if (IsUndefined(metadataMap)) return false;
         return ToBoolean(metadataMap.has(MetadataKey));
-      } // 3.1.3.1 OrdinaryGetMetadata(MetadataKey, O, P)
+      }
+      // 3.1.3.1 OrdinaryGetMetadata(MetadataKey, O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinarygetmetadata
-
-
       function OrdinaryGetMetadata(MetadataKey, O, P) {
         var hasOwn = OrdinaryHasOwnMetadata(MetadataKey, O, P);
         if (hasOwn) return OrdinaryGetOwnMetadata(MetadataKey, O, P);
         var parent = OrdinaryGetPrototypeOf(O);
         if (!IsNull(parent)) return OrdinaryGetMetadata(MetadataKey, parent, P);
         return undefined;
-      } // 3.1.4.1 OrdinaryGetOwnMetadata(MetadataKey, O, P)
+      }
+      // 3.1.4.1 OrdinaryGetOwnMetadata(MetadataKey, O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinarygetownmetadata
-
-
       function OrdinaryGetOwnMetadata(MetadataKey, O, P) {
-        var metadataMap = GetOrCreateMetadataMap(O, P,
-        /*Create*/
-        false);
+        var metadataMap = GetOrCreateMetadataMap(O, P, /*Create*/false);
         if (IsUndefined(metadataMap)) return undefined;
         return metadataMap.get(MetadataKey);
-      } // 3.1.5.1 OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O, P)
+      }
+      // 3.1.5.1 OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinarydefineownmetadata
-
-
       function OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O, P) {
-        var metadataMap = GetOrCreateMetadataMap(O, P,
-        /*Create*/
-        true);
+        var metadataMap = GetOrCreateMetadataMap(O, P, /*Create*/true);
         metadataMap.set(MetadataKey, MetadataValue);
-      } // 3.1.6.1 OrdinaryMetadataKeys(O, P)
+      }
+      // 3.1.6.1 OrdinaryMetadataKeys(O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinarymetadatakeys
-
-
       function OrdinaryMetadataKeys(O, P) {
         var ownKeys = OrdinaryOwnMetadataKeys(O, P);
         var parent = OrdinaryGetPrototypeOf(O);
@@ -2032,52 +1874,40 @@ if (false) {} else {
         if (ownKeys.length <= 0) return parentKeys;
         var set = new _Set();
         var keys = [];
-
         for (var _i = 0, ownKeys_1 = ownKeys; _i < ownKeys_1.length; _i++) {
           var key = ownKeys_1[_i];
           var hasKey = set.has(key);
-
           if (!hasKey) {
             set.add(key);
             keys.push(key);
           }
         }
-
         for (var _a = 0, parentKeys_1 = parentKeys; _a < parentKeys_1.length; _a++) {
           var key = parentKeys_1[_a];
           var hasKey = set.has(key);
-
           if (!hasKey) {
             set.add(key);
             keys.push(key);
           }
         }
-
         return keys;
-      } // 3.1.7.1 OrdinaryOwnMetadataKeys(O, P)
+      }
+      // 3.1.7.1 OrdinaryOwnMetadataKeys(O, P)
       // https://rbuckton.github.io/reflect-metadata/#ordinaryownmetadatakeys
-
-
       function OrdinaryOwnMetadataKeys(O, P) {
         var keys = [];
-        var metadataMap = GetOrCreateMetadataMap(O, P,
-        /*Create*/
-        false);
+        var metadataMap = GetOrCreateMetadataMap(O, P, /*Create*/false);
         if (IsUndefined(metadataMap)) return keys;
         var keysObj = metadataMap.keys();
         var iterator = GetIterator(keysObj);
         var k = 0;
-
         while (true) {
           var next = IteratorStep(iterator);
-
           if (!next) {
             keys.length = k;
             return keys;
           }
-
           var nextValue = IteratorValue(next);
-
           try {
             keys[k] = nextValue;
           } catch (e) {
@@ -2087,333 +1917,238 @@ if (false) {} else {
               throw e;
             }
           }
-
           k++;
         }
-      } // 6 ECMAScript Data Typ0es and Values
+      }
+      // 6 ECMAScript Data Typ0es and Values
       // https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values
-
-
       function Type(x) {
-        if (x === null) return 1
-        /* Null */
-        ;
-
-        switch (Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x)) {
+        if (x === null) return 1 /* Null */;
+        switch (Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x)) {
           case "undefined":
-            return 0
-            /* Undefined */
-            ;
-
+            return 0 /* Undefined */;
           case "boolean":
-            return 2
-            /* Boolean */
-            ;
-
+            return 2 /* Boolean */;
           case "string":
-            return 3
-            /* String */
-            ;
-
+            return 3 /* String */;
           case "symbol":
-            return 4
-            /* Symbol */
-            ;
-
+            return 4 /* Symbol */;
           case "number":
-            return 5
-            /* Number */
-            ;
-
+            return 5 /* Number */;
           case "object":
-            return x === null ? 1
-            /* Null */
-            : 6
-            /* Object */
-            ;
-
+            return x === null ? 1 /* Null */ : 6 /* Object */;
           default:
-            return 6
-            /* Object */
-            ;
+            return 6 /* Object */;
         }
-      } // 6.1.1 The Undefined Type
+      }
+      // 6.1.1 The Undefined Type
       // https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type
-
-
       function IsUndefined(x) {
         return x === undefined;
-      } // 6.1.2 The Null Type
+      }
+      // 6.1.2 The Null Type
       // https://tc39.github.io/ecma262/#sec-ecmascript-language-types-null-type
-
-
       function IsNull(x) {
         return x === null;
-      } // 6.1.5 The Symbol Type
+      }
+      // 6.1.5 The Symbol Type
       // https://tc39.github.io/ecma262/#sec-ecmascript-language-types-symbol-type
-
-
       function IsSymbol(x) {
-        return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x) === "symbol";
-      } // 6.1.7 The Object Type
+        return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x) === "symbol";
+      }
+      // 6.1.7 The Object Type
       // https://tc39.github.io/ecma262/#sec-object-type
-
-
       function IsObject(x) {
-        return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x) === "object" ? x !== null : typeof x === "function";
-      } // 7.1 Type Conversion
+        return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(x) === "object" ? x !== null : typeof x === "function";
+      }
+      // 7.1 Type Conversion
       // https://tc39.github.io/ecma262/#sec-type-conversion
       // 7.1.1 ToPrimitive(input [, PreferredType])
       // https://tc39.github.io/ecma262/#sec-toprimitive
-
-
       function ToPrimitive(input, PreferredType) {
         switch (Type(input)) {
-          case 0
-          /* Undefined */
-          :
+          case 0 /* Undefined */:
             return input;
-
-          case 1
-          /* Null */
-          :
+          case 1 /* Null */:
             return input;
-
-          case 2
-          /* Boolean */
-          :
+          case 2 /* Boolean */:
             return input;
-
-          case 3
-          /* String */
-          :
+          case 3 /* String */:
             return input;
-
-          case 4
-          /* Symbol */
-          :
+          case 4 /* Symbol */:
             return input;
-
-          case 5
-          /* Number */
-          :
+          case 5 /* Number */:
             return input;
         }
-
-        var hint = PreferredType === 3
-        /* String */
-        ? "string" : PreferredType === 5
-        /* Number */
-        ? "number" : "default";
+        var hint = PreferredType === 3 /* String */ ? "string" : PreferredType === 5 /* Number */ ? "number" : "default";
         var exoticToPrim = GetMethod(input, toPrimitiveSymbol);
-
         if (exoticToPrim !== undefined) {
           var result = exoticToPrim.call(input, hint);
           if (IsObject(result)) throw new TypeError();
           return result;
         }
-
         return OrdinaryToPrimitive(input, hint === "default" ? "number" : hint);
-      } // 7.1.1.1 OrdinaryToPrimitive(O, hint)
+      }
+      // 7.1.1.1 OrdinaryToPrimitive(O, hint)
       // https://tc39.github.io/ecma262/#sec-ordinarytoprimitive
-
-
       function OrdinaryToPrimitive(O, hint) {
         if (hint === "string") {
           var toString_1 = O.toString;
-
           if (IsCallable(toString_1)) {
             var result = toString_1.call(O);
             if (!IsObject(result)) return result;
           }
-
           var valueOf = O.valueOf;
-
           if (IsCallable(valueOf)) {
             var result = valueOf.call(O);
             if (!IsObject(result)) return result;
           }
         } else {
           var valueOf = O.valueOf;
-
           if (IsCallable(valueOf)) {
             var result = valueOf.call(O);
             if (!IsObject(result)) return result;
           }
-
           var toString_2 = O.toString;
-
           if (IsCallable(toString_2)) {
             var result = toString_2.call(O);
             if (!IsObject(result)) return result;
           }
         }
-
         throw new TypeError();
-      } // 7.1.2 ToBoolean(argument)
+      }
+      // 7.1.2 ToBoolean(argument)
       // https://tc39.github.io/ecma262/2016/#sec-toboolean
-
-
       function ToBoolean(argument) {
         return !!argument;
-      } // 7.1.12 ToString(argument)
+      }
+      // 7.1.12 ToString(argument)
       // https://tc39.github.io/ecma262/#sec-tostring
-
-
       function ToString(argument) {
         return "" + argument;
-      } // 7.1.14 ToPropertyKey(argument)
+      }
+      // 7.1.14 ToPropertyKey(argument)
       // https://tc39.github.io/ecma262/#sec-topropertykey
-
-
       function ToPropertyKey(argument) {
-        var key = ToPrimitive(argument, 3
-        /* String */
-        );
+        var key = ToPrimitive(argument, 3 /* String */);
         if (IsSymbol(key)) return key;
         return ToString(key);
-      } // 7.2 Testing and Comparison Operations
+      }
+      // 7.2 Testing and Comparison Operations
       // https://tc39.github.io/ecma262/#sec-testing-and-comparison-operations
       // 7.2.2 IsArray(argument)
       // https://tc39.github.io/ecma262/#sec-isarray
-
-
       function IsArray(argument) {
         return Array.isArray ? Array.isArray(argument) : argument instanceof Object ? argument instanceof Array : Object.prototype.toString.call(argument) === "[object Array]";
-      } // 7.2.3 IsCallable(argument)
+      }
+      // 7.2.3 IsCallable(argument)
       // https://tc39.github.io/ecma262/#sec-iscallable
-
-
       function IsCallable(argument) {
         // NOTE: This is an approximation as we cannot check for [[Call]] internal method.
         return typeof argument === "function";
-      } // 7.2.4 IsConstructor(argument)
+      }
+      // 7.2.4 IsConstructor(argument)
       // https://tc39.github.io/ecma262/#sec-isconstructor
-
-
       function IsConstructor(argument) {
         // NOTE: This is an approximation as we cannot check for [[Construct]] internal method.
         return typeof argument === "function";
-      } // 7.2.7 IsPropertyKey(argument)
+      }
+      // 7.2.7 IsPropertyKey(argument)
       // https://tc39.github.io/ecma262/#sec-ispropertykey
-
-
       function IsPropertyKey(argument) {
         switch (Type(argument)) {
-          case 3
-          /* String */
-          :
+          case 3 /* String */:
             return true;
-
-          case 4
-          /* Symbol */
-          :
+          case 4 /* Symbol */:
             return true;
-
           default:
             return false;
         }
-      } // 7.3 Operations on Objects
+      }
+      // 7.3 Operations on Objects
       // https://tc39.github.io/ecma262/#sec-operations-on-objects
       // 7.3.9 GetMethod(V, P)
       // https://tc39.github.io/ecma262/#sec-getmethod
-
-
       function GetMethod(V, P) {
         var func = V[P];
         if (func === undefined || func === null) return undefined;
         if (!IsCallable(func)) throw new TypeError();
         return func;
-      } // 7.4 Operations on Iterator Objects
+      }
+      // 7.4 Operations on Iterator Objects
       // https://tc39.github.io/ecma262/#sec-operations-on-iterator-objects
-
-
       function GetIterator(obj) {
         var method = GetMethod(obj, iteratorSymbol);
         if (!IsCallable(method)) throw new TypeError(); // from Call
-
         var iterator = method.call(obj);
         if (!IsObject(iterator)) throw new TypeError();
         return iterator;
-      } // 7.4.4 IteratorValue(iterResult)
+      }
+      // 7.4.4 IteratorValue(iterResult)
       // https://tc39.github.io/ecma262/2016/#sec-iteratorvalue
-
-
       function IteratorValue(iterResult) {
         return iterResult.value;
-      } // 7.4.5 IteratorStep(iterator)
+      }
+      // 7.4.5 IteratorStep(iterator)
       // https://tc39.github.io/ecma262/#sec-iteratorstep
-
-
       function IteratorStep(iterator) {
         var result = iterator.next();
         return result.done ? false : result;
-      } // 7.4.6 IteratorClose(iterator, completion)
+      }
+      // 7.4.6 IteratorClose(iterator, completion)
       // https://tc39.github.io/ecma262/#sec-iteratorclose
-
-
       function IteratorClose(iterator) {
         var f = iterator["return"];
         if (f) f.call(iterator);
-      } // 9.1 Ordinary Object Internal Methods and Internal Slots
+      }
+      // 9.1 Ordinary Object Internal Methods and Internal Slots
       // https://tc39.github.io/ecma262/#sec-ordinary-object-internal-methods-and-internal-slots
       // 9.1.1.1 OrdinaryGetPrototypeOf(O)
       // https://tc39.github.io/ecma262/#sec-ordinarygetprototypeof
-
-
       function OrdinaryGetPrototypeOf(O) {
         var proto = Object.getPrototypeOf(O);
-        if (typeof O !== "function" || O === functionPrototype) return proto; // TypeScript doesn't set __proto__ in ES5, as it's non-standard.
+        if (typeof O !== "function" || O === functionPrototype) return proto;
+        // TypeScript doesn't set __proto__ in ES5, as it's non-standard.
         // Try to determine the superclass constructor. Compatible implementations
         // must either set __proto__ on a subclass constructor to the superclass constructor,
         // or ensure each class has a valid `constructor` property on its prototype that
         // points back to the constructor.
         // If this is not the same as Function.[[Prototype]], then this is definately inherited.
         // This is the case when in ES6 or when using __proto__ in a compatible browser.
-
-        if (proto !== functionPrototype) return proto; // If the super prototype is Object.prototype, null, or undefined, then we cannot determine the heritage.
-
+        if (proto !== functionPrototype) return proto;
+        // If the super prototype is Object.prototype, null, or undefined, then we cannot determine the heritage.
         var prototype = O.prototype;
         var prototypeProto = prototype && Object.getPrototypeOf(prototype);
-        if (prototypeProto == null || prototypeProto === Object.prototype) return proto; // If the constructor was not a function, then we cannot determine the heritage.
-
+        if (prototypeProto == null || prototypeProto === Object.prototype) return proto;
+        // If the constructor was not a function, then we cannot determine the heritage.
         var constructor = prototypeProto.constructor;
-        if (typeof constructor !== "function") return proto; // If we have some kind of self-reference, then we cannot determine the heritage.
-
-        if (constructor === O) return proto; // we have a pretty good guess at the heritage.
-
+        if (typeof constructor !== "function") return proto;
+        // If we have some kind of self-reference, then we cannot determine the heritage.
+        if (constructor === O) return proto;
+        // we have a pretty good guess at the heritage.
         return constructor;
-      } // naive Map shim
-
-
+      }
+      // naive Map shim
       function CreateMapPolyfill() {
         var cacheSentinel = {};
         var arraySentinel = [];
-
-        var MapIterator =
-        /** @class */
-        function () {
+        var MapIterator = /** @class */function () {
           function MapIterator(keys, values, selector) {
             this._index = 0;
             this._keys = keys;
             this._values = values;
             this._selector = selector;
           }
-
           MapIterator.prototype["@@iterator"] = function () {
             return this;
           };
-
           MapIterator.prototype[iteratorSymbol] = function () {
             return this;
           };
-
           MapIterator.prototype.next = function () {
             var index = this._index;
-
             if (index >= 0 && index < this._keys.length) {
               var result = this._selector(this._keys[index], this._values[index]);
-
               if (index + 1 >= this._keys.length) {
                 this._index = -1;
                 this._keys = arraySentinel;
@@ -2421,55 +2156,44 @@ if (false) {} else {
               } else {
                 this._index++;
               }
-
               return {
                 value: result,
                 done: false
               };
             }
-
             return {
               value: undefined,
               done: true
             };
           };
-
           MapIterator.prototype.throw = function (error) {
             if (this._index >= 0) {
               this._index = -1;
               this._keys = arraySentinel;
               this._values = arraySentinel;
             }
-
             throw error;
           };
-
           MapIterator.prototype.return = function (value) {
             if (this._index >= 0) {
               this._index = -1;
               this._keys = arraySentinel;
               this._values = arraySentinel;
             }
-
             return {
               value: value,
               done: true
             };
           };
-
           return MapIterator;
         }();
-
-        return (
-          /** @class */
-          function () {
+        return (/** @class */function () {
             function Map() {
               this._keys = [];
               this._values = [];
               this._cacheKey = cacheSentinel;
               this._cacheIndex = -2;
             }
-
             Object.defineProperty(Map.prototype, "size", {
               get: function get() {
                 return this._keys.length;
@@ -2477,126 +2201,87 @@ if (false) {} else {
               enumerable: true,
               configurable: true
             });
-
             Map.prototype.has = function (key) {
-              return this._find(key,
-              /*insert*/
-              false) >= 0;
+              return this._find(key, /*insert*/false) >= 0;
             };
-
             Map.prototype.get = function (key) {
-              var index = this._find(key,
-              /*insert*/
-              false);
-
+              var index = this._find(key, /*insert*/false);
               return index >= 0 ? this._values[index] : undefined;
             };
-
             Map.prototype.set = function (key, value) {
-              var index = this._find(key,
-              /*insert*/
-              true);
-
+              var index = this._find(key, /*insert*/true);
               this._values[index] = value;
               return this;
             };
-
             Map.prototype.delete = function (key) {
-              var index = this._find(key,
-              /*insert*/
-              false);
-
+              var index = this._find(key, /*insert*/false);
               if (index >= 0) {
                 var size = this._keys.length;
-
                 for (var i = index + 1; i < size; i++) {
                   this._keys[i - 1] = this._keys[i];
                   this._values[i - 1] = this._values[i];
                 }
-
                 this._keys.length--;
                 this._values.length--;
-
                 if (key === this._cacheKey) {
                   this._cacheKey = cacheSentinel;
                   this._cacheIndex = -2;
                 }
-
                 return true;
               }
-
               return false;
             };
-
             Map.prototype.clear = function () {
               this._keys.length = 0;
               this._values.length = 0;
               this._cacheKey = cacheSentinel;
               this._cacheIndex = -2;
             };
-
             Map.prototype.keys = function () {
               return new MapIterator(this._keys, this._values, getKey);
             };
-
             Map.prototype.values = function () {
               return new MapIterator(this._keys, this._values, getValue);
             };
-
             Map.prototype.entries = function () {
               return new MapIterator(this._keys, this._values, getEntry);
             };
-
             Map.prototype["@@iterator"] = function () {
               return this.entries();
             };
-
             Map.prototype[iteratorSymbol] = function () {
               return this.entries();
             };
-
             Map.prototype._find = function (key, insert) {
               if (this._cacheKey !== key) {
                 this._cacheIndex = this._keys.indexOf(this._cacheKey = key);
               }
-
               if (this._cacheIndex < 0 && insert) {
                 this._cacheIndex = this._keys.length;
-
                 this._keys.push(key);
-
                 this._values.push(undefined);
               }
-
               return this._cacheIndex;
             };
-
             return Map;
           }()
         );
-
         function getKey(key, _) {
           return key;
         }
-
         function getValue(_, value) {
           return value;
         }
-
         function getEntry(key, value) {
           return [key, value];
         }
-      } // naive Set shim
-
-
+      }
+      // naive Set shim
       function CreateSetPolyfill() {
-        return (
-          /** @class */
-          function () {
+        return (/** @class */function () {
             function Set() {
               this._map = new _Map();
             }
-
             Object.defineProperty(Set.prototype, "size", {
               get: function get() {
                 return this._map.size;
@@ -2604,109 +2289,78 @@ if (false) {} else {
               enumerable: true,
               configurable: true
             });
-
             Set.prototype.has = function (value) {
               return this._map.has(value);
             };
-
             Set.prototype.add = function (value) {
               return this._map.set(value, value), this;
             };
-
             Set.prototype.delete = function (value) {
               return this._map.delete(value);
             };
-
             Set.prototype.clear = function () {
               this._map.clear();
             };
-
             Set.prototype.keys = function () {
               return this._map.keys();
             };
-
             Set.prototype.values = function () {
               return this._map.values();
             };
-
             Set.prototype.entries = function () {
               return this._map.entries();
             };
-
             Set.prototype["@@iterator"] = function () {
               return this.keys();
             };
-
             Set.prototype[iteratorSymbol] = function () {
               return this.keys();
             };
-
             return Set;
           }()
         );
-      } // naive WeakMap shim
-
-
+      }
+      // naive WeakMap shim
       function CreateWeakMapPolyfill() {
         var UUID_SIZE = 16;
         var keys = HashMap.create();
         var rootKey = CreateUniqueKey();
-        return (
-          /** @class */
-          function () {
+        return (/** @class */function () {
             function WeakMap() {
               this._key = CreateUniqueKey();
             }
-
             WeakMap.prototype.has = function (target) {
-              var table = GetOrCreateWeakMapTable(target,
-              /*create*/
-              false);
+              var table = GetOrCreateWeakMapTable(target, /*create*/false);
               return table !== undefined ? HashMap.has(table, this._key) : false;
             };
-
             WeakMap.prototype.get = function (target) {
-              var table = GetOrCreateWeakMapTable(target,
-              /*create*/
-              false);
+              var table = GetOrCreateWeakMapTable(target, /*create*/false);
               return table !== undefined ? HashMap.get(table, this._key) : undefined;
             };
-
             WeakMap.prototype.set = function (target, value) {
-              var table = GetOrCreateWeakMapTable(target,
-              /*create*/
-              true);
+              var table = GetOrCreateWeakMapTable(target, /*create*/true);
               table[this._key] = value;
               return this;
             };
-
             WeakMap.prototype.delete = function (target) {
-              var table = GetOrCreateWeakMapTable(target,
-              /*create*/
-              false);
+              var table = GetOrCreateWeakMapTable(target, /*create*/false);
               return table !== undefined ? delete table[this._key] : false;
             };
-
             WeakMap.prototype.clear = function () {
               // NOTE: not a real clear, just makes the previous data unreachable
               this._key = CreateUniqueKey();
             };
-
             return WeakMap;
           }()
         );
-
         function CreateUniqueKey() {
           var key;
-
           do {
             key = "@@WeakMap@@" + CreateUUID();
           } while (HashMap.has(keys, key));
-
           keys[key] = true;
           return key;
         }
-
         function GetOrCreateWeakMapTable(target, create) {
           if (!hasOwn.call(target, rootKey)) {
             if (!create) return undefined;
@@ -2714,47 +2368,38 @@ if (false) {} else {
               value: HashMap.create()
             });
           }
-
           return target[rootKey];
         }
-
         function FillRandomBytes(buffer, size) {
           for (var i = 0; i < size; ++i) {
             buffer[i] = Math.random() * 0xff | 0;
           }
-
           return buffer;
         }
-
         function GenRandomBytes(size) {
           if (typeof Uint8Array === "function") {
             if (typeof crypto !== "undefined") return crypto.getRandomValues(new Uint8Array(size));
             if (typeof msCrypto !== "undefined") return msCrypto.getRandomValues(new Uint8Array(size));
             return FillRandomBytes(new Uint8Array(size), size);
           }
-
           return FillRandomBytes(new Array(size), size);
         }
-
         function CreateUUID() {
-          var data = GenRandomBytes(UUID_SIZE); // mark as random - RFC 4122 § 4.4
-
+          var data = GenRandomBytes(UUID_SIZE);
+          // mark as random - RFC 4122 § 4.4
           data[6] = data[6] & 0x4f | 0x40;
           data[8] = data[8] & 0xbf | 0x80;
           var result = "";
-
           for (var offset = 0; offset < UUID_SIZE; ++offset) {
             var byte = data[offset];
             if (offset === 4 || offset === 6 || offset === 8) result += "-";
             if (byte < 16) result += "0";
             result += byte.toString(16).toLowerCase();
           }
-
           return result;
         }
-      } // uses a heuristic used by v8 and chakra to force an object into dictionary mode.
-
-
+      }
+      // uses a heuristic used by v8 and chakra to force an object into dictionary mode.
       function MakeDictionary(obj) {
         obj.__ = undefined;
         delete obj.__;
@@ -2763,6 +2408,7 @@ if (false) {} else {
     });
   })(Reflect || (Reflect = {}));
 }
+
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -2778,27 +2424,23 @@ See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
 
-
 function __decorate(decorators, target, key, desc) {
   var c = arguments.length,
-      r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
-      d;
-  if ((typeof Reflect === "undefined" ? "undefined" : Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+    d;
+  if ((typeof Reflect === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(Reflect)) === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
     if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
   }
   return c > 3 && r && Object.defineProperty(target, key, r), r;
 }
-
 function __param(paramIndex, decorator) {
   return function (target, key) {
     decorator(target, key, paramIndex);
   };
 }
-
 function __metadata(metadataKey, metadataValue) {
-  if ((typeof Reflect === "undefined" ? "undefined" : Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+  if ((typeof Reflect === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(Reflect)) === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
 }
-
 var SERVICE_IDENTIFIER = {
   TaroElement: 'TaroElement',
   TaroElementFactory: 'Factory<TaroElement>',
@@ -2866,30 +2508,23 @@ var SET_TIMEOUT = 'setTimeout';
 var CATCHMOVE = 'catchMove';
 var CATCH_VIEW = 'catch-view';
 var COMMENT = 'comment';
-
 var incrementId = function incrementId() {
   var id = 0;
   return function () {
     return (id++).toString();
   };
 };
-
 function isElement(node) {
-  return node.nodeType === 1
-  /* ELEMENT_NODE */
-  ;
+  return node.nodeType === 1 /* ELEMENT_NODE */;
 }
 
 function isText(node) {
-  return node.nodeType === 3
-  /* TEXT_NODE */
-  ;
+  return node.nodeType === 3 /* TEXT_NODE */;
 }
 
 function isComment(node) {
   return node.nodeName === COMMENT;
 }
-
 function isHasExtractProp(el) {
   var res = Object.keys(el.props).find(function (prop) {
     return !(/^(class|style|id)$/.test(prop) || prop.startsWith('data-'));
@@ -2901,93 +2536,68 @@ function isHasExtractProp(el) {
  * @param node 当前组件
  * @param type 事件类型
  */
-
-
 function isParentBinded(node, type) {
   var _a;
-
   var res = false;
-
   while ((node === null || node === void 0 ? void 0 : node.parentElement) && node.parentElement._path !== ROOT_STR) {
     if ((_a = node.parentElement.__handlers[type]) === null || _a === void 0 ? void 0 : _a.length) {
       res = true;
       break;
     }
-
     node = node.parentElement;
   }
-
   return res;
 }
-
 function shortcutAttr(key) {
   switch (key) {
     case STYLE:
-      return "st"
-      /* Style */
-      ;
-
+      return "st" /* Style */;
     case ID:
       return UID;
-
     case CLASS:
-      return "cl"
-      /* Class */
-      ;
-
+      return "cl" /* Class */;
     default:
       return key;
   }
 }
-
 var TaroEventTarget = /*#__PURE__*/function () {
-  function TaroEventTarget( // eslint-disable-next-line @typescript-eslint/indent
+  function TaroEventTarget(
+  // eslint-disable-next-line @typescript-eslint/indent
   hooks) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroEventTarget);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroEventTarget);
     this.__handlers = {};
     this.hooks = hooks;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroEventTarget, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroEventTarget, [{
     key: "addEventListener",
     value: function addEventListener(type, handler, options) {
       var _a, _b;
-
       (_b = (_a = this.hooks).onAddEvent) === null || _b === void 0 ? void 0 : _b.call(_a, type, handler, options, this);
-
       if (type === 'regionchange') {
         // map 组件的 regionchange 事件非常特殊，详情：https://github.com/NervJS/taro/issues/5766
         this.addEventListener('begin', handler, options);
         this.addEventListener('end', handler, options);
         return;
       }
-
       type = type.toLowerCase();
       var handlers = this.__handlers[type];
       var isCapture = Boolean(options);
       var isOnce = false;
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isObject */ "l"])(options)) {
         isCapture = Boolean(options.capture);
         isOnce = Boolean(options.once);
       }
-
       if (isOnce) {
         var wrapper = function wrapper() {
           handler.apply(this, arguments); // this 指向 Element
-
           this.removeEventListener(type, wrapper);
         };
-
         this.addEventListener(type, wrapper, Object.assign(Object.assign({}, options), {
           once: false
         }));
         return;
       }
-
        true && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* warn */ "v"])(isCapture, 'Taro 暂未实现 event 的 capture 特性。');
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(handlers)) {
         handlers.push(handler);
       } else {
@@ -2998,17 +2608,13 @@ var TaroEventTarget = /*#__PURE__*/function () {
     key: "removeEventListener",
     value: function removeEventListener(type, handler) {
       type = type.toLowerCase();
-
       if (handler == null) {
         return;
       }
-
       var handlers = this.__handlers[type];
-
       if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(handlers)) {
         return;
       }
-
       var index = handlers.indexOf(handler);
        true && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* warn */ "v"])(index === -1, "\u4E8B\u4EF6: '".concat(type, "' \u6CA1\u6709\u6CE8\u518C\u5728 DOM \u4E2D\uFF0C\u56E0\u6B64\u4E0D\u4F1A\u88AB\u79FB\u9664\u3002"));
       handlers.splice(index, 1);
@@ -3023,145 +2629,98 @@ var TaroEventTarget = /*#__PURE__*/function () {
       return Boolean(isAnyEventBinded);
     }
   }]);
-
   return TaroEventTarget;
 }();
-
 TaroEventTarget = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __metadata("design:paramtypes", [Object])], TaroEventTarget);
+
 /**
  * React also has a fancy function's name for this: `hydrate()`.
  * You may have been heard `hydrate` as a SSR-related function,
  * actually, `hydrate` basicly do the `render()` thing, but ignore some properties,
  * it's a vnode traverser and modifier: that's exactly what Taro's doing in here.
  */
-
 function hydrate(node) {
   var _data;
-
   var _a, _b;
-
   var nodeName = node.nodeName;
-
   if (isText(node)) {
     var _ref;
-
-    return _ref = {}, Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_ref, "v"
-    /* Text */
-    , node.nodeValue), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_ref, "nn"
-    /* NodeName */
-    , nodeName), _ref;
+    return _ref = {}, Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_ref, "v" /* Text */, node.nodeValue), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_ref, "nn" /* NodeName */, nodeName), _ref;
   }
-
-  var data = (_data = {}, Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_data, "nn"
-  /* NodeName */
-  , nodeName), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_data, "uid", node.uid), _data);
+  var data = (_data = {}, Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_data, "nn" /* NodeName */, nodeName), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])(_data, "uid", node.uid), _data);
   var props = node.props;
   var SPECIAL_NODES = node.hooks.getSpecialNodes();
-
   if (!node.isAnyEventBinded() && SPECIAL_NODES.indexOf(nodeName) > -1) {
-    data["nn"
-    /* NodeName */
-    ] = "static-".concat(nodeName);
-
+    data["nn" /* NodeName */] = "static-".concat(nodeName);
     if (nodeName === VIEW && !isHasExtractProp(node)) {
-      data["nn"
-      /* NodeName */
-      ] = PURE_VIEW;
+      data["nn" /* NodeName */] = PURE_VIEW;
     }
   }
-
   for (var prop in props) {
     var propInCamelCase = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(prop);
-
-    if (!prop.startsWith('data-') && // 在 node.dataset 的数据
+    if (!prop.startsWith('data-') &&
+    // 在 node.dataset 的数据
     prop !== CLASS && prop !== STYLE && prop !== ID && propInCamelCase !== CATCHMOVE) {
       data[propInCamelCase] = props[prop];
     }
-
     if (nodeName === VIEW && propInCamelCase === CATCHMOVE && props[prop] !== false) {
-      data["nn"
-      /* NodeName */
-      ] = CATCH_VIEW;
+      data["nn" /* NodeName */] = CATCH_VIEW;
     }
   }
-
-  var childNodes = node.childNodes; // 过滤 comment 节点
-
+  var childNodes = node.childNodes;
+  // 过滤 comment 节点
   childNodes = childNodes.filter(function (node) {
     return !isComment(node);
   });
-
   if (childNodes.length > 0) {
-    data["cn"
-    /* Childnodes */
-    ] = childNodes.map(hydrate);
+    data["cn" /* Childnodes */] = childNodes.map(hydrate);
   } else {
-    data["cn"
-    /* Childnodes */
-    ] = [];
+    data["cn" /* Childnodes */] = [];
   }
-
   if (node.className !== '') {
-    data["cl"
-    /* Class */
-    ] = node.className;
+    data["cl" /* Class */] = node.className;
   }
-
   if (node.cssText !== '' && nodeName !== 'swiper-item') {
-    data["st"
-    /* Style */
-    ] = node.cssText;
+    data["st" /* Style */] = node.cssText;
   }
-
   (_b = (_a = node.hooks).modifyHydrateData) === null || _b === void 0 ? void 0 : _b.call(_a, data);
   return data;
 }
-
 var eventSource = new Map();
 var ElementNames;
-
 (function (ElementNames) {
   ElementNames["Element"] = "Element";
   ElementNames["Document"] = "Document";
   ElementNames["RootElement"] = "RootElement";
   ElementNames["FormElement"] = "FormElement";
 })(ElementNames || (ElementNames = {}));
-
 var nodeId = incrementId();
-
 var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroNode, _TaroEventTarget);
-
-  var _super = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroNode);
-
-  function TaroNode( // eslint-disable-next-line @typescript-eslint/indent
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroNode, _TaroEventTarget);
+  var _super = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroNode);
+  function TaroNode(
+  // eslint-disable-next-line @typescript-eslint/indent
   impl, getElement, hooks) {
     var _this;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroNode);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroNode);
     _this = _super.call(this, hooks);
     _this.parentNode = null;
     _this.childNodes = [];
-
     _this.hydrate = function (node) {
       return function () {
         return hydrate(node);
       };
     };
-
-    impl.bind(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this));
+    impl.bind(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this));
     _this._getElement = getElement;
     _this.uid = "_n_".concat(nodeId());
-    eventSource.set(_this.uid, Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this));
+    eventSource.set(_this.uid, Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this));
     return _this;
   }
   /**
    * like jQuery's $.empty()
    */
-
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroNode, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroNode, [{
     key: "_empty",
     value: function _empty() {
       while (this.childNodes.length > 0) {
@@ -3175,7 +2734,6 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "_root",
     get: function get() {
       var _a;
-
       return ((_a = this.parentNode) === null || _a === void 0 ? void 0 : _a._root) || null;
     }
   }, {
@@ -3189,7 +2747,6 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "_path",
     get: function get() {
       var parentNode = this.parentNode;
-
       if (parentNode) {
         // 计算路径时，先过滤掉 comment 节点
         var list = parentNode.childNodes.filter(function (node) {
@@ -3197,11 +2754,8 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
         });
         var indexOfNode = list.indexOf(this);
         var index = this.hooks.getPathIndex(indexOfNode);
-        return "".concat(parentNode._path, ".", "cn"
-        /* Childnodes */
-        , ".").concat(index);
+        return "".concat(parentNode._path, ".", "cn" /* Childnodes */, ".").concat(index);
       }
-
       return '';
     }
   }, {
@@ -3220,13 +2774,9 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "parentElement",
     get: function get() {
       var parentNode = this.parentNode;
-
-      if ((parentNode === null || parentNode === void 0 ? void 0 : parentNode.nodeType) === 1
-      /* ELEMENT_NODE */
-      ) {
+      if ((parentNode === null || parentNode === void 0 ? void 0 : parentNode.nodeType) === 1 /* ELEMENT_NODE */) {
         return parentNode;
       }
-
       return null;
     }
   }, {
@@ -3244,24 +2794,19 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
      * @textContent 目前只能置空子元素
      * @TODO 等待完整 innerHTML 实现
      */
-
   }, {
     key: "textContent",
     set: function set(text) {
       this._empty();
-
       if (text === '') {
         this.enqueueUpdate({
-          path: "".concat(this._path, ".", "cn"
-          /* Childnodes */
-          ),
+          path: "".concat(this._path, ".", "cn" /* Childnodes */),
           value: function value() {
             return [];
           }
         });
       } else {
         var _document = this._getElement(ElementNames.Document)();
-
         this.appendChild(_document.createTextNode(text));
       }
     }
@@ -3269,24 +2814,19 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "insertBefore",
     value: function insertBefore(newChild, refChild, isReplace) {
       var _this2 = this;
-
       if (newChild.nodeName === DOCUMENT_FRAGMENT) {
         newChild.childNodes.reduceRight(function (previousValue, currentValue) {
           _this2.insertBefore(currentValue, previousValue);
-
           return currentValue;
         }, refChild);
         return newChild;
       }
-
       newChild.remove();
       newChild.parentNode = this;
       var payload;
-
       if (refChild) {
         var index = this.findIndex(refChild);
         this.childNodes.splice(index, 0, newChild);
-
         if (isReplace) {
           payload = {
             path: newChild._path,
@@ -3294,14 +2834,11 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
           };
         } else {
           payload = {
-            path: "".concat(this._path, ".", "cn"
-            /* Childnodes */
-            ),
+            path: "".concat(this._path, ".", "cn" /* Childnodes */),
             value: function value() {
               var childNodes = _this2.childNodes.filter(function (node) {
                 return !isComment(node);
               });
-
               return childNodes.map(hydrate);
             }
           };
@@ -3313,13 +2850,10 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
           value: this.hydrate(newChild)
         };
       }
-
       this.enqueueUpdate(payload);
-
       if (!eventSource.has(newChild.uid)) {
         eventSource.set(newChild.uid, newChild);
       }
-
       return newChild;
     }
   }, {
@@ -3340,36 +2874,29 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "removeChild",
     value: function removeChild(child, isReplace) {
       var _this3 = this;
-
       var index = this.findIndex(child);
       this.childNodes.splice(index, 1);
-
       if (!isReplace) {
         this.enqueueUpdate({
-          path: "".concat(this._path, ".", "cn"
-          /* Childnodes */
-          ),
+          path: "".concat(this._path, ".", "cn" /* Childnodes */),
           value: function value() {
             var childNodes = _this3.childNodes.filter(function (node) {
               return !isComment(node);
             });
-
             return childNodes.map(hydrate);
           }
         });
       }
-
       child.parentNode = null;
-      eventSource.delete(child.uid); // @TODO: eventSource memory overflow
+      eventSource.delete(child.uid);
+      // @TODO: eventSource memory overflow
       // child._empty()
-
       return child;
     }
   }, {
     key: "remove",
     value: function remove(isReplace) {
       var _a;
-
       (_a = this.parentNode) === null || _a === void 0 ? void 0 : _a.removeChild(this, isReplace);
     }
   }, {
@@ -3381,7 +2908,6 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "enqueueUpdate",
     value: function enqueueUpdate(payload) {
       var _a;
-
       (_a = this._root) === null || _a === void 0 ? void 0 : _a.enqueueUpdate(payload);
     }
   }, {
@@ -3390,7 +2916,6 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
       var isContains = false;
       this.childNodes.some(function (childNode) {
         var uid = childNode.uid;
-
         if (uid === node.uid || uid === node.id || childNode.contains(node)) {
           isContains = true;
           return true;
@@ -3402,36 +2927,26 @@ var TaroNode = /*#__PURE__*/function (_TaroEventTarget) {
     key: "ownerDocument",
     get: function get() {
       var document = this._getElement(ElementNames.Document)();
-
       return document;
     }
   }]);
-
   return TaroNode;
 }(TaroEventTarget);
-
 TaroNode = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroNodeImpl)), __param(1, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __param(2, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __metadata("design:paramtypes", [Function, Function, Function])], TaroNode);
-
 var TaroText = /*#__PURE__*/function (_TaroNode) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroText, _TaroNode);
-
-  var _super2 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroText);
-
-  function TaroText( // eslint-disable-next-line @typescript-eslint/indent
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroText, _TaroNode);
+  var _super2 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroText);
+  function TaroText(
+  // eslint-disable-next-line @typescript-eslint/indent
   nodeImpl, getElement, hooks) {
     var _this4;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroText);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroText);
     _this4 = _super2.call(this, nodeImpl, getElement, hooks);
-    _this4.nodeType = 3
-    /* TEXT_NODE */
-    ;
+    _this4.nodeType = 3 /* TEXT_NODE */;
     _this4.nodeName = '#text';
     return _this4;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroText, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroText, [{
     key: "textContent",
     get: function get() {
       return this._value;
@@ -3439,9 +2954,7 @@ var TaroText = /*#__PURE__*/function (_TaroNode) {
     set: function set(text) {
       this._value = text;
       this.enqueueUpdate({
-        path: "".concat(this._path, ".", "v"
-        /* Text */
-        ),
+        path: "".concat(this._path, ".", "v" /* Text */),
         value: text
       });
     }
@@ -3454,16 +2967,14 @@ var TaroText = /*#__PURE__*/function (_TaroNode) {
       this.textContent = text;
     }
   }]);
-
   return TaroText;
 }(TaroNode);
-
 TaroText = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroNodeImpl)), __param(1, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __param(2, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __metadata("design:paramtypes", [Function, Function, Function])], TaroText);
+
 /*
  *
  * https://www.w3.org/Style/CSS/all-properties.en.html
  */
-
 var styleProperties = ['all', 'appearance', 'blockOverflow', 'blockSize', 'bottom', 'clear', 'contain', 'content', 'continue', 'cursor', 'direction', 'display', 'filter', 'float', 'gap', 'height', 'inset', 'isolation', 'left', 'letterSpacing', 'lightingColor', 'markerSide', 'mixBlendMode', 'opacity', 'order', 'position', 'quotes', 'resize', 'right', 'rowGap', 'tabSize', 'tableLayout', 'top', 'userSelect', 'verticalAlign', 'visibility', 'voiceFamily', 'volume', 'whiteSpace', 'widows', 'width', 'zIndex', 'pointerEvents'
 /** 非常用 style */
 // 'azimuth',
@@ -3494,15 +3005,14 @@ var styleProperties = ['all', 'appearance', 'blockOverflow', 'blockSize', 'botto
 // 'unicodeBidi',
 // 'willChange',
 // 'writingMode',
-]; // 减少文件体积
-
+];
+// 减少文件体积
 function combine(prefix, list, excludeSelf) {
   !excludeSelf && styleProperties.push(prefix);
   list.forEach(function (item) {
     styleProperties.push(prefix + item);
   });
 }
-
 var color = 'Color';
 var style = 'Style';
 var width = 'Width';
@@ -3602,31 +3112,22 @@ combine('word', ['Break', 'Spacing', 'Wrap'], true);
 combine('nav', ['Down', 'Left', 'Right', 'Up'], true);
 combine('object', ['Fit', 'Position'], true);
 combine('box', ['DecorationBreak', 'Shadow', 'Sizing', 'Snap'], true);
-
 function setStyle(newVal, styleKey) {
   var old = this[styleKey];
-
   if (newVal) {
     this._usedStyleProp.add(styleKey);
   }
-
    true && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* warn */ "v"])(Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isString */ "m"])(newVal) && newVal.length > PROPERTY_THRESHOLD, "Style \u5C5E\u6027 ".concat(styleKey, " \u7684\u503C\u6570\u636E\u91CF\u8FC7\u5927\uFF0C\u53EF\u80FD\u4F1A\u5F71\u54CD\u6E32\u67D3\u6027\u80FD\uFF0C\u8003\u8651\u4F7F\u7528 CSS \u7C7B\u6216\u5176\u5B83\u65B9\u6848\u66FF\u4EE3\u3002"));
-
   if (old !== newVal) {
     this._value[styleKey] = newVal;
-
     this._element.enqueueUpdate({
-      path: "".concat(this._element._path, ".", "st"
-      /* Style */
-      ),
+      path: "".concat(this._element._path, ".", "st" /* Style */),
       value: this.cssText
     });
   }
 }
-
 function initStyle(ctor) {
   var properties = {};
-
   var _loop = function _loop(i) {
     var styleKey = styleProperties[i];
     properties[styleKey] = {
@@ -3638,32 +3139,25 @@ function initStyle(ctor) {
       }
     };
   };
-
   for (var i = 0; i < styleProperties.length; i++) {
     _loop(i);
   }
-
   Object.defineProperties(ctor.prototype, properties);
 }
-
 function isCssVariable(propertyName) {
   return /^--/.test(propertyName);
 }
-
 var Style = /*#__PURE__*/function () {
   function Style(element) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Style);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Style);
     this._element = element;
     this._usedStyleProp = new Set();
     this._value = {};
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Style, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Style, [{
     key: "setCssVariables",
     value: function setCssVariables(styleKey) {
       var _this5 = this;
-
       this.hasOwnProperty(styleKey) || Object.defineProperty(this, styleKey, {
         enumerable: true,
         configurable: true,
@@ -3679,54 +3173,41 @@ var Style = /*#__PURE__*/function () {
     key: "cssText",
     get: function get() {
       var _this6 = this;
-
       var text = '';
-
       this._usedStyleProp.forEach(function (key) {
         var val = _this6[key];
         if (!val) return;
         var styleName = isCssVariable(key) ? key : Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toDashed */ "u"])(key);
         text += "".concat(styleName, ": ").concat(val, ";");
       });
-
       return text;
     },
     set: function set(str) {
       var _this7 = this;
-
       if (str == null) {
         str = '';
       }
-
       this._usedStyleProp.forEach(function (prop) {
         _this7.removeProperty(prop);
       });
-
       if (str === '') {
         return;
       }
-
       var rules = str.split(';');
-
       for (var i = 0; i < rules.length; i++) {
         var rule = rules[i].trim();
-
         if (rule === '') {
           continue;
-        } // 可能存在 'background: url(http:x/y/z)' 的情况
-
-
+        }
+        // 可能存在 'background: url(http:x/y/z)' 的情况
         var _rule$split = rule.split(':'),
-            _rule$split2 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])(_rule$split),
-            propName = _rule$split2[0],
-            valList = _rule$split2.slice(1);
-
+          _rule$split2 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toArray__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])(_rule$split),
+          propName = _rule$split2[0],
+          valList = _rule$split2.slice(1);
         var val = valList.join(':');
-
         if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isUndefined */ "n"])(val)) {
           continue;
         }
-
         this.setProperty(propName.trim(), val.trim());
       }
     }
@@ -3739,11 +3220,9 @@ var Style = /*#__PURE__*/function () {
       } else {
         propertyName = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(propertyName);
       }
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isUndefined */ "n"])(value)) {
         return;
       }
-
       if (value === null || value === '') {
         this.removeProperty(propertyName);
       } else {
@@ -3754,16 +3233,12 @@ var Style = /*#__PURE__*/function () {
     key: "removeProperty",
     value: function removeProperty(propertyName) {
       propertyName = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(propertyName);
-
       if (!this._usedStyleProp.has(propertyName)) {
         return '';
       }
-
       var value = this[propertyName];
       this[propertyName] = '';
-
       this._usedStyleProp.delete(propertyName);
-
       return value;
     }
   }, {
@@ -3771,96 +3246,69 @@ var Style = /*#__PURE__*/function () {
     value: function getPropertyValue(propertyName) {
       propertyName = Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(propertyName);
       var value = this[propertyName];
-
       if (!value) {
         return '';
       }
-
       return value;
     }
   }]);
-
   return Style;
 }();
-
 initStyle(Style);
-
 function returnTrue() {
   return true;
 }
-
 function treeToArray(root, predict) {
   var array = [];
   var filter = predict !== null && predict !== void 0 ? predict : returnTrue;
   var object = root;
-
   while (object) {
-    if (object.nodeType === 1
-    /* ELEMENT_NODE */
-    && filter(object)) {
+    if (object.nodeType === 1 /* ELEMENT_NODE */ && filter(object)) {
       array.push(object);
     }
-
     object = following(object, root);
   }
-
   return array;
 }
-
 function following(el, root) {
   var firstChild = el.firstChild;
-
   if (firstChild) {
     return firstChild;
   }
-
   var current = el;
-
   do {
     if (current === root) {
       return null;
     }
-
     var nextSibling = current.nextSibling;
-
     if (nextSibling) {
       return nextSibling;
     }
-
     current = current.parentElement;
   } while (current);
-
   return null;
 }
-
 var ClassList = /*#__PURE__*/function (_Set2) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(ClassList, _Set2);
-
-  var _super3 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(ClassList);
-
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(ClassList, _Set2);
+  var _super3 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(ClassList);
   function ClassList(className, el) {
     var _thisSuper, _this8;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, ClassList);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, ClassList);
     _this8 = _super3.call(this);
-    className.trim().split(/\s+/).forEach(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])((_thisSuper = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this8), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype)), "add", _thisSuper).bind(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this8)));
+    className.trim().split(/\s+/).forEach(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])((_thisSuper = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this8), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype)), "add", _thisSuper).bind(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this8)));
     _this8.el = el;
     return _this8;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(ClassList, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(ClassList, [{
     key: "value",
     get: function get() {
-      return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(this).join(' ');
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(this).join(' ');
     }
   }, {
     key: "add",
     value: function add(s) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s);
       this._update();
-
       return this;
     }
   }, {
@@ -3871,34 +3319,30 @@ var ClassList = /*#__PURE__*/function (_Set2) {
   }, {
     key: "remove",
     value: function remove(s) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s);
       this._update();
     }
   }, {
     key: "toggle",
     value: function toggle(s) {
-      if (Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "has", this).call(this, s)) {
-        Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s);
+      if (Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "has", this).call(this, s)) {
+        Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s);
       } else {
-        Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s);
+        Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s);
       }
-
       this._update();
     }
   }, {
     key: "replace",
     value: function replace(s1, s2) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s1);
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s2);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "delete", this).call(this, s1);
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "add", this).call(this, s2);
       this._update();
     }
   }, {
     key: "contains",
     value: function contains(s) {
-      return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "has", this).call(this, s);
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(ClassList.prototype), "has", this).call(this, s);
     }
   }, {
     key: "toString",
@@ -3911,46 +3355,36 @@ var ClassList = /*#__PURE__*/function (_Set2) {
       this.el.className = this.value;
     }
   }]);
-
   return ClassList;
-}( /*#__PURE__*/Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(Set));
-
+}( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_wrapNativeSuper__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(Set));
 var TaroElement = /*#__PURE__*/function (_TaroNode2) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroElement, _TaroNode2);
-
-  var _super4 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroElement);
-
-  function TaroElement( // eslint-disable-next-line @typescript-eslint/indent
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroElement, _TaroNode2);
+  var _super4 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroElement);
+  function TaroElement(
+  // eslint-disable-next-line @typescript-eslint/indent
   nodeImpl, getElement, hooks, elementImpl) {
     var _this9;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroElement);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroElement);
     _this9 = _super4.call(this, nodeImpl, getElement, hooks);
     _this9.props = {};
     _this9.dataset = _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
-    elementImpl.bind(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
-    _this9.nodeType = 1
-    /* ELEMENT_NODE */
-    ;
-    _this9.style = new Style(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
-    hooks.patchElement(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
+    elementImpl.bind(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
+    _this9.nodeType = 1 /* ELEMENT_NODE */;
+    _this9.style = new Style(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
+    hooks.patchElement(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(_this9));
     return _this9;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroElement, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroElement, [{
     key: "_stopPropagation",
     value: function _stopPropagation(event) {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
-      var target = this; // eslint-disable-next-line no-cond-assign
-
+      var target = this;
+      // eslint-disable-next-line no-cond-assign
       while (target = target.parentNode) {
         var listeners = target.__handlers[event.type];
-
         if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(listeners)) {
           continue;
         }
-
         for (var i = listeners.length; i--;) {
           var l = listeners[i];
           l._stop = true;
@@ -4010,15 +3444,13 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     get: function get() {
       var text = '';
       var childNodes = this.childNodes;
-
       for (var i = 0; i < childNodes.length; i++) {
         text += childNodes[i].textContent;
       }
-
       return text;
     },
     set: function set(text) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_set__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "textContent", text, this, true);
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_set__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "textContent", text, this, true);
     }
   }, {
     key: "hasAttribute",
@@ -4044,36 +3476,28 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     key: "setAttribute",
     value: function setAttribute(qualifiedName, value) {
       var _a, _b;
-
        true && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* warn */ "v"])(Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isString */ "m"])(value) && value.length > PROPERTY_THRESHOLD, "\u5143\u7D20 ".concat(this.nodeName, " \u7684 \u5C5E\u6027 ").concat(qualifiedName, " \u7684\u503C\u6570\u636E\u91CF\u8FC7\u5927\uFF0C\u53EF\u80FD\u4F1A\u5F71\u54CD\u6E32\u67D3\u6027\u80FD\u3002\u8003\u8651\u964D\u4F4E\u56FE\u7247\u8F6C\u4E3A base64 \u7684\u9608\u503C\u6216\u5728 CSS \u4E2D\u4F7F\u7528 base64\u3002"));
       var isPureView = this.nodeName === VIEW && !isHasExtractProp(this) && !this.isAnyEventBinded();
-
       switch (qualifiedName) {
         case STYLE:
           this.style.cssText = value;
           break;
-
         case ID:
           eventSource.delete(this.uid);
           value = String(value);
           this.props[qualifiedName] = this.uid = value;
           eventSource.set(value, this);
           break;
-
         default:
           this.props[qualifiedName] = value;
-
           if (qualifiedName.startsWith('data-')) {
             if (this.dataset === _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"]) {
               this.dataset = Object.create(null);
             }
-
             this.dataset[Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(qualifiedName.replace(/^data-/, ''))] = value;
           }
-
           break;
       }
-
       qualifiedName = shortcutAttr(qualifiedName);
       var payload = {
         path: "".concat(this._path, ".").concat(Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(qualifiedName)),
@@ -4081,23 +3505,18 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
       };
       (_b = (_a = this.hooks).modifySetAttrPayload) === null || _b === void 0 ? void 0 : _b.call(_a, this, qualifiedName, payload);
       this.enqueueUpdate(payload);
-
       if (this.nodeName === VIEW) {
         if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(qualifiedName) === CATCHMOVE) {
           // catchMove = true: catch-view
           // catchMove = false: view or static-view
           this.enqueueUpdate({
-            path: "".concat(this._path, ".", "nn"
-            /* NodeName */
-            ),
+            path: "".concat(this._path, ".", "nn" /* NodeName */),
             value: value ? CATCH_VIEW : this.isAnyEventBinded() ? VIEW : STATIC_VIEW
           });
         } else if (isPureView && isHasExtractProp(this)) {
           // pure-view => static-view
           this.enqueueUpdate({
-            path: "".concat(this._path, ".", "nn"
-            /* NodeName */
-            ),
+            path: "".concat(this._path, ".", "nn" /* NodeName */),
             value: STATIC_VIEW
           });
         }
@@ -4107,25 +3526,19 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     key: "removeAttribute",
     value: function removeAttribute(qualifiedName) {
       var _a, _b, _c, _d;
-
       var isStaticView = this.nodeName === VIEW && isHasExtractProp(this) && !this.isAnyEventBinded();
-
       if (qualifiedName === STYLE) {
         this.style.cssText = '';
       } else {
         var isInterrupt = (_b = (_a = this.hooks).onRemoveAttribute) === null || _b === void 0 ? void 0 : _b.call(_a, this, qualifiedName);
-
         if (isInterrupt) {
           return;
         }
-
         if (!this.props.hasOwnProperty(qualifiedName)) {
           return;
         }
-
         delete this.props[qualifiedName];
       }
-
       qualifiedName = shortcutAttr(qualifiedName);
       var payload = {
         path: "".concat(this._path, ".").concat(Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(qualifiedName)),
@@ -4133,22 +3546,17 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
       };
       (_d = (_c = this.hooks).modifyRmAttrPayload) === null || _d === void 0 ? void 0 : _d.call(_c, this, qualifiedName, payload);
       this.enqueueUpdate(payload);
-
       if (this.nodeName === VIEW) {
         if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* toCamelCase */ "t"])(qualifiedName) === CATCHMOVE) {
           // catch-view => view or static-view or pure-view
           this.enqueueUpdate({
-            path: "".concat(this._path, ".", "nn"
-            /* NodeName */
-            ),
+            path: "".concat(this._path, ".", "nn" /* NodeName */),
             value: this.isAnyEventBinded() ? VIEW : isHasExtractProp(this) ? STATIC_VIEW : PURE_VIEW
           });
         } else if (isStaticView && !isHasExtractProp(this)) {
           // static-view => pure-view
           this.enqueueUpdate({
-            path: "".concat(this._path, ".", "nn"
-            /* NodeName */
-            ),
+            path: "".concat(this._path, ".", "nn" /* NodeName */),
             value: PURE_VIEW
           });
         }
@@ -4164,7 +3572,6 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     key: "getElementsByTagName",
     value: function getElementsByTagName(tagName) {
       var _this10 = this;
-
       return treeToArray(this, function (el) {
         return el.nodeName === tagName || tagName === '*' && _this10 !== el;
       });
@@ -4185,36 +3592,29 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     value: function dispatchEvent(event) {
       var cancelable = event.cancelable;
       var listeners = this.__handlers[event.type];
-
       if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(listeners)) {
         return false;
       }
-
       for (var i = listeners.length; i--;) {
         var listener = listeners[i];
         var result = void 0;
-
         if (listener._stop) {
           listener._stop = false;
         } else {
           result = listener.call(this, event);
         }
-
         if ((result === false || event._end) && cancelable) {
           event.defaultPrevented = true;
         }
-
         if (event._end && event._stop) {
           break;
         }
       }
-
       if (event._stop) {
         this._stopPropagation(event);
       } else {
         event._stop = true;
       }
-
       return listeners != null;
     }
   }, {
@@ -4222,41 +3622,32 @@ var TaroElement = /*#__PURE__*/function (_TaroNode2) {
     value: function addEventListener(type, handler, options) {
       var name = this.nodeName;
       var SPECIAL_NODES = this.hooks.getSpecialNodes();
-
       if (!this.isAnyEventBinded() && SPECIAL_NODES.indexOf(name) > -1) {
         this.enqueueUpdate({
-          path: "".concat(this._path, ".", "nn"
-          /* NodeName */
-          ),
+          path: "".concat(this._path, ".", "nn" /* NodeName */),
           value: name
         });
       }
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "addEventListener", this).call(this, type, handler, options);
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "addEventListener", this).call(this, type, handler, options);
     }
   }, {
     key: "removeEventListener",
     value: function removeEventListener(type, handler) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "removeEventListener", this).call(this, type, handler);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(TaroElement.prototype), "removeEventListener", this).call(this, type, handler);
       var name = this.nodeName;
       var SPECIAL_NODES = this.hooks.getSpecialNodes();
-
       if (!this.isAnyEventBinded() && SPECIAL_NODES.indexOf(name) > -1) {
         this.enqueueUpdate({
-          path: "".concat(this._path, ".", "nn"
-          /* NodeName */
-          ),
+          path: "".concat(this._path, ".", "nn" /* NodeName */),
           value: isHasExtractProp(this) ? "static-".concat(name) : "pure-".concat(name)
         });
       }
     }
   }]);
-
   return TaroElement;
 }(TaroNode);
-
 TaroElement = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroNodeImpl)), __param(1, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __param(2, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __param(3, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementImpl)), __metadata("design:paramtypes", [Function, Function, Function, Function])], TaroElement);
+
 /**
  * Checks if `value` is classified as an `Array` object.
  *
@@ -4280,36 +3671,36 @@ TaroElement = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inje
  * _.isArray(_.noop);
  * // => false
  */
-
 var isArray = Array.isArray;
+
 /** Detect free variable `global` from Node.js. */
+var freeGlobal = (typeof global === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(global)) == 'object' && global && global.Object === Object && global;
 
-var freeGlobal = (typeof global === "undefined" ? "undefined" : Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(global)) == 'object' && global && global.Object === Object && global;
 /** Detect free variable `self`. */
+var freeSelf = (typeof self === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(self)) == 'object' && self && self.Object === Object && self;
 
-var freeSelf = (typeof self === "undefined" ? "undefined" : Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(self)) == 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
-
 var root = freeGlobal || freeSelf || Function('return this')();
+
 /** Built-in value references. */
-
 var Symbol$1 = root.Symbol;
+
 /** Used for built-in method references. */
-
 var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
 
+/** Used to check objects for own properties. */
 var hasOwnProperty = objectProto.hasOwnProperty;
+
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-
 var nativeObjectToString = objectProto.toString;
-/** Built-in value references. */
 
+/** Built-in value references. */
 var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
+
 /**
  * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
  *
@@ -4317,18 +3708,14 @@ var symToStringTag = Symbol$1 ? Symbol$1.toStringTag : undefined;
  * @param {*} value The value to query.
  * @returns {string} Returns the raw `toStringTag`.
  */
-
 function getRawTag(value) {
   var isOwn = hasOwnProperty.call(value, symToStringTag),
-      tag = value[symToStringTag];
-
+    tag = value[symToStringTag];
   try {
     value[symToStringTag] = undefined;
     var unmasked = true;
   } catch (e) {}
-
   var result = nativeObjectToString.call(value);
-
   if (unmasked) {
     if (isOwn) {
       value[symToStringTag] = tag;
@@ -4336,20 +3723,19 @@ function getRawTag(value) {
       delete value[symToStringTag];
     }
   }
-
   return result;
 }
+
 /** Used for built-in method references. */
-
-
 var objectProto$1 = Object.prototype;
+
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-
 var nativeObjectToString$1 = objectProto$1.toString;
+
 /**
  * Converts `value` to a string using `Object.prototype.toString`.
  *
@@ -4357,18 +3743,17 @@ var nativeObjectToString$1 = objectProto$1.toString;
  * @param {*} value The value to convert.
  * @returns {string} Returns the converted string.
  */
-
 function objectToString(value) {
   return nativeObjectToString$1.call(value);
 }
+
 /** `Object#toString` result references. */
-
-
 var nullTag = '[object Null]',
-    undefinedTag = '[object Undefined]';
-/** Built-in value references. */
+  undefinedTag = '[object Undefined]';
 
+/** Built-in value references. */
 var symToStringTag$1 = Symbol$1 ? Symbol$1.toStringTag : undefined;
+
 /**
  * The base implementation of `getTag` without fallbacks for buggy environments.
  *
@@ -4376,14 +3761,13 @@ var symToStringTag$1 = Symbol$1 ? Symbol$1.toStringTag : undefined;
  * @param {*} value The value to query.
  * @returns {string} Returns the `toStringTag`.
  */
-
 function baseGetTag(value) {
   if (value == null) {
     return value === undefined ? undefinedTag : nullTag;
   }
-
   return symToStringTag$1 && symToStringTag$1 in Object(value) ? getRawTag(value) : objectToString(value);
 }
+
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -4408,15 +3792,13 @@ function baseGetTag(value) {
  * _.isObjectLike(null);
  * // => false
  */
-
-
 function isObjectLike(value) {
-  return value != null && Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) == 'object';
+  return value != null && Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) == 'object';
 }
+
 /** `Object#toString` result references. */
-
-
 var symbolTag = '[object Symbol]';
+
 /**
  * Checks if `value` is classified as a `Symbol` primitive or object.
  *
@@ -4434,15 +3816,14 @@ var symbolTag = '[object Symbol]';
  * _.isSymbol('abc');
  * // => false
  */
-
 function isSymbol(value) {
-  return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) == 'symbol' || isObjectLike(value) && baseGetTag(value) == symbolTag;
+  return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) == 'symbol' || isObjectLike(value) && baseGetTag(value) == symbolTag;
 }
+
 /** Used to match property names within property paths. */
-
-
 var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
-    reIsPlainProp = /^\w*$/;
+  reIsPlainProp = /^\w*$/;
+
 /**
  * Checks if `value` is a property name and not a property path.
  *
@@ -4451,20 +3832,17 @@ var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
  * @param {Object} [object] The object to query keys on.
  * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
  */
-
 function isKey(value, object) {
   if (isArray(value)) {
     return false;
   }
-
-  var type = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
-
+  var type = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
   if (type == 'number' || type == 'symbol' || type == 'boolean' || value == null || isSymbol(value)) {
     return true;
   }
-
   return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
 }
+
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -4490,20 +3868,17 @@ function isKey(value, object) {
  * _.isObject(null);
  * // => false
  */
-
-
 function isObject(value) {
-  var type = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
-
+  var type = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
   return value != null && (type == 'object' || type == 'function');
 }
+
 /** `Object#toString` result references. */
-
-
 var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    proxyTag = '[object Proxy]';
+  funcTag = '[object Function]',
+  genTag = '[object GeneratorFunction]',
+  proxyTag = '[object Proxy]';
+
 /**
  * Checks if `value` is classified as a `Function` object.
  *
@@ -4521,27 +3896,25 @@ var asyncTag = '[object AsyncFunction]',
  * _.isFunction(/abc/);
  * // => false
  */
-
 function isFunction(value) {
   if (!isObject(value)) {
     return false;
-  } // The use of `Object#toString` avoids issues with the `typeof` operator
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 9 which returns 'object' for typed arrays and other constructors.
-
-
   var tag = baseGetTag(value);
   return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
 }
+
 /** Used to detect overreaching core-js shims. */
-
-
 var coreJsData = root['__core-js_shared__'];
-/** Used to detect methods masquerading as native. */
 
+/** Used to detect methods masquerading as native. */
 var maskSrcKey = function () {
   var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
   return uid ? 'Symbol(src)_1.' + uid : '';
 }();
+
 /**
  * Checks if `func` has its source masked.
  *
@@ -4549,18 +3922,16 @@ var maskSrcKey = function () {
  * @param {Function} func The function to check.
  * @returns {boolean} Returns `true` if `func` is masked, else `false`.
  */
-
-
 function isMasked(func) {
   return !!maskSrcKey && maskSrcKey in func;
 }
+
 /** Used for built-in method references. */
-
-
 var funcProto = Function.prototype;
-/** Used to resolve the decompiled source of functions. */
 
+/** Used to resolve the decompiled source of functions. */
 var funcToString = funcProto.toString;
+
 /**
  * Converts `func` to its source code.
  *
@@ -4568,43 +3939,40 @@ var funcToString = funcProto.toString;
  * @param {Function} func The function to convert.
  * @returns {string} Returns the source code.
  */
-
 function toSource(func) {
   if (func != null) {
     try {
       return funcToString.call(func);
     } catch (e) {}
-
     try {
       return func + '';
     } catch (e) {}
   }
-
   return '';
 }
+
 /**
  * Used to match `RegExp`
  * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
  */
-
-
 var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
 /** Used to detect host constructors (Safari). */
-
 var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
 /** Used for built-in method references. */
-
 var funcProto$1 = Function.prototype,
-    objectProto$2 = Object.prototype;
+  objectProto$2 = Object.prototype;
+
 /** Used to resolve the decompiled source of functions. */
-
 var funcToString$1 = funcProto$1.toString;
+
 /** Used to check objects for own properties. */
-
 var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
-/** Used to detect if a method is native. */
 
+/** Used to detect if a method is native. */
 var reIsNative = RegExp('^' + funcToString$1.call(hasOwnProperty$1).replace(reRegExpChar, '\\$&').replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$');
+
 /**
  * The base implementation of `_.isNative` without bad shim checks.
  *
@@ -4613,15 +3981,14 @@ var reIsNative = RegExp('^' + funcToString$1.call(hasOwnProperty$1).replace(reRe
  * @returns {boolean} Returns `true` if `value` is a native function,
  *  else `false`.
  */
-
 function baseIsNative(value) {
   if (!isObject(value) || isMasked(value)) {
     return false;
   }
-
   var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
   return pattern.test(toSource(value));
 }
+
 /**
  * Gets the value at `key` of `object`.
  *
@@ -4630,11 +3997,10 @@ function baseIsNative(value) {
  * @param {string} key The key of the property to get.
  * @returns {*} Returns the property value.
  */
-
-
 function getValue(object, key) {
   return object == null ? undefined : object[key];
 }
+
 /**
  * Gets the native function at `key` of `object`.
  *
@@ -4643,16 +4009,14 @@ function getValue(object, key) {
  * @param {string} key The key of the method to get.
  * @returns {*} Returns the function if it's native, else `undefined`.
  */
-
-
 function getNative(object, key) {
   var value = getValue(object, key);
   return baseIsNative(value) ? value : undefined;
 }
+
 /* Built-in method references that are verified to be native. */
-
-
 var nativeCreate = getNative(Object, 'create');
+
 /**
  * Removes all key-value entries from the hash.
  *
@@ -4660,11 +4024,11 @@ var nativeCreate = getNative(Object, 'create');
  * @name clear
  * @memberOf Hash
  */
-
 function hashClear() {
   this.__data__ = nativeCreate ? nativeCreate(null) : {};
   this.size = 0;
 }
+
 /**
  * Removes `key` and its value from the hash.
  *
@@ -4675,23 +4039,21 @@ function hashClear() {
  * @param {string} key The key of the value to remove.
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
-
-
 function hashDelete(key) {
   var result = this.has(key) && delete this.__data__[key];
   this.size -= result ? 1 : 0;
   return result;
 }
+
 /** Used to stand-in for `undefined` hash values. */
-
-
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
 /** Used for built-in method references. */
-
 var objectProto$3 = Object.prototype;
-/** Used to check objects for own properties. */
 
+/** Used to check objects for own properties. */
 var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
+
 /**
  * Gets the hash value for `key`.
  *
@@ -4701,24 +4063,21 @@ var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
  * @param {string} key The key of the value to get.
  * @returns {*} Returns the entry value.
  */
-
 function hashGet(key) {
   var data = this.__data__;
-
   if (nativeCreate) {
     var result = data[key];
     return result === HASH_UNDEFINED ? undefined : result;
   }
-
   return hasOwnProperty$2.call(data, key) ? data[key] : undefined;
 }
+
 /** Used for built-in method references. */
-
-
 var objectProto$4 = Object.prototype;
-/** Used to check objects for own properties. */
 
+/** Used to check objects for own properties. */
 var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
+
 /**
  * Checks if a hash value for `key` exists.
  *
@@ -4728,15 +4087,14 @@ var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
  * @param {string} key The key of the entry to check.
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
-
 function hashHas(key) {
   var data = this.__data__;
   return nativeCreate ? data[key] !== undefined : hasOwnProperty$3.call(data, key);
 }
+
 /** Used to stand-in for `undefined` hash values. */
-
-
 var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
+
 /**
  * Sets the hash `key` to `value`.
  *
@@ -4747,13 +4105,13 @@ var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
  * @param {*} value The value to set.
  * @returns {Object} Returns the hash instance.
  */
-
 function hashSet(key, value) {
   var data = this.__data__;
   this.size += this.has(key) ? 0 : 1;
   data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED$1 : value;
   return this;
 }
+
 /**
  * Creates a hash object.
  *
@@ -4761,25 +4119,23 @@ function hashSet(key, value) {
  * @constructor
  * @param {Array} [entries] The key-value pairs to cache.
  */
-
-
 function Hash(entries) {
   var index = -1,
-      length = entries == null ? 0 : entries.length;
+    length = entries == null ? 0 : entries.length;
   this.clear();
-
   while (++index < length) {
     var entry = entries[index];
     this.set(entry[0], entry[1]);
   }
-} // Add methods to `Hash`.
+}
 
-
+// Add methods to `Hash`.
 Hash.prototype.clear = hashClear;
 Hash.prototype['delete'] = hashDelete;
 Hash.prototype.get = hashGet;
 Hash.prototype.has = hashHas;
 Hash.prototype.set = hashSet;
+
 /**
  * Removes all key-value entries from the list cache.
  *
@@ -4787,11 +4143,11 @@ Hash.prototype.set = hashSet;
  * @name clear
  * @memberOf ListCache
  */
-
 function listCacheClear() {
   this.__data__ = [];
   this.size = 0;
 }
+
 /**
  * Performs a
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
@@ -4824,11 +4180,10 @@ function listCacheClear() {
  * _.eq(NaN, NaN);
  * // => true
  */
-
-
 function eq(value, other) {
   return value === other || value !== value && other !== other;
 }
+
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.
  *
@@ -4837,26 +4192,22 @@ function eq(value, other) {
  * @param {*} key The key to search for.
  * @returns {number} Returns the index of the matched value, else `-1`.
  */
-
-
 function assocIndexOf(array, key) {
   var length = array.length;
-
   while (length--) {
     if (eq(array[length][0], key)) {
       return length;
     }
   }
-
   return -1;
 }
+
 /** Used for built-in method references. */
-
-
 var arrayProto = Array.prototype;
-/** Built-in value references. */
 
+/** Built-in value references. */
 var splice = arrayProto.splice;
+
 /**
  * Removes `key` and its value from the list cache.
  *
@@ -4866,26 +4217,22 @@ var splice = arrayProto.splice;
  * @param {string} key The key of the value to remove.
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
-
 function listCacheDelete(key) {
   var data = this.__data__,
-      index = assocIndexOf(data, key);
-
+    index = assocIndexOf(data, key);
   if (index < 0) {
     return false;
   }
-
   var lastIndex = data.length - 1;
-
   if (index == lastIndex) {
     data.pop();
   } else {
     splice.call(data, index, 1);
   }
-
   --this.size;
   return true;
 }
+
 /**
  * Gets the list cache value for `key`.
  *
@@ -4895,13 +4242,12 @@ function listCacheDelete(key) {
  * @param {string} key The key of the value to get.
  * @returns {*} Returns the entry value.
  */
-
-
 function listCacheGet(key) {
   var data = this.__data__,
-      index = assocIndexOf(data, key);
+    index = assocIndexOf(data, key);
   return index < 0 ? undefined : data[index][1];
 }
+
 /**
  * Checks if a list cache value for `key` exists.
  *
@@ -4911,11 +4257,10 @@ function listCacheGet(key) {
  * @param {string} key The key of the entry to check.
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
-
-
 function listCacheHas(key) {
   return assocIndexOf(this.__data__, key) > -1;
 }
+
 /**
  * Sets the list cache `key` to `value`.
  *
@@ -4926,21 +4271,18 @@ function listCacheHas(key) {
  * @param {*} value The value to set.
  * @returns {Object} Returns the list cache instance.
  */
-
-
 function listCacheSet(key, value) {
   var data = this.__data__,
-      index = assocIndexOf(data, key);
-
+    index = assocIndexOf(data, key);
   if (index < 0) {
     ++this.size;
     data.push([key, value]);
   } else {
     data[index][1] = value;
   }
-
   return this;
 }
+
 /**
  * Creates an list cache object.
  *
@@ -4948,28 +4290,26 @@ function listCacheSet(key, value) {
  * @constructor
  * @param {Array} [entries] The key-value pairs to cache.
  */
-
-
 function ListCache(entries) {
   var index = -1,
-      length = entries == null ? 0 : entries.length;
+    length = entries == null ? 0 : entries.length;
   this.clear();
-
   while (++index < length) {
     var entry = entries[index];
     this.set(entry[0], entry[1]);
   }
-} // Add methods to `ListCache`.
+}
 
-
+// Add methods to `ListCache`.
 ListCache.prototype.clear = listCacheClear;
 ListCache.prototype['delete'] = listCacheDelete;
 ListCache.prototype.get = listCacheGet;
 ListCache.prototype.has = listCacheHas;
 ListCache.prototype.set = listCacheSet;
-/* Built-in method references that are verified to be native. */
 
+/* Built-in method references that are verified to be native. */
 var Map$1 = getNative(root, 'Map');
+
 /**
  * Removes all key-value entries from the map.
  *
@@ -4977,7 +4317,6 @@ var Map$1 = getNative(root, 'Map');
  * @name clear
  * @memberOf MapCache
  */
-
 function mapCacheClear() {
   this.size = 0;
   this.__data__ = {
@@ -4986,6 +4325,7 @@ function mapCacheClear() {
     'string': new Hash()
   };
 }
+
 /**
  * Checks if `value` is suitable for use as unique object key.
  *
@@ -4993,13 +4333,11 @@ function mapCacheClear() {
  * @param {*} value The value to check.
  * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
  */
-
-
 function isKeyable(value) {
-  var type = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
-
+  var type = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value);
   return type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean' ? value !== '__proto__' : value === null;
 }
+
 /**
  * Gets the data for `map`.
  *
@@ -5008,12 +4346,11 @@ function isKeyable(value) {
  * @param {string} key The reference key.
  * @returns {*} Returns the map data.
  */
-
-
 function getMapData(map, key) {
   var data = map.__data__;
   return isKeyable(key) ? data[typeof key == 'string' ? 'string' : 'hash'] : data.map;
 }
+
 /**
  * Removes `key` and its value from the map.
  *
@@ -5023,13 +4360,12 @@ function getMapData(map, key) {
  * @param {string} key The key of the value to remove.
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
-
-
 function mapCacheDelete(key) {
   var result = getMapData(this, key)['delete'](key);
   this.size -= result ? 1 : 0;
   return result;
 }
+
 /**
  * Gets the map value for `key`.
  *
@@ -5039,11 +4375,10 @@ function mapCacheDelete(key) {
  * @param {string} key The key of the value to get.
  * @returns {*} Returns the entry value.
  */
-
-
 function mapCacheGet(key) {
   return getMapData(this, key).get(key);
 }
+
 /**
  * Checks if a map value for `key` exists.
  *
@@ -5053,11 +4388,10 @@ function mapCacheGet(key) {
  * @param {string} key The key of the entry to check.
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
-
-
 function mapCacheHas(key) {
   return getMapData(this, key).has(key);
 }
+
 /**
  * Sets the map `key` to `value`.
  *
@@ -5068,15 +4402,14 @@ function mapCacheHas(key) {
  * @param {*} value The value to set.
  * @returns {Object} Returns the map cache instance.
  */
-
-
 function mapCacheSet(key, value) {
   var data = getMapData(this, key),
-      size = data.size;
+    size = data.size;
   data.set(key, value);
   this.size += data.size == size ? 0 : 1;
   return this;
 }
+
 /**
  * Creates a map cache object to store key-value pairs.
  *
@@ -5084,28 +4417,26 @@ function mapCacheSet(key, value) {
  * @constructor
  * @param {Array} [entries] The key-value pairs to cache.
  */
-
-
 function MapCache(entries) {
   var index = -1,
-      length = entries == null ? 0 : entries.length;
+    length = entries == null ? 0 : entries.length;
   this.clear();
-
   while (++index < length) {
     var entry = entries[index];
     this.set(entry[0], entry[1]);
   }
-} // Add methods to `MapCache`.
+}
 
-
+// Add methods to `MapCache`.
 MapCache.prototype.clear = mapCacheClear;
 MapCache.prototype['delete'] = mapCacheDelete;
 MapCache.prototype.get = mapCacheGet;
 MapCache.prototype.has = mapCacheHas;
 MapCache.prototype.set = mapCacheSet;
-/** Error message constants. */
 
+/** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
+
 /**
  * Creates a function that memoizes the result of `func`. If `resolver` is
  * provided, it determines the cache key for storing the result based on the
@@ -5150,35 +4481,31 @@ var FUNC_ERROR_TEXT = 'Expected a function';
  * // Replace `_.memoize.Cache`.
  * _.memoize.Cache = WeakMap;
  */
-
 function memoize(func, resolver) {
   if (typeof func != 'function' || resolver != null && typeof resolver != 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-
   var memoized = function memoized() {
     var args = arguments,
-        key = resolver ? resolver.apply(this, args) : args[0],
-        cache = memoized.cache;
-
+      key = resolver ? resolver.apply(this, args) : args[0],
+      cache = memoized.cache;
     if (cache.has(key)) {
       return cache.get(key);
     }
-
     var result = func.apply(this, args);
     memoized.cache = cache.set(key, result) || cache;
     return result;
   };
-
   memoized.cache = new (memoize.Cache || MapCache)();
   return memoized;
-} // Expose `MapCache`.
+}
 
-
+// Expose `MapCache`.
 memoize.Cache = MapCache;
-/** Used as the maximum memoize cache size. */
 
+/** Used as the maximum memoize cache size. */
 var MAX_MEMOIZE_SIZE = 500;
+
 /**
  * A specialized version of `_.memoize` which clears the memoized function's
  * cache when it exceeds `MAX_MEMOIZE_SIZE`.
@@ -5187,25 +4514,23 @@ var MAX_MEMOIZE_SIZE = 500;
  * @param {Function} func The function to have its output memoized.
  * @returns {Function} Returns the new memoized function.
  */
-
 function memoizeCapped(func) {
   var result = memoize(func, function (key) {
     if (cache.size === MAX_MEMOIZE_SIZE) {
       cache.clear();
     }
-
     return key;
   });
   var cache = result.cache;
   return result;
 }
+
 /** Used to match property names within property paths. */
-
-
 var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
-/** Used to match backslashes in property paths. */
 
+/** Used to match backslashes in property paths. */
 var reEscapeChar = /\\(\\)?/g;
+
 /**
  * Converts `string` to a property path array.
  *
@@ -5213,21 +4538,17 @@ var reEscapeChar = /\\(\\)?/g;
  * @param {string} string The string to convert.
  * @returns {Array} Returns the property path array.
  */
-
 var stringToPath = memoizeCapped(function (string) {
   var result = [];
-
-  if (string.charCodeAt(0) === 46
-  /* . */
-  ) {
+  if (string.charCodeAt(0) === 46 /* . */) {
     result.push('');
   }
-
   string.replace(rePropName, function (match, number, quote, subString) {
     result.push(quote ? subString.replace(reEscapeChar, '$1') : number || match);
   });
   return result;
 });
+
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
  * shorthands.
@@ -5237,26 +4558,23 @@ var stringToPath = memoizeCapped(function (string) {
  * @param {Function} iteratee The function invoked per iteration.
  * @returns {Array} Returns the new mapped array.
  */
-
 function arrayMap(array, iteratee) {
   var index = -1,
-      length = array == null ? 0 : array.length,
-      result = Array(length);
-
+    length = array == null ? 0 : array.length,
+    result = Array(length);
   while (++index < length) {
     result[index] = iteratee(array[index], index, array);
   }
-
   return result;
 }
+
 /** Used as references for various `Number` constants. */
-
-
 var INFINITY = 1 / 0;
-/** Used to convert symbols to primitives and strings. */
 
+/** Used to convert symbols to primitives and strings. */
 var symbolProto = Symbol$1 ? Symbol$1.prototype : undefined,
-    symbolToString = symbolProto ? symbolProto.toString : undefined;
+  symbolToString = symbolProto ? symbolProto.toString : undefined;
+
 /**
  * The base implementation of `_.toString` which doesn't convert nullish
  * values to empty strings.
@@ -5265,25 +4583,22 @@ var symbolProto = Symbol$1 ? Symbol$1.prototype : undefined,
  * @param {*} value The value to process.
  * @returns {string} Returns the string.
  */
-
 function baseToString(value) {
   // Exit early for strings to avoid a performance hit in some environments.
   if (typeof value == 'string') {
     return value;
   }
-
   if (isArray(value)) {
     // Recursively convert values (susceptible to call stack limits).
     return arrayMap(value, baseToString) + '';
   }
-
   if (isSymbol(value)) {
     return symbolToString ? symbolToString.call(value) : '';
   }
-
   var result = value + '';
   return result == '0' && 1 / value == -INFINITY ? '-0' : result;
 }
+
 /**
  * Converts `value` to a string. An empty string is returned for `null`
  * and `undefined` values. The sign of `-0` is preserved.
@@ -5305,11 +4620,10 @@ function baseToString(value) {
  * _.toString([1, 2, 3]);
  * // => '1,2,3'
  */
-
-
 function toString(value) {
   return value == null ? '' : baseToString(value);
 }
+
 /**
  * Casts `value` to a path array if it's not one.
  *
@@ -5318,19 +4632,16 @@ function toString(value) {
  * @param {Object} [object] The object to query keys on.
  * @returns {Array} Returns the cast property path array.
  */
-
-
 function castPath(value, object) {
   if (isArray(value)) {
     return value;
   }
-
   return isKey(value, object) ? [value] : stringToPath(toString(value));
 }
+
 /** Used as references for various `Number` constants. */
-
-
 var INFINITY$1 = 1 / 0;
+
 /**
  * Converts `value` to a string key if it's not a string or symbol.
  *
@@ -5338,15 +4649,14 @@ var INFINITY$1 = 1 / 0;
  * @param {*} value The value to inspect.
  * @returns {string|symbol} Returns the key.
  */
-
 function toKey(value) {
   if (typeof value == 'string' || isSymbol(value)) {
     return value;
   }
-
   var result = value + '';
   return result == '0' && 1 / value == -INFINITY$1 ? '-0' : result;
 }
+
 /**
  * The base implementation of `_.get` without support for default values.
  *
@@ -5355,19 +4665,16 @@ function toKey(value) {
  * @param {Array|string} path The path of the property to get.
  * @returns {*} Returns the resolved value.
  */
-
-
 function baseGet(object, path) {
   path = castPath(path, object);
   var index = 0,
-      length = path.length;
-
+    length = path.length;
   while (object != null && index < length) {
     object = object[toKey(path[index++])];
   }
-
   return index && index == length ? object : undefined;
 }
+
 /**
  * Gets the value at `path` of `object`. If the resolved value is
  * `undefined`, the `defaultValue` is returned in its place.
@@ -5393,32 +4700,25 @@ function baseGet(object, path) {
  * _.get(object, 'a.b.c', 'default');
  * // => 'default'
  */
-
-
 function get(object, path, defaultValue) {
   var result = object == null ? undefined : baseGet(object, path);
   return result === undefined ? defaultValue : result;
 }
-
 var options = {
   prerender: true,
   debug: false
 };
-
 var Performance = /*#__PURE__*/function () {
   function Performance() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Performance);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Performance);
     this.recorder = new Map();
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Performance, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Performance, [{
     key: "start",
     value: function start(id) {
       if (!options.debug) {
         return;
       }
-
       this.recorder.set(id, Date.now());
     }
   }, {
@@ -5427,32 +4727,25 @@ var Performance = /*#__PURE__*/function () {
       if (!options.debug) {
         return;
       }
-
       var now = Date.now();
       var prev = this.recorder.get(id);
-      var time = now - prev; // eslint-disable-next-line no-console
-
+      var time = now - prev;
+      // eslint-disable-next-line no-console
       console.log("".concat(id, " \u65F6\u957F\uFF1A ").concat(time, "ms"));
     }
   }]);
-
   return Performance;
 }();
-
 var perf = new Performance();
 var eventIncrementId = incrementId();
-
 var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroRootElement, _TaroElement);
-
-  var _super5 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroRootElement);
-
-  function TaroRootElement( // eslint-disable-next-line @typescript-eslint/indent
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroRootElement, _TaroElement);
+  var _super5 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroRootElement);
+  function TaroRootElement(
+  // eslint-disable-next-line @typescript-eslint/indent
   nodeImpl, getElement, hooks, elementImpl, eventCenter) {
     var _this11;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroRootElement);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroRootElement);
     _this11 = _super5.call(this, nodeImpl, getElement, hooks, elementImpl);
     _this11.pendingFlush = false;
     _this11.updatePayloads = [];
@@ -5463,8 +4756,7 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
     _this11.eventCenter = eventCenter;
     return _this11;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroRootElement, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroRootElement, [{
     key: "_path",
     get: function get() {
       return ROOT_STR;
@@ -5478,7 +4770,6 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
     key: "enqueueUpdate",
     value: function enqueueUpdate(payload) {
       this.updatePayloads.push(payload);
-
       if (!this.pendingUpdate && this.ctx !== null) {
         this.performUpdate();
       }
@@ -5487,7 +4778,6 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
     key: "performUpdate",
     value: function performUpdate() {
       var _this12 = this;
-
       var initRender = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var prerender = arguments.length > 1 ? arguments[1] : undefined;
       this.pendingUpdate = true;
@@ -5496,21 +4786,15 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
         perf.start(SET_DATA);
         var data = Object.create(null);
         var resetPaths = new Set(initRender ? ['root.cn.[0]', 'root.cn[0]'] : []);
-
         while (_this12.updatePayloads.length > 0) {
           var _this12$updatePayload = _this12.updatePayloads.shift(),
-              path = _this12$updatePayload.path,
-              value = _this12$updatePayload.value;
-
-          if (path.endsWith("cn"
-          /* Childnodes */
-          )) {
+            path = _this12$updatePayload.path,
+            value = _this12$updatePayload.value;
+          if (path.endsWith("cn" /* Childnodes */)) {
             resetPaths.add(path);
           }
-
           data[path] = value;
         }
-
         var _loop2 = function _loop2(_path) {
           resetPaths.forEach(function (p) {
             // 已经重置了数组，就不需要分别再设置了
@@ -5519,16 +4803,13 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
             }
           });
           var value = data[_path];
-
           if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(value)) {
             data[_path] = value();
           }
         };
-
         for (var _path in data) {
           _loop2(_path);
         }
-
         if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(prerender)) {
           prerender(data);
         } else {
@@ -5536,35 +4817,28 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
           var customWrapperUpdate = [];
           var customWrapperMap = new Map();
           var normalUpdate = {};
-
           if (!initRender) {
             for (var p in data) {
               var dataPathArr = p.split('.');
               var hasCustomWrapper = false;
-
               for (var i = dataPathArr.length; i > 0; i--) {
                 var allPath = dataPathArr.slice(0, i).join('.');
                 var getData = get(ctx.__data__ || ctx.data, allPath);
-
                 if (getData && getData.nn && getData.nn === CUSTOM_WRAPPER) {
                   var customWrapperId = getData.uid;
                   var customWrapper = ctx.selectComponent("#".concat(customWrapperId));
                   var splitedPath = dataPathArr.slice(i).join('.');
-
                   if (customWrapper) {
                     hasCustomWrapper = true;
-                    customWrapperMap.set(customWrapper, Object.assign(Object.assign({}, customWrapperMap.get(customWrapper) || {}), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])({}, "i.".concat(splitedPath), data[p])));
+                    customWrapperMap.set(customWrapper, Object.assign(Object.assign({}, customWrapperMap.get(customWrapper) || {}), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])({}, "i.".concat(splitedPath), data[p])));
                   }
-
                   break;
                 }
               }
-
               if (!hasCustomWrapper) {
                 normalUpdate[p] = data[p];
               }
             }
-
             if (customWrapperMap.size > 0) {
               customWrapperMap.forEach(function (data, ctx) {
                 customWrapperUpdate.push({
@@ -5574,47 +4848,37 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
               });
             }
           }
-
           var updateArrLen = customWrapperUpdate.length;
-
           if (updateArrLen) {
             var eventId = "".concat(_this12._path, "_update_").concat(eventIncrementId());
             var _eventCenter = _this12.eventCenter;
             var executeTime = 0;
-
             _eventCenter.once(eventId, function () {
               executeTime++;
-
               if (executeTime === updateArrLen + 1) {
                 perf.stop(SET_DATA);
-
                 if (!_this12.pendingFlush) {
                   _this12.flushUpdateCallback();
                 }
-
                 if (initRender) {
                   perf.stop(PAGE_INIT);
                 }
               }
             }, _eventCenter);
-
             customWrapperUpdate.forEach(function (item) {
               if ( true && options.debug) {
                 // eslint-disable-next-line no-console
                 console.log('custom wrapper setData: ', item.data);
               }
-
               item.ctx.setData(item.data, function () {
                 _eventCenter.trigger(eventId);
               });
             });
-
             if (Object.keys(normalUpdate).length) {
               if ( true && options.debug) {
                 // eslint-disable-next-line no-console
                 console.log('setData:', normalUpdate);
               }
-
               ctx.setData(normalUpdate, function () {
                 _eventCenter.trigger(eventId);
               });
@@ -5624,14 +4888,11 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
               // eslint-disable-next-line no-console
               console.log('setData:', data);
             }
-
             ctx.setData(data, function () {
               perf.stop(SET_DATA);
-
               if (!_this12.pendingFlush) {
                 _this12.flushUpdateCallback();
               }
-
               if (initRender) {
                 perf.stop(PAGE_INIT);
               }
@@ -5653,30 +4914,22 @@ var TaroRootElement = /*#__PURE__*/function (_TaroElement) {
       this.pendingFlush = false;
       var copies = this.updateCallbacks.slice(0);
       this.updateCallbacks.length = 0;
-
       for (var i = 0; i < copies.length; i++) {
         copies[i]();
       }
     }
   }]);
-
   return TaroRootElement;
 }(TaroElement);
-
 TaroRootElement = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroNodeImpl)), __param(1, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __param(2, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __param(3, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementImpl)), __param(4, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.eventCenter)), __metadata("design:paramtypes", [Function, Function, Function, Function, Function])], TaroRootElement);
-
 var FormElement = /*#__PURE__*/function (_TaroElement2) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(FormElement, _TaroElement2);
-
-  var _super6 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(FormElement);
-
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(FormElement, _TaroElement2);
+  var _super6 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(FormElement);
   function FormElement() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, FormElement);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, FormElement);
     return _super6.apply(this, arguments);
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(FormElement, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(FormElement, [{
     key: "value",
     get: function get() {
       // eslint-disable-next-line dot-notation
@@ -5691,7 +4944,6 @@ var FormElement = /*#__PURE__*/function (_TaroElement2) {
     value: function dispatchEvent(event) {
       if (event.mpEvent) {
         var val = event.mpEvent.detail.value;
-
         if (event.type === CHANGE) {
           this.props.value = val;
         } else if (event.type === INPUT) {
@@ -5701,29 +4953,20 @@ var FormElement = /*#__PURE__*/function (_TaroElement2) {
           this.value = val;
         }
       }
-
-      return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(FormElement.prototype), "dispatchEvent", this).call(this, event);
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_get__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"])(FormElement.prototype), "dispatchEvent", this).call(this, event);
     }
   }]);
-
   return FormElement;
 }(TaroElement); // for Vue3
-
-
 var SVGElement = /*#__PURE__*/function (_TaroElement3) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(SVGElement, _TaroElement3);
-
-  var _super7 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(SVGElement);
-
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(SVGElement, _TaroElement3);
+  var _super7 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(SVGElement);
   function SVGElement() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, SVGElement);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, SVGElement);
     return _super7.apply(this, arguments);
   }
-
-  return Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(SVGElement);
+  return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(SVGElement);
 }(TaroElement);
-
 function initPosition() {
   return {
     index: 0,
@@ -5731,14 +4974,11 @@ function initPosition() {
     line: 0
   };
 }
-
 function feedPosition(position, str, len) {
   var start = position.index;
   var end = position.index = start + len;
-
   for (var i = start; i < end; i++) {
     var char = str.charAt(i);
-
     if (char === '\n') {
       position.line++;
       position.column = 0;
@@ -5747,12 +4987,10 @@ function feedPosition(position, str, len) {
     }
   }
 }
-
 function jumpPosition(position, str, end) {
   var len = end - position.index;
   return feedPosition(position, str, len);
 }
-
 function copyPosition(position) {
   return {
     index: position.index,
@@ -5760,108 +4998,83 @@ function copyPosition(position) {
     column: position.column
   };
 }
-
 var whitespace = /\s/;
-
 function isWhitespaceChar(char) {
   return whitespace.test(char);
 }
-
 var equalSign = /=/;
-
 function isEqualSignChar(char) {
   return equalSign.test(char);
 }
-
 function shouldBeIgnore(tagName) {
   var name = tagName.toLowerCase();
-
   if (options.html.skipElements.has(name)) {
     return true;
   }
-
   return false;
 }
-
 var alphanumeric = /[A-Za-z0-9]/;
-
 function findTextEnd(str, index) {
   while (true) {
     var textEnd = str.indexOf('<', index);
-
     if (textEnd === -1) {
       return textEnd;
     }
-
     var char = str.charAt(textEnd + 1);
-
     if (char === '/' || char === '!' || alphanumeric.test(char)) {
       return textEnd;
     }
-
     index = textEnd + 1;
   }
 }
-
 function isWordEnd(cursor, wordBegin, html) {
   if (!isWhitespaceChar(html.charAt(cursor))) return false;
-  var len = html.length; // backwrad
-
+  var len = html.length;
+  // backwrad
   for (var i = cursor - 1; i > wordBegin; i--) {
     var char = html.charAt(i);
-
     if (!isWhitespaceChar(char)) {
       if (isEqualSignChar(char)) return false;
       break;
     }
-  } // forward
-
-
+  }
+  // forward
   for (var _i2 = cursor + 1; _i2 < len; _i2++) {
     var _char = html.charAt(_i2);
-
     if (!isWhitespaceChar(_char)) {
       if (isEqualSignChar(_char)) return false;
       return true;
     }
   }
 }
-
 var Scaner = /*#__PURE__*/function () {
   function Scaner(html) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Scaner);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Scaner);
     this.tokens = [];
     this.position = initPosition();
     this.html = html;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Scaner, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Scaner, [{
     key: "scan",
     value: function scan() {
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var len = html.length;
-
       while (position.index < len) {
         var start = position.index;
         this.scanText();
-
         if (position.index === start) {
           var _isComment = html.startsWith('!--', start + 1);
-
           if (_isComment) {
             this.scanComment();
           } else {
             var tagName = this.scanTag();
-
             if (shouldBeIgnore(tagName)) {
               this.scanSkipTag(tagName);
             }
           }
         }
       }
-
       return this.tokens;
     }
   }, {
@@ -5869,17 +5082,14 @@ var Scaner = /*#__PURE__*/function () {
     value: function scanText() {
       var type = 'text';
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var textEnd = findTextEnd(html, position.index);
-
       if (textEnd === position.index) {
         return;
       }
-
       if (textEnd === -1) {
         textEnd = html.length;
       }
-
       var start = copyPosition(position);
       var content = html.slice(position.index, textEnd);
       jumpPosition(position, html, textEnd);
@@ -5898,17 +5108,14 @@ var Scaner = /*#__PURE__*/function () {
     value: function scanComment() {
       var type = 'comment';
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var start = copyPosition(position);
       feedPosition(position, html, 4); // "<!--".length
-
       var contentEnd = html.indexOf('-->', position.index);
       var commentEnd = contentEnd + 3; // "-->".length
-
       if (contentEnd === -1) {
         contentEnd = commentEnd = html.length;
       }
-
       var content = html.slice(position.index, contentEnd);
       jumpPosition(position, html, commentEnd);
       this.tokens.push({
@@ -5934,7 +5141,7 @@ var Scaner = /*#__PURE__*/function () {
     value: function scanTagStart() {
       var type = 'tag-start';
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var secondChar = html.charAt(position.index + 1);
       var close = secondChar === '/';
       var start = copyPosition(position);
@@ -5952,7 +5159,7 @@ var Scaner = /*#__PURE__*/function () {
     value: function scanTagEnd() {
       var type = 'tag-end';
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var firstChar = html.charAt(position.index);
       var close = firstChar === '/';
       feedPosition(position, html, close ? 2 : 1);
@@ -5970,28 +5177,22 @@ var Scaner = /*#__PURE__*/function () {
     value: function scanTagName() {
       var type = 'tag';
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var len = html.length;
       var start = position.index;
-
       while (start < len) {
         var char = html.charAt(start);
         var isTagChar = !(isWhitespaceChar(char) || char === '/' || char === '>');
         if (isTagChar) break;
         start++;
       }
-
       var end = start + 1;
-
       while (end < len) {
         var _char2 = html.charAt(end);
-
         var _isTagChar = !(isWhitespaceChar(_char2) || _char2 === '/' || _char2 === '>');
-
         if (!_isTagChar) break;
         end++;
       }
-
       jumpPosition(position, html, end);
       var tagName = html.slice(start, end);
       this.tokens.push({
@@ -6004,73 +5205,54 @@ var Scaner = /*#__PURE__*/function () {
     key: "scanAttrs",
     value: function scanAttrs() {
       var html = this.html,
-          position = this.position,
-          tokens = this.tokens;
+        position = this.position,
+        tokens = this.tokens;
       var cursor = position.index;
       var quote = null; // null, single-, or double-quote
-
       var wordBegin = cursor; // index of word start
-
       var words = []; // "key", "key=value", "key='value'", etc
-
       var len = html.length;
-
       while (cursor < len) {
         var char = html.charAt(cursor);
-
         if (quote) {
           var isQuoteEnd = char === quote;
-
           if (isQuoteEnd) {
             quote = null;
           }
-
           cursor++;
           continue;
         }
-
         var isTagEnd = char === '/' || char === '>';
-
         if (isTagEnd) {
           if (cursor !== wordBegin) {
             words.push(html.slice(wordBegin, cursor));
           }
-
           break;
         }
-
         if (isWordEnd(cursor, wordBegin, html)) {
           if (cursor !== wordBegin) {
             words.push(html.slice(wordBegin, cursor));
           }
-
           wordBegin = cursor + 1;
           cursor++;
           continue;
         }
-
         var isQuoteStart = char === '\'' || char === '"';
-
         if (isQuoteStart) {
           quote = char;
           cursor++;
           continue;
         }
-
         cursor++;
       }
-
       jumpPosition(position, html, cursor);
       var wLen = words.length;
       var type = 'attribute';
-
       for (var i = 0; i < wLen; i++) {
         var word = words[i];
         var isNotPair = word.includes('=');
-
         if (isNotPair) {
           var secondWord = words[i + 1];
-
           if (secondWord && secondWord.startsWith('=')) {
             if (secondWord.length > 1) {
               var newWord = word + secondWord;
@@ -6081,13 +5263,10 @@ var Scaner = /*#__PURE__*/function () {
               i += 1;
               continue;
             }
-
             var thirdWord = words[i + 2];
             i += 1;
-
             if (thirdWord) {
               var _newWord = word + '=' + thirdWord;
-
               tokens.push({
                 type: type,
                 content: _newWord
@@ -6097,13 +5276,10 @@ var Scaner = /*#__PURE__*/function () {
             }
           }
         }
-
         if (word.endsWith('=')) {
           var _secondWord = words[i + 1];
-
           if (_secondWord && !_secondWord.includes('=')) {
             var _newWord3 = word + _secondWord;
-
             tokens.push({
               type: type,
               content: _newWord3
@@ -6111,16 +5287,13 @@ var Scaner = /*#__PURE__*/function () {
             i += 1;
             continue;
           }
-
           var _newWord2 = word.slice(0, -1);
-
           tokens.push({
             type: type,
             content: _newWord2
           });
           continue;
         }
-
         tokens.push({
           type: type,
           content: word
@@ -6131,72 +5304,59 @@ var Scaner = /*#__PURE__*/function () {
     key: "scanSkipTag",
     value: function scanSkipTag(tagName) {
       var html = this.html,
-          position = this.position;
+        position = this.position;
       var safeTagName = tagName.toLowerCase();
       var len = html.length;
-
       while (position.index < len) {
         var nextTag = html.indexOf('</', position.index);
-
         if (nextTag === -1) {
           this.scanText();
           break;
         }
-
         jumpPosition(position, html, nextTag);
         var name = this.scanTag();
-
         if (safeTagName === name.toLowerCase()) {
           break;
         }
       }
     }
   }]);
-
   return Scaner;
 }();
-
 function makeMap(str, expectsLowerCase) {
   var map = Object.create(null);
   var list = str.split(',');
-
   for (var i = 0; i < list.length; i++) {
     map[list[i]] = true;
   }
-
   return expectsLowerCase ? function (val) {
     return !!map[val.toLowerCase()];
   } : function (val) {
     return !!map[val];
   };
 }
-
 var specialMiniElements = {
   img: 'image',
   iframe: 'web-view'
 };
 var internalCompsList = Object.keys(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* internalComponents */ "g"]).map(function (i) {
   return i.toLowerCase();
-}).join(','); // https://developers.weixin.qq.com/miniprogram/dev/component
-
-var isMiniElements = makeMap(internalCompsList, true); // https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements
-
-var isInlineElements = makeMap('a,i,abbr,iframe,select,acronym,slot,small,span,bdi,kbd,strong,big,map,sub,sup,br,mark,mark,meter,template,canvas,textarea,cite,object,time,code,output,u,data,picture,tt,datalist,var,dfn,del,q,em,s,embed,samp,b', true); // https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements
-
+}).join(',');
+// https://developers.weixin.qq.com/miniprogram/dev/component
+var isMiniElements = makeMap(internalCompsList, true);
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements
+var isInlineElements = makeMap('a,i,abbr,iframe,select,acronym,slot,small,span,bdi,kbd,strong,big,map,sub,sup,br,mark,mark,meter,template,canvas,textarea,cite,object,time,code,output,u,data,picture,tt,datalist,var,dfn,del,q,em,s,embed,samp,b', true);
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements
 var isBlockElements = makeMap('address,fieldset,li,article,figcaption,main,aside,figure,nav,blockquote,footer,ol,details,form,p,dialog,h1,h2,h3,h4,h5,h6,pre,dd,header,section,div,hgroup,table,dl,hr,ul,dt', true);
-
 function unquote(str) {
   var car = str.charAt(0);
   var end = str.length - 1;
   var isQuoteStart = car === '"' || car === "'";
-
   if (isQuoteStart && car === str.charAt(end)) {
     return str.slice(1, end);
   }
-
   return str;
 }
-
 var LEFT_BRACKET = '{';
 var RIGHT_BRACKET = '}';
 var CLASS_SELECTOR = '.';
@@ -6204,27 +5364,21 @@ var ID_SELECTOR = '#';
 var CHILD_COMBINATOR = '>';
 var GENERAL_SIBLING_COMBINATOR = '~';
 var ADJACENT_SIBLING_COMBINATOR = '+';
-
 var StyleTagParser = /*#__PURE__*/function () {
   function StyleTagParser() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, StyleTagParser);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, StyleTagParser);
     this.styles = [];
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(StyleTagParser, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(StyleTagParser, [{
     key: "extractStyle",
     value: function extractStyle(src) {
       var _this13 = this;
-
       var REG_STYLE = /<style\s?[^>]*>((.|\n|\s)+?)<\/style>/g;
-      var html = src; // let html = src.replace(/\n/g, '')
-
+      var html = src;
+      // let html = src.replace(/\n/g, '')
       html = html.replace(REG_STYLE, function (_, $1) {
         var style = $1.trim();
-
         _this13.stringToSelector(style);
-
         return '';
       });
       return html.trim();
@@ -6233,9 +5387,7 @@ var StyleTagParser = /*#__PURE__*/function () {
     key: "stringToSelector",
     value: function stringToSelector(style) {
       var _this14 = this;
-
       var lb = style.indexOf(LEFT_BRACKET);
-
       var _loop3 = function _loop3() {
         var rb = style.indexOf(RIGHT_BRACKET);
         var selectors = style.slice(0, lb).trim();
@@ -6246,14 +5398,11 @@ var StyleTagParser = /*#__PURE__*/function () {
         });
         content = content.replace(/ /g, '');
         content = content.replace(/\+\+\+/g, ' ');
-
         if (!/;$/.test(content)) {
           content += ';';
         }
-
         selectors.split(',').forEach(function (src) {
           var selectorList = _this14.parseSelector(src);
-
           _this14.styles.push({
             content: content,
             selectorList: selectorList
@@ -6262,11 +5411,10 @@ var StyleTagParser = /*#__PURE__*/function () {
         style = style.slice(rb + 1);
         lb = style.indexOf(LEFT_BRACKET);
       };
-
       while (lb > -1) {
         _loop3();
-      } // console.log('res this.styles: ', this.styles)
-
+      }
+      // console.log('res this.styles: ', this.styles)
     }
   }, {
     key: "parseSelector",
@@ -6284,14 +5432,13 @@ var StyleTagParser = /*#__PURE__*/function () {
           class: [],
           attrs: []
         };
-        item = item.replace(/^[>~+]/, ''); // 属性选择器
-
+        item = item.replace(/^[>~+]/, '');
+        // 属性选择器
         item = item.replace(/\[(.+?)\]/g, function (_, $1) {
           var _$1$split = $1.split('='),
-              _$1$split2 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_$1$split, 2),
-              key = _$1$split2[0],
-              value = _$1$split2[1];
-
+            _$1$split2 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_$1$split, 2),
+            key = _$1$split2[0],
+            value = _$1$split2[1];
           var all = $1.indexOf('=') === -1;
           var attr = {
             all: all,
@@ -6309,14 +5456,12 @@ var StyleTagParser = /*#__PURE__*/function () {
             // class 选择器
             selector.class.push($1.substr(1));
           }
-
           return '';
-        }); // 标签选择器
-
+        });
+        // 标签选择器
         if (item !== '') {
           selector.tag = item;
         }
-
         return selector;
       });
       return selectors;
@@ -6325,50 +5470,40 @@ var StyleTagParser = /*#__PURE__*/function () {
     key: "matchStyle",
     value: function matchStyle(tagName, el, list) {
       var _this15 = this;
-
       var res = sortStyles(this.styles).reduce(function (str, _ref2, i) {
         var content = _ref2.content,
-            selectorList = _ref2.selectorList;
+          selectorList = _ref2.selectorList;
         var idx = list[i];
         var selector = selectorList[idx];
         var nextSelector = selectorList[idx + 1];
-
         if ((nextSelector === null || nextSelector === void 0 ? void 0 : nextSelector.isGeneralSibling) || (nextSelector === null || nextSelector === void 0 ? void 0 : nextSelector.isAdjacentSibling)) {
           selector = nextSelector;
           idx += 1;
           list[i] += 1;
         }
-
         var isMatch = _this15.matchCurrent(tagName, el, selector);
-
         if (isMatch && selector.isGeneralSibling) {
           var prev = getPreviousElement(el);
-
           while (prev) {
             if (prev.h5tagName && _this15.matchCurrent(prev.h5tagName, prev, selectorList[idx - 1])) {
               isMatch = true;
               break;
             }
-
             prev = getPreviousElement(prev);
             isMatch = false;
           }
         }
-
         if (isMatch && selector.isAdjacentSibling) {
           var _prev = getPreviousElement(el);
-
           if (!_prev || !_prev.h5tagName) {
             isMatch = false;
           } else {
             var isSiblingMatch = _this15.matchCurrent(_prev.h5tagName, _prev, selectorList[idx - 1]);
-
             if (!isSiblingMatch) {
               isMatch = false;
             }
           }
         }
-
         if (isMatch) {
           if (idx === selectorList.length - 1) {
             return str + content;
@@ -6379,13 +5514,11 @@ var StyleTagParser = /*#__PURE__*/function () {
           // 直接子代组合器: >
           if (selector.isChild && idx > 0) {
             list[i] -= 1;
-
             if (_this15.matchCurrent(tagName, el, selectorList[list[i]])) {
               list[i] += 1;
             }
           }
         }
-
         return str;
       }, '');
       return res;
@@ -6394,67 +5527,55 @@ var StyleTagParser = /*#__PURE__*/function () {
     key: "matchCurrent",
     value: function matchCurrent(tagName, el, selector) {
       // 标签选择器
-      if (selector.tag && selector.tag !== tagName) return false; // id 选择器
-
-      if (selector.id && selector.id !== el.id) return false; // class 选择器
-
+      if (selector.tag && selector.tag !== tagName) return false;
+      // id 选择器
+      if (selector.id && selector.id !== el.id) return false;
+      // class 选择器
       if (selector.class.length) {
         var classList = el.className.split(' ');
-
         for (var i = 0; i < selector.class.length; i++) {
           var cls = selector.class[i];
-
           if (classList.indexOf(cls) === -1) {
             return false;
           }
         }
-      } // 属性选择器
-
-
+      }
+      // 属性选择器
       if (selector.attrs.length) {
         for (var _i3 = 0; _i3 < selector.attrs.length; _i3++) {
           var _selector$attrs$_i = selector.attrs[_i3],
-              all = _selector$attrs$_i.all,
-              key = _selector$attrs$_i.key,
-              value = _selector$attrs$_i.value;
-
+            all = _selector$attrs$_i.all,
+            key = _selector$attrs$_i.key,
+            value = _selector$attrs$_i.value;
           if (all && !el.hasAttribute(key)) {
             return false;
           } else {
             var attr = el.getAttribute(key);
-
             if (attr !== unquote(value || '')) {
               return false;
             }
           }
         }
       }
-
       return true;
     }
   }]);
-
   return StyleTagParser;
 }();
-
 function getPreviousElement(el) {
   var parent = el.parentElement;
   if (!parent) return null;
   var prev = el.previousSibling;
   if (!prev) return null;
-
-  if (prev.nodeType === 1
-  /* ELEMENT_NODE */
-  ) {
+  if (prev.nodeType === 1 /* ELEMENT_NODE */) {
     return prev;
   } else {
     return getPreviousElement(prev);
   }
-} // 根据 css selector 权重排序: 权重大的靠后
+}
+// 根据 css selector 权重排序: 权重大的靠后
 // @WARN 不考虑伪类
 // https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#specificity_2
-
-
 function sortStyles(styles) {
   return styles.sort(function (s1, s2) {
     var hundreds1 = getHundredsWeight(s1.selectorList);
@@ -6468,25 +5589,21 @@ function sortStyles(styles) {
     return ones1 - ones2;
   });
 }
-
 function getHundredsWeight(selectors) {
   return selectors.reduce(function (pre, cur) {
     return pre + (cur.id ? 1 : 0);
   }, 0);
 }
-
 function getTensWeight(selectors) {
   return selectors.reduce(function (pre, cur) {
     return pre + cur.class.length + cur.attrs.length;
   }, 0);
 }
-
 function getOnesWeight(selectors) {
   return selectors.reduce(function (pre, cur) {
     return pre + (cur.tag ? 1 : 0);
   }, 0);
 }
-
 var closingTagAncestorBreakers = {
   li: ['ul', 'ol', 'menu'],
   dt: ['dl'],
@@ -6497,36 +5614,27 @@ var closingTagAncestorBreakers = {
   tr: ['table'],
   td: ['table']
 };
-
 function hasTerminalParent(tagName, stack) {
   var tagParents = closingTagAncestorBreakers[tagName];
-
   if (tagParents) {
     var currentIndex = stack.length - 1;
-
     while (currentIndex >= 0) {
       var parentTagName = stack[currentIndex].tagName;
-
       if (parentTagName === tagName) {
         break;
       }
-
       if (tagParents && tagParents.includes(parentTagName)) {
         return true;
       }
-
       currentIndex--;
     }
   }
-
   return false;
 }
-
 function getTagName(tag) {
   if (options.html.renderHTMLTag) {
     return tag;
   }
-
   if (specialMiniElements[tag]) {
     return specialMiniElements[tag];
   } else if (isMiniElements(tag)) {
@@ -6536,10 +5644,8 @@ function getTagName(tag) {
   } else if (isInlineElements(tag)) {
     return 'text';
   }
-
   return 'view';
 }
-
 function splitEqual(str) {
   var sep = '=';
   var idx = str.indexOf(sep);
@@ -6548,7 +5654,6 @@ function splitEqual(str) {
   var value = str.slice(idx + sep.length).trim();
   return [key, value];
 }
-
 function format(children, document, styleOptions, parent) {
   return children.filter(function (child) {
     // 过滤注释和空文本节点
@@ -6557,37 +5662,29 @@ function format(children, document, styleOptions, parent) {
     } else if (child.type === 'text') {
       return child.content !== '';
     }
-
     return true;
   }).map(function (child) {
     // 文本节点
     if (child.type === 'text') {
       var text = document.createTextNode(child.content);
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(options.html.transformText)) {
         text = options.html.transformText(text, child);
       }
-
       parent === null || parent === void 0 ? void 0 : parent.appendChild(text);
       return text;
     }
-
     var el = document.createElement(getTagName(child.tagName));
     el.h5tagName = child.tagName;
     parent === null || parent === void 0 ? void 0 : parent.appendChild(el);
-
     if (!options.html.renderHTMLTag) {
       el.className = "h5-".concat(child.tagName);
     }
-
     for (var i = 0; i < child.attributes.length; i++) {
       var attr = child.attributes[i];
-
       var _splitEqual = splitEqual(attr),
-          _splitEqual2 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_splitEqual, 2),
-          key = _splitEqual2[0],
-          value = _splitEqual2[1];
-
+        _splitEqual2 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(_splitEqual, 2),
+        key = _splitEqual2[0],
+        value = _splitEqual2[1];
       if (key === 'class') {
         el.className += ' ' + unquote(value);
       } else if (key[0] === 'o' && key[1] === 'n') {
@@ -6596,26 +5693,22 @@ function format(children, document, styleOptions, parent) {
         el.setAttribute(key, value == null ? true : unquote(value));
       }
     }
-
     var styleTagParser = styleOptions.styleTagParser,
-        descendantList = styleOptions.descendantList;
+      descendantList = styleOptions.descendantList;
     var list = descendantList.slice();
     var style = styleTagParser.matchStyle(child.tagName, el, list);
-    el.setAttribute('style', style + el.style.cssText); // console.log('style, ', style)
-
+    el.setAttribute('style', style + el.style.cssText);
+    // console.log('style, ', style)
     format(child.children, document, {
       styleTagParser: styleTagParser,
       descendantList: list
     }, el);
-
     if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(options.html.transformElement)) {
       return options.html.transformElement(el, child);
     }
-
     return el;
   });
 }
-
 function parser(html, document) {
   var styleTagParser = new StyleTagParser();
   html = styleTagParser.extractStyle(html);
@@ -6638,45 +5731,37 @@ function parser(html, document) {
     descendantList: Array(styleTagParser.styles.length).fill(0)
   });
 }
-
 function parse(state) {
   var tokens = state.tokens,
-      stack = state.stack;
+    stack = state.stack;
   var cursor = state.cursor;
   var len = tokens.length;
   var nodes = stack[stack.length - 1].children;
-
   while (cursor < len) {
     var token = tokens[cursor];
-
     if (token.type !== 'tag-start') {
       // comment or text
       nodes.push(token);
       cursor++;
       continue;
     }
-
     var tagToken = tokens[++cursor];
     cursor++;
     var tagName = tagToken.content.toLowerCase();
-
     if (token.close) {
       var index = stack.length;
       var shouldRewind = false;
-
       while (--index > -1) {
         if (stack[index].tagName === tagName) {
           shouldRewind = true;
           break;
         }
       }
-
       while (cursor < len) {
         var endToken = tokens[cursor];
         if (endToken.type !== 'tag-end') break;
         cursor++;
       }
-
       if (shouldRewind) {
         stack.splice(index);
         break;
@@ -6684,17 +5769,13 @@ function parse(state) {
         continue;
       }
     }
-
     var isClosingTag = options.html.closingElements.has(tagName);
     var shouldRewindToAutoClose = isClosingTag;
-
     if (shouldRewindToAutoClose) {
       shouldRewindToAutoClose = !hasTerminalParent(tagName, stack);
     }
-
     if (shouldRewindToAutoClose) {
       var currentIndex = stack.length - 1;
-
       while (currentIndex > 0) {
         if (tagName === stack[currentIndex].tagName) {
           stack.splice(currentIndex);
@@ -6702,21 +5783,17 @@ function parse(state) {
           nodes = stack[previousIndex].children;
           break;
         }
-
         currentIndex = currentIndex - 1;
       }
     }
-
     var attributes = [];
     var attrToken = void 0;
-
     while (cursor < len) {
       attrToken = tokens[cursor];
       if (attrToken.type === 'tag-end') break;
       attributes.push(attrToken.content);
       cursor++;
     }
-
     cursor++;
     var children = [];
     var element = {
@@ -6727,7 +5804,6 @@ function parse(state) {
     };
     nodes.push(element);
     var hasChildren = !(attrToken.close || options.html.voidElements.has(tagName));
-
     if (hasChildren) {
       stack.push({
         tagName: tagName,
@@ -6742,86 +5818,65 @@ function parse(state) {
       cursor = innerState.cursor;
     }
   }
-
   state.cursor = cursor;
 }
-
 options.html = {
   skipElements: new Set(['style', 'script']),
   voidElements: new Set(['!doctype', 'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']),
   closingElements: new Set(['html', 'head', 'body', 'p', 'dt', 'dd', 'li', 'option', 'thead', 'th', 'tbody', 'tr', 'td', 'tfoot', 'colgroup']),
   renderHTMLTag: false
 };
-
 function setInnerHTML(element, html, getDoc) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-
   var children = parser(html, getDoc());
-
   for (var i = 0; i < children.length; i++) {
     element.appendChild(children[i]);
   }
 }
+
 /**
  * An implementation of `Element.insertAdjacentHTML()`
  * to support Vue 3 with a version of or greater than `vue@3.1.2`
  */
-
-
 function insertAdjacentHTMLImpl(position, html, getDoc) {
   var _a, _b;
-
   var parsedNodes = parser(html, getDoc());
-
   for (var i = 0; i < parsedNodes.length; i++) {
     var n = parsedNodes[i];
-
     switch (position) {
       case 'beforebegin':
         (_a = this.parentNode) === null || _a === void 0 ? void 0 : _a.insertBefore(n, this);
         break;
-
       case 'afterbegin':
         if (this.hasChildNodes()) {
           this.insertBefore(n, this.childNodes[0]);
         } else {
           this.appendChild(n);
         }
-
         break;
-
       case 'beforeend':
         this.appendChild(n);
         break;
-
       case 'afterend':
         (_b = this.parentNode) === null || _b === void 0 ? void 0 : _b.appendChild(n);
         break;
     }
   }
 }
-
 function cloneNode(ctx, getDoc) {
   var isDeep = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
   var document = getDoc();
   var newNode;
-
-  if (ctx.nodeType === 1
-  /* ELEMENT_NODE */
-  ) {
+  if (ctx.nodeType === 1 /* ELEMENT_NODE */) {
     newNode = document.createElement(ctx.nodeName);
-  } else if (ctx.nodeType === 3
-  /* TEXT_NODE */
-  ) {
+  } else if (ctx.nodeType === 3 /* TEXT_NODE */) {
     newNode = document.createTextNode('');
   }
-
   for (var key in this) {
     var value = this[key];
-
-    if ([PROPS, DATASET].includes(key) && Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) === OBJECT) {
+    if ([PROPS, DATASET].includes(key) && Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_15__[/* default */ "a"])(value) === OBJECT) {
       newNode[key] = Object.assign({}, value);
     } else if (key === '_value') {
       newNode[key] = value;
@@ -6830,50 +5885,40 @@ function cloneNode(ctx, getDoc) {
       newNode.style._usedStyleProp = new Set(Array.from(value._usedStyleProp));
     }
   }
-
   if (isDeep) {
     newNode.childNodes = ctx.childNodes.map(function (node) {
       return node.cloneNode(true);
     });
   }
-
   return newNode;
 }
-
 var TaroNodeImpl = /*#__PURE__*/function () {
-  function TaroNodeImpl( // eslint-disable-next-line @typescript-eslint/indent
+  function TaroNodeImpl(
+  // eslint-disable-next-line @typescript-eslint/indent
   getElement) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroNodeImpl);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroNodeImpl);
     this.getDoc = function () {
       return getElement(ElementNames.Document)();
     };
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroNodeImpl, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroNodeImpl, [{
     key: "bind",
     value: function bind(ctx) {
       var getDoc = this.getDoc;
-
       if (true) {
         bindInnerHTML(ctx, getDoc);
-
         if (true) {
           bindAdjacentHTML(ctx, getDoc);
         }
       }
-
       if (true) {
         ctx.cloneNode = cloneNode.bind(ctx, ctx, getDoc);
       }
     }
   }]);
-
   return TaroNodeImpl;
 }();
-
 TaroNodeImpl = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __metadata("design:paramtypes", [Function])], TaroNodeImpl);
-
 function bindInnerHTML(ctx, getDoc) {
   Object.defineProperty(ctx, 'innerHTML', {
     configurable: true,
@@ -6886,16 +5931,13 @@ function bindInnerHTML(ctx, getDoc) {
     }
   });
 }
-
 function bindAdjacentHTML(ctx, getDoc) {
   ctx.insertAdjacentHTML = function (position, html) {
     insertAdjacentHTMLImpl.call(ctx, position, html, getDoc);
   };
 }
-
 function getBoundingClientRectImpl() {
   var _this16 = this;
-
   if (!options.miniGlobal) return Promise.resolve(null);
   return new Promise(function (resolve) {
     var query = options.miniGlobal.createSelectorQuery();
@@ -6904,11 +5946,9 @@ function getBoundingClientRectImpl() {
     }).exec();
   });
 }
-
 function getTemplateContent(ctx) {
   if (ctx.nodeName === 'template') {
     var content = ctx._getElement(ElementNames.Element)(DOCUMENT_FRAGMENT);
-
     content.childNodes = ctx.childNodes;
     ctx.childNodes = [content];
     content.parentNode = ctx;
@@ -6918,28 +5958,22 @@ function getTemplateContent(ctx) {
     return content;
   }
 }
-
 var TaroElementImpl = /*#__PURE__*/function () {
   function TaroElementImpl() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroElementImpl);
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroElementImpl);
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroElementImpl, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroElementImpl, [{
     key: "bind",
     value: function bind(ctx) {
       if (false) {}
-
       if (true) {
         bindContent(ctx);
       }
     }
   }]);
-
   return TaroElementImpl;
 }();
-
 TaroElementImpl = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])()], TaroElementImpl);
-
 function bindContent(ctx) {
   Object.defineProperty(ctx, 'content', {
     configurable: true,
@@ -6949,42 +5983,33 @@ function bindContent(ctx) {
     }
   });
 }
-
 var TaroDocument = /*#__PURE__*/function (_TaroElement4) {
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroDocument, _TaroElement4);
-
-  var _super8 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroDocument);
-
-  function TaroDocument( // eslint-disable-next-line @typescript-eslint/indent
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(TaroDocument, _TaroElement4);
+  var _super8 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(TaroDocument);
+  function TaroDocument(
+  // eslint-disable-next-line @typescript-eslint/indent
   nodeImpl, getElement, hooks, elementImpl, getText) {
     var _this17;
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroDocument);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroDocument);
     _this17 = _super8.call(this, nodeImpl, getElement, hooks, elementImpl);
     _this17._getText = getText;
-    _this17.nodeType = 9
-    /* DOCUMENT_NODE */
-    ;
+    _this17.nodeType = 9 /* DOCUMENT_NODE */;
     _this17.nodeName = DOCUMENT_ELEMENT_NAME;
     return _this17;
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroDocument, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroDocument, [{
     key: "createElement",
     value: function createElement(type) {
       if (type === ROOT_STR) {
         return this._getElement(ElementNames.RootElement)();
       }
-
       if (_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* controlledComponent */ "d"].has(type)) {
         return this._getElement(ElementNames.FormElement)(type);
       }
-
       return this._getElement(ElementNames.Element)(type);
-    } // an ugly fake createElementNS to deal with @vue/runtime-dom's
+    }
+    // an ugly fake createElementNS to deal with @vue/runtime-dom's
     // support mounting app to svg container since vue@3.0.8
-
   }, {
     key: "createElementNS",
     value: function createElementNS(_svgNS, type) {
@@ -7008,7 +6033,6 @@ var TaroDocument = /*#__PURE__*/function (_TaroElement4) {
       if (/^#/.test(query)) {
         return this.getElementById(query.slice(1));
       }
-
       return null;
     }
   }, {
@@ -7016,33 +6040,27 @@ var TaroDocument = /*#__PURE__*/function (_TaroElement4) {
     value: function querySelectorAll() {
       // fake hack
       return [];
-    } // @TODO: @PERF: 在 hydrate 移除掉空的 node
-
+    }
+    // @TODO: @PERF: 在 hydrate 移除掉空的 node
   }, {
     key: "createComment",
     value: function createComment() {
       var textnode = this._getText('');
-
       textnode.nodeName = COMMENT;
       return textnode;
     }
   }]);
-
   return TaroDocument;
 }(TaroElement);
-
 TaroDocument = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])(), __param(0, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroNodeImpl)), __param(1, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementFactory)), __param(2, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.Hooks)), __param(3, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroElementImpl)), __param(4, Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.TaroTextFactory)), __metadata("design:paramtypes", [Function, Function, Function, Function, Function])], TaroDocument);
-
 var Hooks = /*#__PURE__*/function () {
   function Hooks() {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Hooks);
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Hooks);
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Hooks, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Hooks, [{
     key: "modifyMpEvent",
     value: function modifyMpEvent(e) {
       var _a;
-
       (_a = this.modifyMpEventImpls) === null || _a === void 0 ? void 0 : _a.forEach(function (fn) {
         return fn(e);
       });
@@ -7051,7 +6069,6 @@ var Hooks = /*#__PURE__*/function () {
     key: "modifyTaroEvent",
     value: function modifyTaroEvent(e, element) {
       var _a;
-
       (_a = this.modifyTaroEventImpls) === null || _a === void 0 ? void 0 : _a.forEach(function (fn) {
         return fn(e, element);
       });
@@ -7060,7 +6077,6 @@ var Hooks = /*#__PURE__*/function () {
     key: "initNativeApi",
     value: function initNativeApi(taro) {
       var _a;
-
       (_a = this.initNativeApiImpls) === null || _a === void 0 ? void 0 : _a.forEach(function (fn) {
         return fn(taro);
       });
@@ -7069,80 +6085,53 @@ var Hooks = /*#__PURE__*/function () {
     key: "patchElement",
     value: function patchElement(element) {
       var _a;
-
       (_a = this.patchElementImpls) === null || _a === void 0 ? void 0 : _a.forEach(function (fn) {
         return fn(element);
       });
     }
   }]);
-
   return Hooks;
 }();
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.getLifecycle), __metadata("design:type", Function)], Hooks.prototype, "getLifecycle", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.getPathIndex), __metadata("design:type", Function)], Hooks.prototype, "getPathIndex", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.getEventCenter), __metadata("design:type", Function)], Hooks.prototype, "getEventCenter", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.isBubbleEvents), __metadata("design:type", Function)], Hooks.prototype, "isBubbleEvents", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.getSpecialNodes), __metadata("design:type", Function)], Hooks.prototype, "getSpecialNodes", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.onRemoveAttribute), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "onRemoveAttribute", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.batchedEventUpdates), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "batchedEventUpdates", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.mergePageInstance), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "mergePageInstance", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.createPullDownComponent), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "createPullDownComponent", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.getDOMNode), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "getDOMNode", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.modifyHydrateData), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "modifyHydrateData", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.modifySetAttrPayload), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "modifySetAttrPayload", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.modifyRmAttrPayload), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "modifyRmAttrPayload", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* inject */ "c"])(SERVICE_IDENTIFIER.onAddEvent), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Function)], Hooks.prototype, "onAddEvent", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* multiInject */ "e"])(SERVICE_IDENTIFIER.modifyMpEvent), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Array)], Hooks.prototype, "modifyMpEventImpls", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* multiInject */ "e"])(SERVICE_IDENTIFIER.modifyTaroEvent), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Array)], Hooks.prototype, "modifyTaroEventImpls", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* multiInject */ "e"])(SERVICE_IDENTIFIER.initNativeApi), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Array)], Hooks.prototype, "initNativeApiImpls", void 0);
-
 __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* multiInject */ "e"])(SERVICE_IDENTIFIER.patchElement), Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* optional */ "f"])(), __metadata("design:type", Array)], Hooks.prototype, "patchElementImpls", void 0);
-
 Hooks = __decorate([Object(inversify__WEBPACK_IMPORTED_MODULE_16__[/* injectable */ "d"])()], Hooks);
+
 /**
  * 支持冒泡的事件, 除 支付宝小程序外，其余的可冒泡事件都和微信保持一致
  * 详见 见 https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html
  */
-
 var BUBBLE_EVENTS = new Set(['touchstart', 'touchmove', 'touchcancel', 'touchend', 'touchforcechange', 'tap', 'longpress', 'longtap', 'transitionend', 'animationstart', 'animationiteration', 'animationend']);
-
 var getLifecycle = function getLifecycle(instance, lifecycle) {
   return instance[lifecycle];
 };
-
 var getPathIndex = function getPathIndex(indexOfNode) {
   return "[".concat(indexOfNode, "]");
 };
-
 var getEventCenter = function getEventCenter(Events) {
   return new Events();
 };
-
 var isBubbleEvents = function isBubbleEvents(eventName) {
   return BUBBLE_EVENTS.has(eventName);
 };
-
 var getSpecialNodes = function getSpecialNodes() {
   return ['view', 'text', 'image'];
 };
-
 var DefaultHooksContainer = new inversify__WEBPACK_IMPORTED_MODULE_16__[/* ContainerModule */ "b"](function (bind) {
   bind(SERVICE_IDENTIFIER.getLifecycle).toFunction(getLifecycle);
   bind(SERVICE_IDENTIFIER.getPathIndex).toFunction(getPathIndex);
@@ -7150,7 +6139,6 @@ var DefaultHooksContainer = new inversify__WEBPACK_IMPORTED_MODULE_16__[/* Conta
   bind(SERVICE_IDENTIFIER.isBubbleEvents).toFunction(isBubbleEvents);
   bind(SERVICE_IDENTIFIER.getSpecialNodes).toFunction(getSpecialNodes);
 });
-
 function processPluginHooks(container) {
   var keys = Object.keys(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* defaultReconciler */ "e"]);
   keys.forEach(function (key) {
@@ -7158,7 +6146,6 @@ function processPluginHooks(container) {
       // is hooks
       var identifier = SERVICE_IDENTIFIER[key];
       var fn = _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* defaultReconciler */ "e"][key];
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(fn)) {
         // is multi
         fn.forEach(function (item) {
@@ -7175,9 +6162,7 @@ function processPluginHooks(container) {
     }
   });
 }
-
 var container = new inversify__WEBPACK_IMPORTED_MODULE_16__[/* Container */ "a"]();
-
 if (true) {
   container.bind(SERVICE_IDENTIFIER.TaroElement).to(TaroElement).whenTargetNamed(ElementNames.Element);
   container.bind(SERVICE_IDENTIFIER.TaroElement).to(TaroDocument).inSingletonScope().whenTargetNamed(ElementNames.Document);
@@ -7187,11 +6172,9 @@ if (true) {
     return function (named) {
       return function (nodeName) {
         var el = context.container.getNamed(SERVICE_IDENTIFIER.TaroElement, named);
-
         if (nodeName) {
           el.nodeName = nodeName;
         }
-
         el.tagName = el.nodeName.toUpperCase();
         return el;
       };
@@ -7208,38 +6191,33 @@ if (true) {
   container.bind(SERVICE_IDENTIFIER.TaroNodeImpl).to(TaroNodeImpl).inSingletonScope();
   container.bind(SERVICE_IDENTIFIER.TaroElementImpl).to(TaroElementImpl).inSingletonScope();
 }
-
 container.bind(SERVICE_IDENTIFIER.Hooks).to(Hooks).inSingletonScope();
 container.load(DefaultHooksContainer);
 processPluginHooks(container);
 var hooks;
 var getElement;
 var document$1;
-
 if (true) {
   hooks = container.get(SERVICE_IDENTIFIER.Hooks);
   getElement = container.get(SERVICE_IDENTIFIER.TaroElementFactory);
   document$1 = getElement(ElementNames.Document)();
-} // Taro 事件对象。以 Web 标准的事件对象为基础，加入小程序事件对象中携带的部分信息，并模拟实现事件冒泡。
-
-
+}
+// Taro 事件对象。以 Web 标准的事件对象为基础，加入小程序事件对象中携带的部分信息，并模拟实现事件冒泡。
 var TaroEvent = /*#__PURE__*/function () {
   function TaroEvent(type, opts, event) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroEvent);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, TaroEvent);
     this._stop = false;
     this._end = false;
-    this.defaultPrevented = false; // timestamp can either be hi-res ( relative to page load) or low-res (relative to UNIX epoch)
+    this.defaultPrevented = false;
+    // timestamp can either be hi-res ( relative to page load) or low-res (relative to UNIX epoch)
     // here use hi-res timestamp
-
     this.timeStamp = Date.now();
     this.type = type.toLowerCase();
     this.mpEvent = event;
     this.bubbles = Boolean(opts && opts.bubbles);
     this.cancelable = Boolean(opts && opts.cancelable);
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroEvent, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(TaroEvent, [{
     key: "stopPropagation",
     value: function stopPropagation() {
       this._stop = true;
@@ -7258,7 +6236,6 @@ var TaroEvent = /*#__PURE__*/function () {
     key: "target",
     get: function get() {
       var _a, _b, _c;
-
       var element = document$1.getElementById((_a = this.mpEvent) === null || _a === void 0 ? void 0 : _a.target.id);
       return Object.assign(Object.assign(Object.assign({}, (_b = this.mpEvent) === null || _b === void 0 ? void 0 : _b.target), (_c = this.mpEvent) === null || _c === void 0 ? void 0 : _c.detail), {
         dataset: element !== null ? element.dataset : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"]
@@ -7268,22 +6245,17 @@ var TaroEvent = /*#__PURE__*/function () {
     key: "currentTarget",
     get: function get() {
       var _a, _b, _c;
-
       var element = document$1.getElementById((_a = this.mpEvent) === null || _a === void 0 ? void 0 : _a.currentTarget.id);
-
       if (element === null) {
         return this.target;
       }
-
       return Object.assign(Object.assign(Object.assign({}, (_b = this.mpEvent) === null || _b === void 0 ? void 0 : _b.currentTarget), (_c = this.mpEvent) === null || _c === void 0 ? void 0 : _c.detail), {
         dataset: element.dataset
       });
     }
   }]);
-
   return TaroEvent;
 }();
-
 function createEvent(event, node) {
   if (typeof event === 'string') {
     // For Vue3 using document.createEvent
@@ -7292,12 +6264,10 @@ function createEvent(event, node) {
       cancelable: true
     });
   }
-
   var domEv = new TaroEvent(event.type, {
     bubbles: true,
     cancelable: true
   }, event);
-
   for (var key in event) {
     if (key === CURRENT_TARGET || key === TARGET || key === TYPE || key === TIME_STAMP) {
       continue;
@@ -7305,40 +6275,30 @@ function createEvent(event, node) {
       domEv[key] = event[key];
     }
   }
-
   if (domEv.type === CONFIRM && (node === null || node === void 0 ? void 0 : node.nodeName) === INPUT) {
     // eslint-disable-next-line dot-notation
     domEv[KEY_CODE] = 13;
   }
-
   return domEv;
 }
-
-var eventsBatch = {}; // 小程序的事件代理回调函数
-
+var eventsBatch = {};
+// 小程序的事件代理回调函数
 function eventHandler(event) {
   var _a;
-
   (_a = hooks.modifyMpEvent) === null || _a === void 0 ? void 0 : _a.call(hooks, event);
-
   if (event.currentTarget == null) {
     event.currentTarget = event.target;
   }
-
   var node = document$1.getElementById(event.currentTarget.id);
-
   if (node) {
     var dispatch = function dispatch() {
       var _a;
-
       var e = createEvent(event, node);
       (_a = hooks.modifyTaroEvent) === null || _a === void 0 ? void 0 : _a.call(hooks, e, node);
       node.dispatchEvent(e);
     };
-
     if (typeof hooks.batchedEventUpdates === 'function') {
       var type = event.type;
-
       if (!hooks.isBubbleEvents(type) || !isParentBinded(node, type) || type === TOUCHMOVE && !!node.props.catchMove) {
         // 最上层组件统一 batchUpdate
         hooks.batchedEventUpdates(function () {
@@ -7348,7 +6308,6 @@ function eventHandler(event) {
             });
             delete eventsBatch[type];
           }
-
           dispatch();
         });
       } else {
@@ -7360,11 +6319,9 @@ function eventHandler(event) {
     }
   }
 }
-
 var isBrowser = typeof document !== 'undefined' && !!document.scripts;
 var doc = isBrowser ? document : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
 var win = isBrowser ? window : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
-
 function createDocument() {
   /**
    * <document>
@@ -7387,7 +6344,6 @@ function createDocument() {
   var app = documentCreateElement(APP);
   app.id = APP;
   var container$1 = documentCreateElement(CONTAINER); // 多包一层主要为了兼容 vue
-
   doc.appendChild(html);
   html.appendChild(head);
   html.appendChild(body);
@@ -7399,7 +6355,6 @@ function createDocument() {
   doc.createEvent = createEvent;
   return doc;
 }
-
 var document$2 = isBrowser ? doc : createDocument();
 var machine = 'Macintosh';
 var arch = 'Intel Mac OS X 10_14_5';
@@ -7418,13 +6373,12 @@ var navigator = isBrowser ? win.navigator : {
   userAgent: 'Mozilla/5.0 (' + machine + '; ' + arch + ') ' + engine,
   vendor: 'Joyent',
   vendorSub: ''
-}; // https://github.com/myrne/performance-now
+};
 
+// https://github.com/myrne/performance-now
 var now;
-
 (function () {
   var loadTime;
-
   if (typeof performance !== 'undefined' && performance !== null && performance.now) {
     now = function now() {
       return performance.now();
@@ -7433,25 +6387,20 @@ var now;
     now = function now() {
       return Date.now() - loadTime;
     };
-
     loadTime = Date.now();
   } else {
     now = function now() {
       return new Date().getTime() - loadTime;
     };
-
     loadTime = new Date().getTime();
   }
 })();
-
-var lastTime = 0; // https://gist.github.com/paulirish/1579671
+var lastTime = 0;
+// https://gist.github.com/paulirish/1579671
 // https://gist.github.com/jalbam/5fe05443270fa6d8136238ec72accbc0
-
 var raf = typeof requestAnimationFrame !== 'undefined' && requestAnimationFrame !== null ? requestAnimationFrame : function (callback) {
   var _now = now();
-
   var nextTime = Math.max(lastTime + 16, _now); // First time will execute it immediately but barely noticeable and performance is gained.
-
   return setTimeout(function () {
     callback(lastTime = nextTime);
   }, nextTime - _now);
@@ -7460,80 +6409,63 @@ var caf = typeof cancelAnimationFrame !== 'undefined' && cancelAnimationFrame !=
   // fix https://github.com/NervJS/taro/issues/7749
   clearTimeout(seed);
 };
-
 function getComputedStyle(element) {
   return element.style;
 }
-
 var window$1 = isBrowser ? win : {
   navigator: navigator,
   document: document$2
 };
-
 if (!isBrowser) {
-  var globalProperties = [].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Object.getOwnPropertyNames(global || win)), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Object.getOwnPropertySymbols(global || win)));
+  var globalProperties = [].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Object.getOwnPropertyNames(global || win)), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(Object.getOwnPropertySymbols(global || win)));
   globalProperties.forEach(function (property) {
     if (property === 'atob') return;
-
     if (!Object.prototype.hasOwnProperty.call(window$1, property)) {
       window$1[property] = global[property];
     }
   });
   document$2.defaultView = window$1;
 }
-
 if (true) {
   window$1.requestAnimationFrame = raf;
   window$1.cancelAnimationFrame = caf;
   window$1.getComputedStyle = getComputedStyle;
-
   window$1.addEventListener = function () {};
-
   window$1.removeEventListener = function () {};
-
   if (!(DATE in window$1)) {
     window$1.Date = Date;
   }
-
   if (!(SET_TIMEOUT in window$1)) {
     window$1.setTimeout = setTimeout;
   }
 }
-
 var Current = {
   app: null,
   router: null,
   page: null
 };
-
 var getCurrentInstance = function getCurrentInstance() {
   return Current;
 };
-
 var Events = /*#__PURE__*/function () {
   function Events(opts) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Events);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Events);
     if (typeof opts !== 'undefined' && opts.callbacks) {
       this.callbacks = opts.callbacks;
     } else {
       this.callbacks = {};
     }
   }
-
-  Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Events, [{
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Events, [{
     key: "on",
     value: function on(eventName, callback, context) {
       var event, node, tail, list;
-
       if (!callback) {
         return this;
       }
-
       eventName = eventName.split(Events.eventSplitter);
       this.callbacks || (this.callbacks = {});
       var calls = this.callbacks;
-
       while (event = eventName.shift()) {
         list = calls[event];
         node = list ? list.tail : {};
@@ -7545,24 +6477,19 @@ var Events = /*#__PURE__*/function () {
           next: list ? list.next : node
         };
       }
-
       return this;
     }
   }, {
     key: "once",
     value: function once(events, callback, context) {
       var _this18 = this;
-
       var wrapper = function wrapper() {
         for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
           args[_key2] = arguments[_key2];
         }
-
         callback.apply(_this18, args);
-
         _this18.off(events, wrapper, context);
       };
-
       this.on(events, wrapper, context);
       return this;
     }
@@ -7570,163 +6497,125 @@ var Events = /*#__PURE__*/function () {
     key: "off",
     value: function off(events, callback, context) {
       var event, calls, node, tail, cb, ctx;
-
       if (!(calls = this.callbacks)) {
         return this;
       }
-
       if (!(events || callback || context)) {
         delete this.callbacks;
         return this;
       }
-
       events = events ? events.split(Events.eventSplitter) : Object.keys(calls);
-
       while (event = events.shift()) {
         node = calls[event];
         delete calls[event];
-
         if (!node || !(callback || context)) {
           continue;
         }
-
         tail = node.tail;
-
         while ((node = node.next) !== tail) {
           cb = node.callback;
           ctx = node.context;
-
           if (callback && cb !== callback || context && ctx !== context) {
             this.on(event, cb, ctx);
           }
         }
       }
-
       return this;
     }
   }, {
     key: "trigger",
     value: function trigger(events) {
       var event, node, calls, tail;
-
       if (!(calls = this.callbacks)) {
         return this;
       }
-
       events = events.split(Events.eventSplitter);
       var rest = [].slice.call(arguments, 1);
-
       while (event = events.shift()) {
         if (node = calls[event]) {
           tail = node.tail;
-
           while ((node = node.next) !== tail) {
             node.callback.apply(node.context || this, rest);
           }
         }
       }
-
       return this;
     }
   }]);
-
   return Events;
 }();
-
 Events.eventSplitter = /\s+/;
 var hooks$1 = container.get(SERVICE_IDENTIFIER.Hooks);
 var eventCenter = hooks$1.getEventCenter(Events);
 container.bind(SERVICE_IDENTIFIER.eventCenter).toConstantValue(eventCenter);
-/* eslint-disable dot-notation */
 
+/* eslint-disable dot-notation */
 var instances = new Map();
 var pageId = incrementId();
 var hooks$2 = container.get(SERVICE_IDENTIFIER.Hooks);
-
 function injectPageInstance(inst, id) {
   var _a;
-
   (_a = hooks$2.mergePageInstance) === null || _a === void 0 ? void 0 : _a.call(hooks$2, instances.get(id), inst);
   instances.set(id, inst);
 }
-
 function getPageInstance(id) {
   return instances.get(id);
 }
-
 function addLeadingSlash(path) {
   if (path == null) {
     return '';
   }
-
   return path.charAt(0) === '/' ? path : '/' + path;
 }
-
 function safeExecute(path, lifecycle) {
   for (var _len3 = arguments.length, args = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
     args[_key3 - 2] = arguments[_key3];
   }
-
   var instance = instances.get(path);
-
   if (instance == null) {
     return;
   }
-
   var func = hooks$2.getLifecycle(instance, lifecycle);
-
   if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(func)) {
     var res = func.map(function (fn) {
       return fn.apply(instance, args);
     });
     return res[0];
   }
-
   if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(func)) {
     return;
   }
-
   return func.apply(instance, args);
 }
-
 function stringify(obj) {
   if (obj == null) {
     return '';
   }
-
   var path = Object.keys(obj).map(function (key) {
     return key + '=' + obj[key];
   }).join('&');
   return path === '' ? path : '?' + path;
 }
-
 function getPath(id, options) {
   var path = id;
-
   if (!isBrowser) {
     path = id + stringify(options);
   }
-
   return path;
 }
-
 function getOnReadyEventKey(path) {
   return path + '.' + 'onReady';
 }
-
 function getOnShowEventKey(path) {
   return path + '.' + 'onShow';
 }
-
 function getOnHideEventKey(path) {
   return path + '.' + 'onHide';
 }
-
 function createPageConfig(component, pageName, data, pageConfig) {
   var _a, _b;
-
-  var id = pageName !== null && pageName !== void 0 ? pageName : "taro_page_".concat(pageId()); // 小程序 Page 构造器是一个傲娇小公主，不能把复杂的对象挂载到参数上
-
+  var id = pageName !== null && pageName !== void 0 ? pageName : "taro_page_".concat(pageId());
+  // 小程序 Page 构造器是一个傲娇小公主，不能把复杂的对象挂载到参数上
   var pageElement = null;
   var unmounting = false;
   var prepareMountList = [];
@@ -7735,21 +6624,19 @@ function createPageConfig(component, pageName, data, pageConfig) {
   var config = {
     onLoad: function onLoad(options, cb) {
       var _this19 = this;
-
       hasLoaded = new Promise(function (resolve) {
         loadResolver = resolve;
       });
       perf.start(PAGE_INIT);
       Current.page = this;
       this.config = pageConfig || {};
-      options.$taroTimestamp = Date.now(); // this.$taroPath 是页面唯一标识，不可变，因此页面参数 options 也不可变
-
-      this.$taroPath = getPath(id, options); // this.$taroParams 作为暴露给开发者的页面参数对象，可以被随意修改
-
+      options.$taroTimestamp = Date.now();
+      // this.$taroPath 是页面唯一标识，不可变，因此页面参数 options 也不可变
+      this.$taroPath = getPath(id, options);
+      // this.$taroParams 作为暴露给开发者的页面参数对象，可以被随意修改
       if (this.$taroParams == null) {
         this.$taroParams = Object.assign({}, options);
       }
-
       var router = isBrowser ? this.$taroPath : this.route || this.__route__;
       Current.router = {
         params: this.$taroParams,
@@ -7758,14 +6645,12 @@ function createPageConfig(component, pageName, data, pageConfig) {
         onShow: getOnShowEventKey(id),
         onHide: getOnHideEventKey(id)
       };
-
       var mount = function mount() {
         Current.app.mount(component, _this19.$taroPath, function () {
           pageElement = document$2.getElementById(_this19.$taroPath);
           Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* ensure */ "f"])(pageElement !== null, '没有找到页面实例。');
           safeExecute(_this19.$taroPath, 'onLoad', _this19.$taroParams);
           loadResolver();
-
           if (!isBrowser) {
             pageElement.ctx = _this19;
             pageElement.performUpdate(true, cb);
@@ -7774,7 +6659,6 @@ function createPageConfig(component, pageName, data, pageConfig) {
           }
         });
       };
-
       if (unmounting) {
         prepareMountList.push(mount);
       } else {
@@ -7790,16 +6674,13 @@ function createPageConfig(component, pageName, data, pageConfig) {
     },
     onUnload: function onUnload() {
       var _this20 = this;
-
       unmounting = true;
       Current.app.unmount(this.$taroPath, function () {
         unmounting = false;
         instances.delete(_this20.$taroPath);
-
         if (pageElement) {
           pageElement.ctx = null;
         }
-
         if (prepareMountList.length) {
           prepareMountList.forEach(function (fn) {
             return fn();
@@ -7810,7 +6691,6 @@ function createPageConfig(component, pageName, data, pageConfig) {
     },
     onShow: function onShow() {
       var _this21 = this;
-
       hasLoaded.then(function () {
         Current.page = _this21;
         _this21.config = pageConfig || {};
@@ -7864,55 +6744,43 @@ function createPageConfig(component, pageName, data, pageConfig) {
     onAddToFavorites: function onAddToFavorites() {
       return safeExecute(this.$taroPath, 'onAddToFavorites');
     }
-  }; // onShareAppMessage 和 onShareTimeline 一样，会影响小程序右上方按钮的选项，因此不能默认注册。
-
+  };
+  // onShareAppMessage 和 onShareTimeline 一样，会影响小程序右上方按钮的选项，因此不能默认注册。
   if (component.onShareAppMessage || ((_a = component.prototype) === null || _a === void 0 ? void 0 : _a.onShareAppMessage) || component.enableShareAppMessage) {
     config.onShareAppMessage = function (options) {
       var target = options === null || options === void 0 ? void 0 : options.target;
-
       if (target != null) {
         var _id = target.id;
         var element = document$2.getElementById(_id);
-
         if (element != null) {
           options.target.dataset = element.dataset;
         }
       }
-
       return safeExecute(this.$taroPath, 'onShareAppMessage', options);
     };
   }
-
   if (component.onShareTimeline || ((_b = component.prototype) === null || _b === void 0 ? void 0 : _b.onShareTimeline) || component.enableShareTimeline) {
     config.onShareTimeline = function () {
       return safeExecute(this.$taroPath, 'onShareTimeline');
     };
   }
-
   config.eh = eventHandler;
-
   if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isUndefined */ "n"])(data)) {
     config.data = data;
   }
-
   if (isBrowser) {
     config.path = id;
   }
-
   return config;
 }
-
 function createComponentConfig(component, componentName, data) {
   var _a, _b, _c;
-
   var id = componentName !== null && componentName !== void 0 ? componentName : "taro_component_".concat(pageId());
   var componentElement = null;
   var config = {
     attached: function attached() {
       var _this22 = this;
-
       var _a;
-
       perf.start(PAGE_INIT);
       var path = getPath(id, {
         id: ((_a = this.getPageId) === null || _a === void 0 ? void 0 : _a.call(this)) || pageId()
@@ -7921,7 +6789,6 @@ function createComponentConfig(component, componentName, data) {
         componentElement = document$2.getElementById(path);
         Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* ensure */ "f"])(componentElement !== null, '没有找到组件实例。');
         safeExecute(path, 'onLoad');
-
         if (!isBrowser) {
           componentElement.ctx = _this22;
           componentElement.performUpdate(true);
@@ -7934,7 +6801,6 @@ function createComponentConfig(component, componentName, data) {
       });
       Current.app.unmount(path, function () {
         instances.delete(path);
-
         if (componentElement) {
           componentElement.ctx = null;
         }
@@ -7944,25 +6810,20 @@ function createComponentConfig(component, componentName, data) {
       eh: eventHandler
     }
   };
-
   if (!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isUndefined */ "n"])(data)) {
     config.data = data;
   }
-
   config['options'] = (_a = component === null || component === void 0 ? void 0 : component['options']) !== null && _a !== void 0 ? _a : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
   config['externalClasses'] = (_b = component === null || component === void 0 ? void 0 : component['externalClasses']) !== null && _b !== void 0 ? _b : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
   config['behaviors'] = (_c = component === null || component === void 0 ? void 0 : component['behaviors']) !== null && _c !== void 0 ? _c : _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
   return config;
 }
-
 function createRecursiveComponentConfig(componentName) {
   return {
     properties: {
       i: {
         type: Object,
-        value: Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])({}, "nn"
-        /* NodeName */
-        , 'view')
+        value: Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"])({}, "nn" /* NodeName */, 'view')
       },
       l: {
         type: String,
@@ -7978,29 +6839,22 @@ function createRecursiveComponentConfig(componentName) {
     }
   };
 }
-
 var hooks$3 = container.get(SERVICE_IDENTIFIER.Hooks);
-
 function isClassComponent(R, component) {
   var _a;
-
   return Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(component.render) || !!((_a = component.prototype) === null || _a === void 0 ? void 0 : _a.isReactComponent) || component.prototype instanceof R.Component; // compat for some others react-like library
-} // 初始值设置为 any 主要是为了过 TS 的校验
-
-
+}
+// 初始值设置为 any 主要是为了过 TS 的校验
 var R = _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
 var PageContext = _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"];
-
 function connectReactPage(R, id) {
   var h = R.createElement;
   return function (component) {
     // eslint-disable-next-line dot-notation
     var isReactComponent = isClassComponent(R, component);
-
     var inject = function inject(node) {
       return node && injectPageInstance(node, id);
     };
-
     var refs = isReactComponent ? {
       ref: inject
     } : {
@@ -8008,31 +6862,25 @@ function connectReactPage(R, id) {
       // 兼容 react-redux 7.20.1+
       reactReduxForwardedRef: inject
     };
-
     if (PageContext === _tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* EMPTY_OBJ */ "b"]) {
       PageContext = R.createContext('');
     }
-
     return /*#__PURE__*/function (_R$Component) {
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(Page, _R$Component);
-
-      var _super9 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(Page);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(Page, _R$Component);
+      var _super9 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(Page);
       function Page() {
         var _this23;
-
-        Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Page);
-
+        Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Page);
         _this23 = _super9.apply(this, arguments);
         _this23.state = {
           hasError: false
         };
         return _this23;
       }
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Page, [{
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Page, [{
         key: "componentDidCatch",
-        value: // React 16 uncaught error 会导致整个应用 crash，
+        value:
+        // React 16 uncaught error 会导致整个应用 crash，
         // 目前把错误缩小到页面
         function componentDidCatch(error, info) {
            true && console.warn(error);
@@ -8044,14 +6892,12 @@ function connectReactPage(R, id) {
           var children = this.state.hasError ? [] : h(PageContext.Provider, {
             value: id
           }, h(component, Object.assign(Object.assign({}, this.props), refs)));
-
           if (isBrowser) {
             return h('div', {
               id: id,
               className: 'taro_page'
             }, children);
           }
-
           return h('root', {
             id: id
           }, children);
@@ -8065,52 +6911,42 @@ function connectReactPage(R, id) {
           };
         }
       }]);
-
       return Page;
     }(R.Component);
   };
 }
-
 var ReactDOM;
-
 function setReconciler() {
   var getLifecycle = function getLifecycle(instance, lifecycle) {
     lifecycle = lifecycle.replace(/^on(Show|Hide)$/, 'componentDid$1');
     return instance[lifecycle];
   };
-
   var modifyMpEvent = function modifyMpEvent(event) {
     event.type = event.type.replace(/-/g, '');
   };
-
   var batchedEventUpdates = function batchedEventUpdates(cb) {
     ReactDOM.unstable_batchedUpdates(cb);
   };
-
   var mergePageInstance = function mergePageInstance(prev, next) {
-    if (!prev || !next) return; // 子组件使用 lifecycle hooks 注册了生命周期后，会存在 prev，里面是注册的生命周期回调。
+    if (!prev || !next) return;
+    // 子组件使用 lifecycle hooks 注册了生命周期后，会存在 prev，里面是注册的生命周期回调。
     // prev 使用 Object.create(null) 创建，H5 的 fast-refresh 可能也会导致存在 prev，要排除这些意外产生的 prev
-
     if ('constructor' in prev) return;
     Object.keys(prev).forEach(function (item) {
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(next[item])) {
-        next[item] = [next[item]].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(prev[item]));
+        next[item] = [next[item]].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(prev[item]));
       } else {
-        next[item] = [].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(next[item] || []), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(prev[item]));
+        next[item] = [].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(next[item] || []), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(prev[item]));
       }
     });
   };
-
   hooks$3.getLifecycle = getLifecycle;
   hooks$3.modifyMpEvent = modifyMpEvent;
   hooks$3.batchedEventUpdates = batchedEventUpdates;
   hooks$3.mergePageInstance = mergePageInstance;
-
   if (false) {}
 }
-
 var pageKeyId = incrementId();
-
 function createReactApp(App, react, reactdom, config) {
   R = react;
   ReactDOM = reactdom;
@@ -8118,36 +6954,28 @@ function createReactApp(App, react, reactdom, config) {
   var ref = R.createRef();
   var isReactComponent = isClassComponent(R, App);
   setReconciler();
-
   var AppWrapper = /*#__PURE__*/function (_R$Component2) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(AppWrapper, _R$Component2);
-
-    var _super10 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(AppWrapper);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(AppWrapper, _R$Component2);
+    var _super10 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(AppWrapper);
     function AppWrapper() {
       var _this24;
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, AppWrapper);
-
-      _this24 = _super10.apply(this, arguments); // run createElement() inside the render function to make sure that owner is right
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, AppWrapper);
+      _this24 = _super10.apply(this, arguments);
+      // run createElement() inside the render function to make sure that owner is right
       _this24.pages = [];
       _this24.elements = [];
       return _this24;
     }
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(AppWrapper, [{
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(AppWrapper, [{
       key: "mount",
       value: function mount(component, id, cb) {
         var key = id + pageKeyId();
-
         var page = function page() {
           return R.createElement(component, {
             key: key,
             tid: id
           });
         };
-
         this.pages.push(page);
         this.forceUpdate(cb);
       }
@@ -8156,13 +6984,11 @@ function createReactApp(App, react, reactdom, config) {
       value: function unmount(id, cb) {
         for (var i = 0; i < this.elements.length; i++) {
           var element = this.elements[i];
-
           if (element.props.tid === id) {
             this.elements.splice(i, 1);
             break;
           }
         }
-
         this.forceUpdate(cb);
       }
     }, {
@@ -8172,29 +6998,22 @@ function createReactApp(App, react, reactdom, config) {
           var page = this.pages.pop();
           this.elements.push(page());
         }
-
         var props = null;
-
         if (isReactComponent) {
           props = {
             ref: ref
           };
         }
-
         return R.createElement(App, props, isBrowser ? R.createElement('div', null, this.elements.slice()) : this.elements.slice());
       }
     }]);
-
     return AppWrapper;
   }(R.Component);
-
   var wrapper;
-
   if (!isBrowser) {
     // eslint-disable-next-line react/no-render-return-value
     wrapper = ReactDOM.render(R.createElement(AppWrapper), document$2.getElementById('app'));
   }
-
   var app = Object.create({
     render: function render(cb) {
       wrapper.forceUpdate(cb);
@@ -8218,20 +7037,17 @@ function createReactApp(App, react, reactdom, config) {
       writable: true,
       value: function value(options) {
         var _this25 = this;
-
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
-
         if (isBrowser) {
           // 由于 H5 路由初始化的时候会清除 app 下的 dom 元素，所以需要在路由初始化后执行 render
           // eslint-disable-next-line react/no-render-return-value
           wrapper = ReactDOM.render(R.createElement(AppWrapper), document$2.getElementById('app'));
         }
-
-        var app = ref.current; // For taroize
+        var app = ref.current;
+        // For taroize
         // 把 App Class 上挂载的额外属性同步到全局 app 对象中
-
         if (app === null || app === void 0 ? void 0 : app.taroGlobalData) {
           var globalData = app.taroGlobalData;
           var keys = Object.keys(globalData);
@@ -8250,9 +7066,7 @@ function createReactApp(App, react, reactdom, config) {
           });
           Object.defineProperties(this, descriptors);
         }
-
         this.$app = app;
-
         if (app != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(app.onLaunch)) {
           app.onLaunch(options);
         }
@@ -8266,12 +7080,10 @@ function createReactApp(App, react, reactdom, config) {
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
-
         if (app != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(app.componentDidShow)) {
           app.componentDidShow(options);
-        } // app useDidShow
-
-
+        }
+        // app useDidShow
         triggerAppHook('onShow');
       }
     },
@@ -8280,12 +7092,10 @@ function createReactApp(App, react, reactdom, config) {
       writable: true,
       value: function value(options) {
         var app = ref.current;
-
         if (app != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(app.componentDidHide)) {
           app.componentDidHide(options);
-        } // app useDidHide
-
-
+        }
+        // app useDidHide
         triggerAppHook('onHide');
       }
     },
@@ -8294,21 +7104,17 @@ function createReactApp(App, react, reactdom, config) {
       writable: true,
       value: function value(res) {
         var app = ref.current;
-
         if (app != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(app.onPageNotFound)) {
           app.onPageNotFound(res);
         }
       }
     }
   });
-
   function triggerAppHook(lifecycle) {
     var instance = getPageInstance(HOOKS_APP_ID);
-
     if (instance) {
       var _app = ref.current;
       var func = hooks$3.getLifecycle(instance, lifecycle);
-
       if (Array.isArray(func)) {
         func.forEach(function (cb) {
           return cb.apply(_app);
@@ -8316,31 +7122,23 @@ function createReactApp(App, react, reactdom, config) {
       }
     }
   }
-
   Current.app = app;
   return Current.app;
 }
-
 var getNativeCompId = incrementId();
-
 function initNativeComponentEntry(R, ReactDOM) {
   var NativeComponentWrapper = /*#__PURE__*/function (_R$Component3) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(NativeComponentWrapper, _R$Component3);
-
-    var _super11 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(NativeComponentWrapper);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(NativeComponentWrapper, _R$Component3);
+    var _super11 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(NativeComponentWrapper);
     function NativeComponentWrapper() {
       var _this26;
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, NativeComponentWrapper);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, NativeComponentWrapper);
       _this26 = _super11.apply(this, arguments);
       _this26.root = R.createRef();
       _this26.ctx = _this26.props.getCtx();
       return _this26;
     }
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(NativeComponentWrapper, [{
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(NativeComponentWrapper, [{
       key: "componentDidMount",
       value: function componentDidMount() {
         this.ctx.component = this;
@@ -8356,28 +7154,21 @@ function initNativeComponentEntry(R, ReactDOM) {
         }, this.props.renderComponent(this.ctx));
       }
     }]);
-
     return NativeComponentWrapper;
   }(R.Component);
-
   var Entry = /*#__PURE__*/function (_R$Component4) {
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(Entry, _R$Component4);
-
-    var _super12 = Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(Entry);
-
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"])(Entry, _R$Component4);
+    var _super12 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"])(Entry);
     function Entry() {
       var _this27;
-
-      Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Entry);
-
+      Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"])(this, Entry);
       _this27 = _super12.apply(this, arguments);
       _this27.state = {
         components: []
       };
       return _this27;
     }
-
-    Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Entry, [{
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_14__[/* default */ "a"])(Entry, [{
       key: "componentDidMount",
       value: function componentDidMount() {
         Current.app = this;
@@ -8386,11 +7177,9 @@ function initNativeComponentEntry(R, ReactDOM) {
       key: "mount",
       value: function mount(Component, compId, getCtx) {
         var isReactComponent = isClassComponent(R, Component);
-
         var inject = function inject(node) {
           return node && injectPageInstance(node, compId);
         };
-
         var refs = isReactComponent ? {
           ref: inject
         } : {
@@ -8408,7 +7197,7 @@ function initNativeComponentEntry(R, ReactDOM) {
           })
         };
         this.setState({
-          components: [].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(this.state.components), [item])
+          components: [].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(this.state.components), [item])
         });
       }
     }, {
@@ -8418,7 +7207,7 @@ function initNativeComponentEntry(R, ReactDOM) {
         var index = components.findIndex(function (item) {
           return item.compId === compId;
         });
-        var next = [].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(components.slice(0, index)), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(components.slice(index + 1)));
+        var next = [].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(components.slice(0, index)), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(components.slice(index + 1)));
         this.setState({
           components: next
         });
@@ -8433,15 +7222,12 @@ function initNativeComponentEntry(R, ReactDOM) {
         });
       }
     }]);
-
     return Entry;
   }(R.Component);
-
   setReconciler();
   var app = document$2.getElementById('app');
   ReactDOM.render(R.createElement(Entry, {}), app);
 }
-
 function createNativeComponentConfig(Component, react, reactdom, componentConfig) {
   R = react;
   ReactDOM = reactdom;
@@ -8463,7 +7249,6 @@ function createNativeComponentConfig(Component, react, reactdom, componentConfig
     },
     attached: function attached() {
       var _this28 = this;
-
       setCurrent();
       this.compId = getNativeCompId();
       this.config = componentConfig;
@@ -8489,7 +7274,6 @@ function createNativeComponentConfig(Component, react, reactdom, componentConfig
       eh: eventHandler
     }
   };
-
   function setCurrent() {
     var pages = getCurrentPages();
     var currentPage = pages[pages.length - 1];
@@ -8504,7 +7288,6 @@ function createNativeComponentConfig(Component, react, reactdom, componentConfig
       onShow: ''
     };
     Current.router = router;
-
     if (!currentPage.options) {
       // 例如在微信小程序中，页面 options 的设置时机比组件 attached 慢
       Object.defineProperty(currentPage, 'options', {
@@ -8520,10 +7303,8 @@ function createNativeComponentConfig(Component, react, reactdom, componentConfig
       });
     }
   }
-
   return config;
 }
-
 function connectVuePage(Vue, id) {
   return function (component) {
     var injectedPage = Vue.extend({
@@ -8553,32 +7334,24 @@ function connectVuePage(Vue, id) {
     return options;
   };
 }
-
 function setReconciler$1() {
   var hooks = container.get(SERVICE_IDENTIFIER.Hooks);
-
   var onRemoveAttribute = function onRemoveAttribute(dom, qualifiedName) {
     // 处理原因: https://github.com/NervJS/taro/pull/5990
     var props = dom.props;
-
     if (!props.hasOwnProperty(qualifiedName) || Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isBoolean */ "i"])(props[qualifiedName])) {
       dom.setAttribute(qualifiedName, false);
       return true;
     }
   };
-
   var getLifecycle = function getLifecycle(instance, lifecycle) {
     return instance.$options[lifecycle];
   };
-
   hooks.onRemoveAttribute = onRemoveAttribute;
   hooks.getLifecycle = getLifecycle;
-
   if (false) {}
 }
-
 var Vue;
-
 function createVueApp(App, vue, config) {
   Vue = vue;
   Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* ensure */ "f"])(!!Vue, '构建 Vue 项目请把 process.env.FRAMEWORK 设置为 \'vue\'');
@@ -8593,7 +7366,6 @@ function createVueApp(App, vue, config) {
         var page = pages.pop();
         elements.push(page(h));
       }
-
       return h(App, {
         ref: 'app'
       }, elements.slice());
@@ -8609,7 +7381,6 @@ function createVueApp(App, vue, config) {
       },
       updateSync: function updateSync(cb) {
         this._update(this._render(), false);
-
         this.$children.forEach(function (child) {
           return child._update(child._render(), false);
         });
@@ -8618,22 +7389,18 @@ function createVueApp(App, vue, config) {
       unmount: function unmount(id, cb) {
         for (var i = 0; i < elements.length; i++) {
           var element = elements[i];
-
           if (element.key === id) {
             elements.splice(i, 1);
             break;
           }
         }
-
         this.updateSync(cb);
       }
     }
   });
-
   if (!isBrowser) {
     wrapper.$mount(document$2.getElementById('app'));
   }
-
   var app = Object.create({
     mount: function mount(component, id, cb) {
       var page = connectVuePage(Vue, id)(component);
@@ -8656,14 +7423,11 @@ function createVueApp(App, vue, config) {
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
-
         if (isBrowser) {
           // 由于 H5 路由初始化的时候会清除 app 下的 dom 元素，所以需要在路由初始化后再执行 render
           wrapper.$mount(document$2.getElementById('app'));
         }
-
         appInstance = wrapper.$refs.app;
-
         if (appInstance != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(appInstance.$options.onLaunch)) {
           appInstance.$options.onLaunch.call(appInstance, options);
         }
@@ -8676,7 +7440,6 @@ function createVueApp(App, vue, config) {
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
-
         if (appInstance != null && Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(appInstance.$options.onShow)) {
           appInstance.$options.onShow.call(appInstance, options);
         }
@@ -8695,28 +7458,24 @@ function createVueApp(App, vue, config) {
   Current.app = app;
   return Current.app;
 }
-
 function createVue3Page(h, id) {
   return function (component) {
     var _a;
-
     var inject = {
       props: {
         tid: String
       },
       created: function created() {
-        injectPageInstance(this, id); // vue3 组件 created 时机比小程序页面 onShow 慢，因此在 created 后再手动触发一次 onShow。
-
+        injectPageInstance(this, id);
+        // vue3 组件 created 时机比小程序页面 onShow 慢，因此在 created 后再手动触发一次 onShow。
         this.$nextTick(function () {
           safeExecute(id, 'onShow');
         });
       }
     };
-
     if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(component.mixins)) {
       var mixins = component.mixins;
       var idx = mixins.length - 1;
-
       if (!((_a = mixins[idx].props) === null || _a === void 0 ? void 0 : _a.tid)) {
         // mixins 里还没注入过，直接推入数组
         component.mixins.push(inject);
@@ -8727,7 +7486,6 @@ function createVue3Page(h, id) {
     } else {
       component.mixins = [inject];
     }
-
     return h(isBrowser ? 'div' : 'root', {
       key: id,
       id: id,
@@ -8737,38 +7495,29 @@ function createVue3Page(h, id) {
     })]);
   };
 }
-
 function setReconciler$2() {
   var hooks = container.get(SERVICE_IDENTIFIER.Hooks);
-
   var getLifecycle = function getLifecycle(instance, lifecycle) {
     return instance.$options[lifecycle];
   };
-
   var modifyMpEvent = function modifyMpEvent(event) {
     event.type = event.type.replace(/-/g, '');
   };
-
   hooks.getLifecycle = getLifecycle;
   hooks.modifyMpEvent = modifyMpEvent;
-
   if (false) {}
 }
-
 function createVue3App(app, h, config) {
   var pages = [];
   var appInstance;
   Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* ensure */ "f"])(!Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(app._component), '入口组件不支持使用函数式组件');
   setReconciler$2();
-
   app._component.render = function () {
     return pages.slice();
   };
-
   if (!isBrowser) {
     appInstance = app.mount('#app');
   }
-
   var appConfig = Object.create({
     mount: function mount(component, id, cb) {
       var page = createVue3Page(h, id)(component);
@@ -8797,19 +7546,15 @@ function createVue3App(app, h, config) {
       enumerable: true,
       value: function value(options) {
         var _this29 = this;
-
         var _a;
-
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
-
         if (isBrowser) {
           appInstance = app.mount('#app');
-        } // 把 App Class 上挂载的额外属性同步到全局 app 对象中
+        }
+        // 把 App Class 上挂载的额外属性同步到全局 app 对象中
         // eslint-disable-next-line dot-notation
-
-
         if (app['taroGlobalData']) {
           // eslint-disable-next-line dot-notation
           var globalData = app['taroGlobalData'];
@@ -8829,7 +7574,6 @@ function createVue3App(app, h, config) {
           });
           Object.defineProperties(this, descriptors);
         }
-
         var onLaunch = (_a = appInstance === null || appInstance === void 0 ? void 0 : appInstance.$options) === null || _a === void 0 ? void 0 : _a.onLaunch;
         Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(onLaunch) && onLaunch.call(appInstance, options);
       }
@@ -8839,7 +7583,6 @@ function createVue3App(app, h, config) {
       enumerable: true,
       value: function value(options) {
         var _a;
-
         Current.router = Object.assign({
           params: options === null || options === void 0 ? void 0 : options.query
         }, options);
@@ -8852,7 +7595,6 @@ function createVue3App(app, h, config) {
       enumerable: true,
       value: function value(options) {
         var _a;
-
         var onHide = (_a = appInstance === null || appInstance === void 0 ? void 0 : appInstance.$options) === null || _a === void 0 ? void 0 : _a.onHide;
         Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(onHide) && onHide.call(appInstance, options);
       }
@@ -8861,42 +7603,35 @@ function createVue3App(app, h, config) {
   Current.app = appConfig;
   return Current.app;
 }
-
 var taroHooks = function taroHooks(lifecycle) {
   return function (fn) {
-    var id = R.useContext(PageContext) || HOOKS_APP_ID; // hold fn ref and keep up to date
-
+    var id = R.useContext(PageContext) || HOOKS_APP_ID;
+    // hold fn ref and keep up to date
     var fnRef = R.useRef(fn);
     if (fnRef.current !== fn) fnRef.current = fn;
     R.useLayoutEffect(function () {
       var inst = getPageInstance(id);
       var first = false;
-
       if (inst == null) {
         first = true;
         inst = Object.create(null);
       }
-
-      inst = inst; // callback is immutable but inner function is up to date
-
+      inst = inst;
+      // callback is immutable but inner function is up to date
       var callback = function callback() {
         return fnRef.current.apply(fnRef, arguments);
       };
-
       if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isFunction */ "j"])(inst[lifecycle])) {
         inst[lifecycle] = [inst[lifecycle], callback];
       } else {
-        inst[lifecycle] = [].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(inst[lifecycle] || []), [callback]);
+        inst[lifecycle] = [].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])(inst[lifecycle] || []), [callback]);
       }
-
       if (first) {
         injectPageInstance(inst, id);
       }
-
       return function () {
         var inst = getPageInstance(id);
         var list = inst[lifecycle];
-
         if (list === callback) {
           inst[lifecycle] = undefined;
         } else if (Object(_tarojs_shared__WEBPACK_IMPORTED_MODULE_17__[/* isArray */ "h"])(list)) {
@@ -8908,7 +7643,6 @@ var taroHooks = function taroHooks(lifecycle) {
     }, []);
   };
 };
-
 var useDidShow = taroHooks('componentDidShow');
 var useDidHide = taroHooks('componentDidHide');
 var usePullDownRefresh = taroHooks('onPullDownRefresh');
@@ -8923,42 +7657,33 @@ var usePullIntercept = taroHooks('onPullIntercept');
 var useShareTimeline = taroHooks('onShareTimeline');
 var useAddToFavorites = taroHooks('onAddToFavorites');
 var useReady = taroHooks('onReady');
-
 var useRouter = function useRouter() {
   var dynamic = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   return dynamic ? Current.router : R.useMemo(function () {
     return Current.router;
   }, []);
 };
-
 var useScope = function useScope() {
   return undefined;
 };
-
 function removeLeadingSlash(path) {
   if (path == null) {
     return '';
   }
-
   return path.charAt(0) === '/' ? path.slice(1) : path;
 }
-
 var nextTick = function nextTick(cb, ctx) {
   var _a, _b, _c;
-
   var router = Current.router;
-
   var timerFunc = function timerFunc() {
     setTimeout(function () {
       ctx ? cb.call(ctx) : cb();
     }, 1);
   };
-
   if (router !== null) {
     var pageElement = null;
     var path = getPath(removeLeadingSlash(router.path), router.params);
     pageElement = document$2.getElementById(path);
-
     if (pageElement === null || pageElement === void 0 ? void 0 : pageElement.pendingUpdate) {
       if (isBrowser) {
         // eslint-disable-next-line dot-notation
@@ -8975,7 +7700,6 @@ var nextTick = function nextTick(cb, ctx) {
     timerFunc();
   }
 };
-
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../process/browser.js */ "./node_modules/process/browser.js"), __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["document"], __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["window"], __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["requestAnimationFrame"], __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["cancelAnimationFrame"]))
 
@@ -9033,52 +7757,40 @@ var nextTick = function nextTick(cb, ctx) {
 /* unused harmony export unsupport */
 /* unused harmony export voidElements */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return warn; });
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
-/* harmony import */ var _Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray */ "./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 
 
 function isString(o) {
   return typeof o === 'string';
 }
-
 function isUndefined(o) {
   return typeof o === 'undefined';
 }
-
 function isNull(o) {
   return o === null;
 }
-
 function isObject(o) {
-  return o !== null && Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(o) === 'object';
+  return o !== null && Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(o) === 'object';
 }
-
 function isBoolean(o) {
   return o === true || o === false;
 }
-
 function isFunction(o) {
   return typeof o === 'function';
 }
-
 function isNumber(o) {
   return typeof o === 'number';
 }
-
 function isBooleanStringLiteral(o) {
   return o === 'true' || o === 'false';
 }
-
 var isArray = Array.isArray;
 var styles = {
-  style: "i.".concat("st"
-  /* Style */
-  ),
-  class: "i.".concat("cl"
-  /* Class */
-  )
+  style: "i.".concat("st" /* Style */),
+  class: "i.".concat("cl" /* Class */)
 };
+
 var events = {
   bindtap: 'eh'
 };
@@ -9095,11 +7807,9 @@ var animationEvents = {
   bindAnimationEnd: '',
   bindTransitionEnd: ''
 };
-
 function singleQuote(s) {
   return "'".concat(s, "'");
 }
-
 var View = Object.assign(Object.assign({
   'hover-class': singleQuote('none'),
   'hover-stop-propagation': 'false',
@@ -9454,15 +8164,15 @@ var WebView = {
   bindLoad: '',
   bindError: ''
 };
-var Block = {}; // For Vue，因为 slot 标签被 vue 占用了
-
+var Block = {};
+// For Vue，因为 slot 标签被 vue 占用了
 var SlotView = {
   name: ''
-}; // For React
+};
+// For React
 // Slot 和 SlotView 最终都会编译成 <view slot={{ i.name }} />
 // 因为 <slot name="{{ i.name }}" /> 适用性没有前者高（无法添加类和样式）
 // 不给 View 直接加 slot 属性的原因是性能损耗
-
 var Slot = {
   name: ''
 };
@@ -9513,9 +8223,7 @@ var voidElements = new Set(['progress', 'icon', 'rich-text', 'input', 'textarea'
 var nestElements = new Map([['view', -1], ['catch-view', -1], ['cover-view', -1], ['static-view', -1], ['pure-view', -1], ['block', -1], ['text', -1], ['static-text', 6], ['slot', 8], ['slot-view', 8], ['label', 6], ['form', 4], ['scroll-view', 4], ['swiper', 4], ['swiper-item', 4]]);
 var EMPTY_OBJ = {};
 var EMPTY_ARR = [];
-
 var noop = function noop() {};
-
 var defaultReconciler = Object.create(null);
 /**
  * box creates a boxed value.
@@ -9524,7 +8232,6 @@ var defaultReconciler = Object.create(null);
  * @param v Value.
  * @returns Boxed value.
  */
-
 var box = function box(v) {
   return {
     v: v
@@ -9537,20 +8244,15 @@ var box = function box(v) {
  * @param b Boxed value.
  * @returns Value.
  */
-
-
 var unbox = function unbox(b) {
   return b.v;
 };
-
 function toDashed(s) {
   return s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
-
 function toCamelCase(s) {
   var camel = '';
   var nextCap = false;
-
   for (var i = 0; i < s.length; i++) {
     if (s[i] !== '-') {
       camel += nextCap ? s[i].toUpperCase() : s[i];
@@ -9559,24 +8261,18 @@ function toCamelCase(s) {
       nextCap = true;
     }
   }
-
   return camel;
 }
-
 var toKebabCase = function toKebabCase(string) {
   return string.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 };
-
 function capitalize(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
-
 var hasOwnProperty = Object.prototype.hasOwnProperty;
-
 var hasOwn = function hasOwn(val, key) {
   return hasOwnProperty.call(val, key);
 };
-
 var reportIssue = '如有疑问，请提交 issue 至：https://github.com/nervjs/taro/issues';
 /**
  * ensure takes a condition and throw a error if the condition fails,
@@ -9584,13 +8280,11 @@ var reportIssue = '如有疑问，请提交 issue 至：https://github.com/nervj
  * @param condition condition.
  * @param msg error message.
  */
-
 function ensure(condition, msg) {
   if (!condition) {
     throw new Error(msg + '\n' + reportIssue);
   }
 }
-
 function warn(condition, msg) {
   if (true) {
     if (condition) {
@@ -9598,20 +8292,16 @@ function warn(condition, msg) {
     }
   }
 }
-
 function queryToJson(str) {
   var dec = decodeURIComponent;
   var qp = str.split('&');
   var ret = {};
   var name;
   var val;
-
   for (var i = 0, l = qp.length, item; i < l; ++i) {
     item = qp[i];
-
     if (item.length) {
       var s = item.indexOf('=');
-
       if (s < 0) {
         name = dec(item);
         val = '';
@@ -9619,12 +8309,10 @@ function queryToJson(str) {
         name = dec(item.slice(0, s));
         val = dec(item.slice(s + 1));
       }
-
       if (typeof ret[name] === 'string') {
         // inline'd type check
         ret[name] = [ret[name]];
       }
-
       if (Array.isArray(ret[name])) {
         ret[name].push(val);
       } else {
@@ -9632,34 +8320,26 @@ function queryToJson(str) {
       }
     }
   }
-
   return ret; // Object
 }
 
 var _uniqueId = 1;
-
 var _loadTime = new Date().getTime().toString();
-
 function getUniqueKey() {
   return _loadTime + _uniqueId++;
 }
-
 var cacheData = {};
-
 function cacheDataSet(key, val) {
   cacheData[key] = val;
 }
-
 function cacheDataGet(key, delelteAfterGet) {
   var temp = cacheData[key];
   delelteAfterGet && delete cacheData[key];
   return temp;
 }
-
 function cacheDataHas(key) {
   return key in cacheData;
 }
-
 function mergeInternalComponents(components) {
   Object.keys(components).forEach(function (name) {
     if (name in internalComponents) {
@@ -9669,12 +8349,10 @@ function mergeInternalComponents(components) {
     }
   });
 }
-
 function mergeReconciler(hostConfig) {
   Object.keys(hostConfig).forEach(function (key) {
     var value = hostConfig[key];
     var raw = defaultReconciler[key];
-
     if (!raw) {
       defaultReconciler[key] = value;
     } else {
@@ -9686,17 +8364,14 @@ function mergeReconciler(hostConfig) {
     }
   });
 }
-
 function unsupport(api) {
   return function () {
     console.warn("\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 ".concat(api));
   };
 }
-
 function setUniqueKeyToRoute(key, obj) {
   var routerParamsPrivateKey = '__key_';
   var useDataCacheApis = ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab'];
-
   if (useDataCacheApis.indexOf(key) > -1) {
     var url = obj.url = obj.url || '';
     var hasMark = url.indexOf('?') > -1;
@@ -9704,46 +8379,36 @@ function setUniqueKeyToRoute(key, obj) {
     obj.url += (hasMark ? '&' : '?') + "".concat(routerParamsPrivateKey, "=").concat(cacheKey);
   }
 }
-
 function indent(str, size) {
   return str.split('\n').map(function (line, index) {
     var indent = index === 0 ? '' : Array(size).fill(' ').join('');
     return indent + line;
   }).join('\n');
 }
-
 var needPromiseApis = new Set(['addPhoneContact', 'authorize', 'canvasGetImageData', 'canvasPutImageData', 'canvasToTempFilePath', 'checkSession', 'chooseAddress', 'chooseImage', 'chooseInvoiceTitle', 'chooseLocation', 'chooseVideo', 'clearStorage', 'closeBLEConnection', 'closeBluetoothAdapter', 'closeSocket', 'compressImage', 'connectSocket', 'createBLEConnection', 'downloadFile', 'exitMiniProgram', 'getAvailableAudioSources', 'getBLEDeviceCharacteristics', 'getBLEDeviceServices', 'getBatteryInfo', 'getBeacons', 'getBluetoothAdapterState', 'getBluetoothDevices', 'getClipboardData', 'getConnectedBluetoothDevices', 'getConnectedWifi', 'getExtConfig', 'getFileInfo', 'getImageInfo', 'getLocation', 'getNetworkType', 'getSavedFileInfo', 'getSavedFileList', 'getScreenBrightness', 'getSetting', 'getStorage', 'getStorageInfo', 'getSystemInfo', 'getUserInfo', 'getWifiList', 'hideHomeButton', 'hideShareMenu', 'hideTabBar', 'hideTabBarRedDot', 'loadFontFace', 'login', 'makePhoneCall', 'navigateBack', 'navigateBackMiniProgram', 'navigateTo', 'navigateToBookshelf', 'navigateToMiniProgram', 'notifyBLECharacteristicValueChange', 'hideKeyboard', 'hideLoading', 'hideNavigationBarLoading', 'hideToast', 'openBluetoothAdapter', 'openDocument', 'openLocation', 'openSetting', 'pageScrollTo', 'previewImage', 'queryBookshelf', 'reLaunch', 'readBLECharacteristicValue', 'redirectTo', 'removeSavedFile', 'removeStorage', 'removeTabBarBadge', 'requestSubscribeMessage', 'saveFile', 'saveImageToPhotosAlbum', 'saveVideoToPhotosAlbum', 'scanCode', 'sendSocketMessage', 'setBackgroundColor', 'setBackgroundTextStyle', 'setClipboardData', 'setEnableDebug', 'setInnerAudioOption', 'setKeepScreenOn', 'setNavigationBarColor', 'setNavigationBarTitle', 'setScreenBrightness', 'setStorage', 'setTabBarBadge', 'setTabBarItem', 'setTabBarStyle', 'showActionSheet', 'showFavoriteGuide', 'showLoading', 'showModal', 'showShareMenu', 'showTabBar', 'showTabBarRedDot', 'showToast', 'startBeaconDiscovery', 'startBluetoothDevicesDiscovery', 'startDeviceMotionListening', 'startPullDownRefresh', 'stopBeaconDiscovery', 'stopBluetoothDevicesDiscovery', 'stopCompass', 'startCompass', 'startAccelerometer', 'stopAccelerometer', 'showNavigationBarLoading', 'stopDeviceMotionListening', 'stopPullDownRefresh', 'switchTab', 'uploadFile', 'vibrateLong', 'vibrateShort', 'writeBLECharacteristicValue']);
-
 function getCanIUseWebp(taro) {
   return function () {
     if (typeof taro.getSystemInfoSync !== 'function') {
       console.error('不支持 API canIUseWebp');
       return false;
     }
-
     var _taro$getSystemInfoSy = taro.getSystemInfoSync(),
-        platform = _taro$getSystemInfoSy.platform;
-
+      platform = _taro$getSystemInfoSy.platform;
     var platformLower = platform.toLowerCase();
-
     if (platformLower === 'android' || platformLower === 'devtools') {
       return true;
     }
-
     return false;
   };
 }
-
 function getNormalRequest(global) {
   return function request(options) {
     options = options || {};
-
     if (typeof options === 'string') {
       options = {
         url: options
       };
     }
-
     var originSuccess = options.success;
     var originFail = options.fail;
     var originComplete = options.complete;
@@ -9753,92 +8418,72 @@ function getNormalRequest(global) {
         originSuccess && originSuccess(res);
         resolve(res);
       };
-
       options.fail = function (res) {
         originFail && originFail(res);
         reject(res);
       };
-
       options.complete = function (res) {
         originComplete && originComplete(res);
       };
-
       requestTask = global.request(options);
     });
-
     p.abort = function (cb) {
       cb && cb();
-
       if (requestTask) {
         requestTask.abort();
       }
-
       return p;
     };
-
     return p;
   };
 }
-
 function processApis(taro, global) {
   var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   var patchNeedPromiseApis = config.needPromiseApis || [];
-
-  var _needPromiseApis = new Set([].concat(Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(patchNeedPromiseApis), Object(_Users_zhoufei_Desktop_zf_project_taro_music_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(needPromiseApis)));
-
+  var _needPromiseApis = new Set([].concat(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(patchNeedPromiseApis), Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(needPromiseApis)));
   var preserved = ['getEnv', 'interceptors', 'Current', 'getCurrentInstance', 'options', 'nextTick', 'eventCenter', 'Events', 'preload', 'webpackJsonp'];
   var apis = new Set(!config.isOnlyPromisify ? Object.keys(global).filter(function (api) {
     return preserved.indexOf(api) === -1;
   }) : new Set(patchNeedPromiseApis));
-
   if (config.modifyApis) {
     config.modifyApis(apis);
   }
-
   apis.forEach(function (key) {
     if (_needPromiseApis.has(key)) {
       var originKey = key;
-
       taro[originKey] = function () {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
         for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
           args[_key - 1] = arguments[_key];
         }
-
-        var key = originKey; // 第一个参数 options 为字符串，单独处理
-
+        var key = originKey;
+        // 第一个参数 options 为字符串，单独处理
         if (typeof options === 'string') {
           if (args.length) {
             return global[key].apply(global, [options].concat(args));
           }
-
           return global[key](options);
-        } // 改变 key 或 option 字段，如需要把支付宝标准的字段对齐微信标准的字段
-
-
+        }
+        // 改变 key 或 option 字段，如需要把支付宝标准的字段对齐微信标准的字段
         if (config.transformMeta) {
           var transformResult = config.transformMeta(key, options);
           key = transformResult.key;
-          options = transformResult.options; // 新 key 可能不存在
-
+          options = transformResult.options;
+          // 新 key 可能不存在
           if (!global.hasOwnProperty(key)) {
             return unsupport(key)();
           }
         }
-
         var task = null;
-        var obj = Object.assign({}, options); // 为页面跳转相关的 API 设置一个随机数作为路由参数。为了给 runtime 区分页面。
-
-        setUniqueKeyToRoute(key, options); // Promise 化
-
+        var obj = Object.assign({}, options);
+        // 为页面跳转相关的 API 设置一个随机数作为路由参数。为了给 runtime 区分页面。
+        setUniqueKeyToRoute(key, options);
+        // Promise 化
         var p = new Promise(function (resolve, reject) {
           obj.success = function (res) {
             var _a, _b;
-
             (_a = config.modifyAsyncResult) === null || _a === void 0 ? void 0 : _a.call(config, key, res);
             (_b = options.success) === null || _b === void 0 ? void 0 : _b.call(options, res);
-
             if (key === 'connectSocket') {
               resolve(Promise.resolve().then(function () {
                 return task ? Object.assign(task, res) : res;
@@ -9847,61 +8492,51 @@ function processApis(taro, global) {
               resolve(res);
             }
           };
-
           obj.fail = function (res) {
             var _a;
-
             (_a = options.fail) === null || _a === void 0 ? void 0 : _a.call(options, res);
             reject(res);
           };
-
           obj.complete = function (res) {
             var _a;
-
             (_a = options.complete) === null || _a === void 0 ? void 0 : _a.call(options, res);
           };
-
           if (args.length) {
             task = global[key].apply(global, [obj].concat(args));
           } else {
             task = global[key](obj);
           }
-        }); // 给 promise 对象挂载属性
-
+        });
+        // 给 promise 对象挂载属性
         if (key === 'uploadFile' || key === 'downloadFile') {
           p.progress = function (cb) {
             task === null || task === void 0 ? void 0 : task.onProgressUpdate(cb);
             return p;
           };
-
           p.abort = function (cb) {
             cb === null || cb === void 0 ? void 0 : cb();
             task === null || task === void 0 ? void 0 : task.abort();
             return p;
           };
         }
-
         return p;
       };
     } else {
-      var platformKey = key; // 改变 key 或 option 字段，如需要把支付宝标准的字段对齐微信标准的字段
-
+      var platformKey = key;
+      // 改变 key 或 option 字段，如需要把支付宝标准的字段对齐微信标准的字段
       if (config.transformMeta) {
         platformKey = config.transformMeta(key, {}).key;
-      } // API 不存在
-
-
+      }
+      // API 不存在
       if (!global.hasOwnProperty(platformKey)) {
         taro[key] = unsupport(key);
         return;
       }
-
       if (typeof global[key] === 'function') {
         taro[key] = function () {
           for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
             args[_key2] = arguments[_key2];
           }
-
           if (config.handleSyncApis) {
             return config.handleSyncApis(key, global, args);
           } else {
@@ -9920,35 +8555,28 @@ function processApis(taro, global) {
  * @param taro Taro 对象
  * @param global 小程序全局对象，如微信的 wx，支付宝的 my
  */
-
-
 function equipCommonApis(taro, global) {
   var apis = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   taro.canIUseWebp = getCanIUseWebp(taro);
   taro.getCurrentPages = getCurrentPages || unsupport('getCurrentPages');
   taro.getApp = getApp || unsupport('getApp');
   taro.env = global.env || {};
-
   try {
     taro.requirePlugin = requirePlugin || unsupport('requirePlugin');
   } catch (error) {
     taro.requirePlugin = unsupport('requirePlugin');
-  } // request & interceptors
-
-
+  }
+  // request & interceptors
   var request = apis.request ? apis.request : getNormalRequest(global);
-
   function taroInterceptor(chain) {
     return request(chain.requestParams);
   }
-
   var link = new taro.Link(taroInterceptor);
   taro.request = link.request.bind(link);
   taro.addInterceptor = link.addInterceptor.bind(link);
   taro.cleanInterceptors = link.cleanInterceptors.bind(link);
   taro.miniGlobal = taro.options.miniGlobal = global;
 }
-
 
 
 /***/ }),
@@ -9962,17 +8590,13 @@ function equipCommonApis(taro, global) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var _require = __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js"),
-    container = _require.container,
-    SERVICE_IDENTIFIER = _require.SERVICE_IDENTIFIER;
-
+  container = _require.container,
+  SERVICE_IDENTIFIER = _require.SERVICE_IDENTIFIER;
 var taro = __webpack_require__(/*! @tarojs/api */ "./node_modules/@tarojs/api/dist/index.esm.js").default;
-
 var hooks = container.get(SERVICE_IDENTIFIER.Hooks);
-
 if (typeof hooks.initNativeApi === 'function') {
   hooks.initNativeApi(taro);
 }
-
 module.exports = taro;
 module.exports.default = module.exports;
 
