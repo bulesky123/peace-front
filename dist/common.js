@@ -205,7 +205,7 @@ var getHouseList = function getHouseList() {
 /*!*******************************!*\
   !*** ./src/pages/in/redux.ts ***!
   \*******************************/
-/*! exports provided: default, globalUpdate, codeForOpenId, getUserInfo */
+/*! exports provided: default, globalUpdate, codeForOpenId, getUserInfo, submitUserInfo */
 /*! all exports used */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -214,6 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "codeForOpenId", function() { return codeForOpenId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserInfo", function() { return getUserInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "submitUserInfo", function() { return submitUserInfo; });
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
@@ -221,6 +222,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _api_home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/home */ "./src/api/home.ts");
 /* harmony import */ var _api_my__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/my */ "./src/api/my.ts");
+/* harmony import */ var _utils_tools__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../utils/tools */ "./src/utils/tools.ts");
+
 
 
 
@@ -237,7 +240,8 @@ var initState = {
   userInfo: {
     token: '',
     headImageUrl: '',
-    nickName: ''
+    nickName: '',
+    phone: ''
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
@@ -369,6 +373,48 @@ var getUserInfo = function getUserInfo() {
     }));
     return function (_x3) {
       return _ref3.apply(this, arguments);
+    };
+  }();
+};
+var submitUserInfo = function submitUserInfo(params) {
+  return /*#__PURE__*/function () {
+    var _ref5 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee4(dispatch) {
+      var _ref6, headImageUrl, _ref6$nickName, nickName, phone, obj;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return Object(_api_my__WEBPACK_IMPORTED_MODULE_5__[/* userInfo */ "a"])(params);
+            case 2:
+              _context4.t0 = _context4.sent;
+              if (_context4.t0) {
+                _context4.next = 5;
+                break;
+              }
+              _context4.t0 = {};
+            case 5:
+              _ref6 = _context4.t0;
+              headImageUrl = _ref6.headImageUrl;
+              _ref6$nickName = _ref6.nickName;
+              nickName = _ref6$nickName === void 0 ? 'zhoufei' : _ref6$nickName;
+              phone = _ref6.phone;
+              obj = {};
+              headImageUrl && (obj['headImageUrl'] = headImageUrl);
+              nickName && (obj['nickName'] = nickName);
+              phone && (obj['phone'] = phone);
+              if (!_utils_tools__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"].isNullOrEmpty(obj)) {
+                dispatch(globalUpdate(obj));
+              }
+            case 15:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+    return function (_x4) {
+      return _ref5.apply(this, arguments);
     };
   }();
 };
@@ -563,6 +609,93 @@ var baseUrl = _env__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].baseUrl;
     return this.baseOptions(option, 'DELETE');
   }
 });
+
+/***/ }),
+
+/***/ "./src/utils/tools.ts":
+/*!****************************!*\
+  !*** ./src/utils/tools.ts ***!
+  \****************************/
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(window) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Tools; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+
+
+var Tools = /*#__PURE__*/function () {
+  function Tools() {
+    Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, Tools);
+  }
+  Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(Tools, null, [{
+    key: "debounce",
+    value: function debounce(fn) {
+      var interval = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 600;
+      var Timer = null;
+      return function () {
+        var _arguments = arguments,
+          _this = this;
+        clearTimeout(Timer);
+        Timer = setTimeout(function () {
+          fn.apply(_this, _arguments);
+        }, interval);
+      };
+    }
+    // 获取内部链接参数
+  }, {
+    key: "getInUrlPrams",
+    value: function getInUrlPrams(obj, type) {
+      if (type) {
+        return obj.match.params[type];
+      }
+      return obj.match.params;
+    }
+
+    // 获取外部链接参数
+  }, {
+    key: "getOutUrlPrams",
+    value: function getOutUrlPrams(name) {
+      var oldUrlParams = window.location.href.split('?')[1] || '';
+      var urlParams = oldUrlParams.split('#')[0] || '';
+      var urlParamsObj = {};
+      var urlParamsArray = urlParams.split('&');
+      for (var i = 0; i < urlParamsArray.length; i++) {
+        var currParam = urlParamsArray[i].split('=');
+        urlParamsObj[currParam[0]] = currParam[1];
+      }
+      if (name) {
+        return urlParamsObj[name];
+      }
+      return urlParamsObj;
+    }
+  }, {
+    key: "getParameterByName",
+    value: function getParameterByName(name) {
+      var location = window.location;
+      var values = decodeURIComponent((location.search.match(RegExp("[?|&|/]" + name + '=([^\&|?&]+)')) || [, null])[1]); // eslint-disable-line
+      if (this.isNullOrEmpty(values)) {
+        values = decodeURIComponent((location.hash.match(RegExp("[?|&|/]" + name + '=([^\&|?&]+)')) || [, null])[1]); // eslint-disable-line
+      }
+
+      return this.isNullOrEmpty(values) || values === 'null' ? '' : values;
+    }
+  }, {
+    key: "isNullOrEmpty",
+    value: function isNullOrEmpty(obj) {
+      var result = obj == null || obj === 'null' || obj === undefined || obj === 'undefined' || typeof obj === 'undefined' || obj === '' || JSON.stringify(obj) === '{}' || JSON.stringify(obj) === '[]';
+      if (result && (obj !== 0 || obj !== '0')) {
+        return result;
+      }
+      return false;
+    }
+  }]);
+  return Tools;
+}();
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["window"]))
 
 /***/ })
 

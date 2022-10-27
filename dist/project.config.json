@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "",
   "projectname": "peace-front",
-  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "description": "",
   "appid": "wx93cd60b8c9e6f94d",
   "setting": {
     "urlCheck": false,
@@ -18,23 +18,7 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    },
-    "lazyloadPlaceholderEnable": false,
-    "preloadBackgroundData": false,
-    "uglifyFileName": false,
-    "enhance": false,
-    "useMultiFrameRuntime": true,
-    "showShadowRootInWxmlPanel": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "useStaticServer": true,
-    "showES6CompileOption": false,
-    "localPlugins": false,
-    "compileHotReLoad": false,
-    "disableUseStrict": false,
-    "useCompilerPlugins": false,
-    "minifyWXML": true
+    }
   },
   "compileType": "miniprogram",
   "simulatorType": "wechat",

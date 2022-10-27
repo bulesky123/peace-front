@@ -94,7 +94,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
               className: "item-msg",
               children: "\u6DFB\u52A0\u5171\u540C\u7BA1\u7406\u4EBA"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "b"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "d"], {
               value: "chevron-right",
               color: "#ccc"
             })]
@@ -103,7 +103,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
               className: "item-msg",
               children: "\u79DF\u6237\u987B\u77E5"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "b"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "d"], {
               value: "chevron-right",
               color: "#ccc"
             })]
@@ -112,7 +112,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
               className: "item-msg",
               children: "\u63A8\u8350\u7ED9\u597D\u53CB"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "b"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "d"], {
               value: "chevron-right",
               color: "#ccc"
             })]
@@ -121,7 +121,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
             children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
               className: "item-msg",
               children: "\u5173\u4E8E\u6211\u4EEC"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "b"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "d"], {
               value: "chevron-right",
               color: "#ccc"
             })]

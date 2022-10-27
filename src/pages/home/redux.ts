@@ -1,15 +1,9 @@
 // Actions
-const UPDATE = 'GLOBAL_UPDATE'
+const UPDATE = 'HOME_UPDATE'
 
 // Reducer
 const initState = {
   init: false,
-  routes: [], // 显示的路由
-  buttons: {},
-  userInfo: {
-    name: '',
-    id: '', // 100001
-  },
 }
 
 export default (state = initState, action) => {
@@ -25,7 +19,8 @@ export default (state = initState, action) => {
 }
 
 // Action Creators
-export const globalUpdate = params => ({
+export const homeUpdate = params => ({
   payload: params,
   type: UPDATE,
 })
+

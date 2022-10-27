@@ -6,6 +6,7 @@ module.exports = {
   defineConstants: {
   },
   weapp: {
+    esnextModules: ["taro-ui"],
     module: {
       postcss: {
         autoprefixer: {

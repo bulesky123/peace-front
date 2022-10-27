@@ -21,12 +21,18 @@ import './index.less'
 class List extends React.Component {
   constructor(props) {
     super(props)
+    this.addHouse = this.addHouse.bind(this)
     this.state = {
     }
   }
   componentDidMount() {
     // 获取用户的信息
     this.props.getHouseList()
+  }
+  addHouse() {
+    Taro.navigateTo({
+      url: '/pages/addHouse/index'
+    })
   }
   render () {
     return (
@@ -40,7 +46,7 @@ class List extends React.Component {
           ))
         }
         <View className='add-house-btn'>
-          <AtButton type='primary' size='small'>添加房屋</AtButton>
+          <AtButton onClick={this.addHouse} type='primary' size='small'>添加房屋</AtButton>
         </View>
       </View>
     )

@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { userLogin } from '../../api/home'
 import { userInfo } from '../../api/my'
+import Tools from '../../utils/tools'
 
 // Actions
 const UPDATE = 'GLOBAL_UPDATE'
@@ -12,6 +13,7 @@ const initState = {
     token: '',
     headImageUrl: '',
     nickName: '',
+    phone: '',
   },
 }
 
@@ -64,4 +66,15 @@ export const getUserInfo = () => async(dispatch) => {
     headImageUrl,
     nickName,
   }))
+}
+
+export const submitUserInfo = (params) => async(dispatch) => {
+  const { headImageUrl, nickName = 'zhoufei', phone } = await userInfo(params) || {}
+  const obj = {}
+  headImageUrl && (obj['headImageUrl'] = headImageUrl)
+  nickName && (obj['nickName'] = nickName)
+  phone && (obj['phone'] = phone)
+  if (!Tools.isNullOrEmpty(obj)) {
+    dispatch(globalUpdate(obj))
+  }
 }

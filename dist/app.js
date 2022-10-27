@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = {"pages":["pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index","pages/house/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
+var config = {"pages":["pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index","pages/house/index","pages/addHouse/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["window"].__taroAppConfig = config
 var inst = App(Object(_tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["createReactApp"])(_node_modules_babel_loader_lib_index_js_app_tsx__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], react__WEBPACK_IMPORTED_MODULE_4__, react_dom__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], config))
 
@@ -185,30 +185,22 @@ webpackContext.id = "./src/pages sync recursive redux\\.ts$";
 /*!*********************************!*\
   !*** ./src/pages/home/redux.ts ***!
   \*********************************/
-/*! exports provided: default, globalUpdate */
+/*! exports provided: default, homeUpdate */
 /*! all exports used */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "homeUpdate", function() { return homeUpdate; });
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 
 // Actions
-var UPDATE = 'GLOBAL_UPDATE';
+var UPDATE = 'HOME_UPDATE';
 
 // Reducer
 var initState = {
-  init: false,
-  routes: [],
-  // 显示的路由
-  buttons: {},
-  userInfo: {
-    name: '',
-    id: '' // 100001
-  }
+  init: false
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
@@ -221,7 +213,7 @@ var initState = {
 });
 
 // Action Creators
-var globalUpdate = function globalUpdate(params) {
+var homeUpdate = function homeUpdate(params) {
   return {
     payload: params,
     type: UPDATE
