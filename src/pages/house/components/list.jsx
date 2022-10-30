@@ -5,7 +5,7 @@ import { AtIcon } from 'taro-ui'
 
 export default (props) => {
   return (
-    <View className="house-item">
+    <View className="house-item" onClick={props.onClick}>
       <View className="item-left">
         <View className="item-title">{ props.name || '红木林南1号楼'}</View>
         <View className="item-tips">共{props.roomCount || 0}间 | 闲置<Text className="num">{props.emptyRoomCount || 0}</Text>间</View>

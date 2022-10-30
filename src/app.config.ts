@@ -8,6 +8,7 @@ export default {
     "pages/my/index",
     "pages/house/index",
     "pages/addHouse/index",
+    "pages/houseDetail/index",
   ],
   window: {
     backgroundTextStyle: "light",

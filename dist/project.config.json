@@ -24,7 +24,7 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {},
-  "libVersion": "2.17.0",
+  "libVersion": "2.27.0",
   "packOptions": {
     "ignore": [],
     "include": []

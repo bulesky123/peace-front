@@ -3,13 +3,13 @@ import { View, Image, Button } from '@tarojs/components'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { submitUserInfo } from '../../in/redux'
+import { addPhone } from '../../in/redux'
 import { AtButton,  AtActionSheet, AtActionSheetItem } from 'taro-ui'
 import "taro-ui/dist/style/components/modal.scss"
 @connect(
   state => ({}),
   dispatch => bindActionCreators({
-    submitUserInfo,
+    addPhone,
   }, dispatch),
 )
 class PModal extends React.Component {
@@ -18,10 +18,10 @@ class PModal extends React.Component {
     this.getPhoneNumber = this.getPhoneNumber.bind(this)
   }
   async getPhoneNumber(e) {
-    await this.props.submitUserInfo({phone: e.detail.encryptedData})
+    console.log(e)
+    await this.props.addPhone({code: e.detail.code,  encryptedData: e.detail.encryptedData})
   }
   render() {
-    console.log(this.props.isOpened, 'this.props.isOpened')
     return (
       this.props.isOpened &&
       <AtActionSheet

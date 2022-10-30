@@ -66,6 +66,7 @@ var List = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
     Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(this, List);
     _this = _super.call(this, props);
     _this.addHouse = _this.addHouse.bind(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_this));
+    _this.goDetail = _this.goDetail.bind(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(_this));
     _this.state = {};
     return _this;
   }
@@ -83,13 +84,26 @@ var List = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
       });
     }
   }, {
+    key: "goDetail",
+    value: function goDetail() {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
+        url: '/pages/houseDetail/index'
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$props, _this$props$list, _this$props2, _this$props2$list;
+      var _this$props,
+        _this$props$list,
+        _this$props2,
+        _this$props2$list,
+        _this2 = this;
       return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
         className: "house",
         children: [((_this$props = this.props) === null || _this$props === void 0 ? void 0 : (_this$props$list = _this$props.list) === null || _this$props$list === void 0 ? void 0 : _this$props$list.length) == 0 ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_components_empty__WEBPACK_IMPORTED_MODULE_12__[/* default */ "a"], {}) : (_this$props2 = this.props) === null || _this$props2 === void 0 ? void 0 : (_this$props2$list = _this$props2.list) === null || _this$props2$list === void 0 ? void 0 : _this$props2$list.map(function (item) {
-          return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_components_list__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, item), item.houseId);
+          return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_components_list__WEBPACK_IMPORTED_MODULE_13__[/* default */ "a"], Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({
+            onClick: _this2.goDetail
+          }, item), item.houseId);
         }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_7__[/* View */ "q"], {
           className: "add-house-btn",
           children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_8__[/* AtButton */ "b"], {
@@ -170,6 +184,7 @@ var List = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
 /* harmony default export */ __webpack_exports__["a"] = (function (props) {
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_1__[/* View */ "q"], {
     className: "house-item",
+    onClick: props.onClick,
     children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_1__[/* View */ "q"], {
       className: "item-left",
       children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_1__[/* View */ "q"], {
@@ -191,7 +206,7 @@ var List = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
         className: "item-zz",
         children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_1__[/* Text */ "o"], {
           children: "\u53BB\u62DB\u79DF"
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_2__[/* AtIcon */ "d"], {
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_2__[/* AtIcon */ "c"], {
           value: "chevron-right",
           color: "#ccc"
         })]

@@ -84,12 +84,12 @@ var _dec, _class;
 var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect */ "b"])(function (state) {
   return {
     headImageUrl: state.in.headImageUrl,
-    nickName: state.in.nickName,
-    phone: state.in.phone
+    nicknameFlag: state.in.nicknameFlag,
+    mobileFlag: state.in.mobileFlag
   };
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_11__[/* bindActionCreators */ "b"])({
-    submitUserInfo: _in_redux__WEBPACK_IMPORTED_MODULE_12__["submitUserInfo"]
+    addName: _in_redux__WEBPACK_IMPORTED_MODULE_12__["addName"]
   }, dispatch);
 }), _dec(_class = /*#__PURE__*/function (_React$Component) {
   Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(Home, _React$Component);
@@ -109,7 +109,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
     key: "getUserInfo",
     value: function getUserInfo() {
       var that = this;
-      if (!this.props.nickName) {
+      if (!this.props.nicknameFlag) {
         _tarojs_taro__WEBPACK_IMPORTED_MODULE_7___default.a.getUserProfile({
           desc: '用于完善资料',
           // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -120,9 +120,12 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   switch (_context.prev = _context.next) {
                     case 0:
                       _context.next = 2;
-                      return that.props.submitUserInfo(res.userInfo);
+                      return that.props.addName({
+                        headImageUrl: res.userInfo.avatarUrl,
+                        nickName: res.userInfo.nickName
+                      });
                     case 2:
-                      that.props.phone && that.setState({
+                      !that.props.mobileFlag && that.setState({
                         isOpened: true
                       });
                     case 3:
@@ -143,8 +146,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
         });
         return;
       }
-      if (!this.props.phone) {
-        console.log(2222);
+      if (!this.props.mobileFlag) {
         that.setState({
           isOpened: true
         });
@@ -160,9 +162,11 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
   }, {
     key: "jumpUrl",
     value: function jumpUrl(url) {
-      _tarojs_taro__WEBPACK_IMPORTED_MODULE_7___default.a.navigateTo({
-        url: url
-      });
+      if (this.props.mobileFlag && this.props.nicknameFlag) {
+        _tarojs_taro__WEBPACK_IMPORTED_MODULE_7___default.a.navigateTo({
+          url: url
+        });
+      }
     }
   }, {
     key: "render",
@@ -461,7 +465,7 @@ var PModal = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect
   return {};
 }, function (dispatch) {
   return Object(redux__WEBPACK_IMPORTED_MODULE_11__[/* bindActionCreators */ "b"])({
-    submitUserInfo: _in_redux__WEBPACK_IMPORTED_MODULE_12__["submitUserInfo"]
+    addPhone: _in_redux__WEBPACK_IMPORTED_MODULE_12__["addPhone"]
   }, dispatch);
 }), _dec(_class = /*#__PURE__*/function (_React$Component) {
   Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(PModal, _React$Component);
@@ -481,11 +485,13 @@ var PModal = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return this.props.submitUserInfo({
-                  phone: e.detail.encryptedData
+                console.log(e);
+                _context.next = 3;
+                return this.props.addPhone({
+                  code: e.detail.code,
+                  encryptedData: e.detail.encryptedData
                 });
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -500,7 +506,6 @@ var PModal = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.isOpened, 'this.props.isOpened');
       return this.props.isOpened && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_13__[/* AtActionSheet */ "a"], {
         isOpened: true,
         cancelText: "\u53D6\u6D88",

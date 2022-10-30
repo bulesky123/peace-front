@@ -1,0 +1,98 @@
+.container {
+  padding: 15px 20px;
+  padding-bottom: 130px;
+  .head {
+    background: url('./images/bg.png') no-repeat;
+    background-size: 100% 100%;
+    border-radius: 4px;
+    padding: 15px;
+    .head-title {
+      // padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .title {
+        font-size: 20px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #FFFFFF;
+        line-height: 28px;
+      }
+      .edit {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .house-type {
+      padding-top: 9px;
+      font-size: 14px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 20px;
+    }
+    .head-box {
+      margin-top: 30px;
+      background: rgba(256,256,256,0.12);
+      // opacity: 0.12;
+      backdrop-filter: blur(8px);
+      border-radius: 4px;
+      position: relative;
+      &::before {
+        content: ' ';
+        position: absolute;
+        top: -21px;
+        left: 29px;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left-width: 12px;
+        border-left-style: solid;
+        border-left-color: transparent;
+        border-right-width: 12px;
+        border-right-style: solid;
+        border-right-color: transparent;
+        border-bottom-width: 21px;
+        border-bottom-style: solid;
+        border-bottom-color: rgba(255, 255, 255, 0.12);
+      }
+      .head-item {
+        display: inline-block;
+        width: 33.33%;
+        text-align: center;
+        padding: 20px 0;
+        color: #fff;
+        .num {
+          font-size: 34px;
+          font-family: DINAlternate-Bold, DINAlternate;
+          font-weight: bold;
+          color: #FFFFFF;
+          line-height: 40px;
+        }
+        .tips {
+          margin-top: 4px;
+          font-size: 13px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #FFFFFF;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+  .content-box {
+    padding-top: 20px;
+  }
+  .add-house-btn {
+    padding: 40px 0;
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    background-color: #fff;
+    .btn {
+      color: #2154F4;
+      border: 1px solid #2154F4;
+    }
+  }
+}

@@ -1,9 +1,9 @@
 const config = {
   development: {
-    baseUrl: 'http://129.211.51.16:8080',
+    baseUrl: 'https://zfeasy.com',
   },
   production: {
-    baseUrl: 'http://129.211.51.16:8080',
+    baseUrl: 'https://zfeasy.com',
   },
 }
 const env = config[process.env.NODE_ENV]

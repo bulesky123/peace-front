@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { userLogin } from '../../api/home'
 import { userInfo } from '../../api/my'
+import { addNickName, addMobile } from '../../api/weixin'
 import Tools from '../../utils/tools'
 
 // Actions
@@ -9,6 +10,8 @@ const UPDATE = 'GLOBAL_UPDATE'
 // Reducer
 const initState = {
   init: false,
+  nicknameFlag: false,
+  mobileFlag: false,
   userInfo: {
     token: '',
     headImageUrl: '',
@@ -42,11 +45,14 @@ export const codeForOpenId = () => async (dispatch) => {
         //发起网络请求
         try {
           const { data } = await userLogin({jsCode: res.code}) || {}
+          const json = data.data || {}
           dispatch(globalUpdate({
-            token: data.peaceToken
+            token: json.peaceToken,
+            nicknameFlag: json.nicknameFlag,
+            mobileFlag: json.mobileFlag,
           }))
-          Taro.setStorageSync('Peace-X-Token', data.peaceToken)
-          Taro.redirectTo({
+          Taro.setStorageSync('Peace-X-Token', json.peaceToken)
+          Taro.switchTab({
             url: '/pages/home/index'
           })
         } catch (err) {
@@ -61,20 +67,24 @@ export const codeForOpenId = () => async (dispatch) => {
 
 
 export const getUserInfo = () => async(dispatch) => {
-  const { headImageUrl, nickName } = await userInfo({}) || {}
+  const { data } = await userInfo({}) || {}
+  const { headImageUrl, nickName } = data.data
   dispatch(globalUpdate({
     headImageUrl,
     nickName,
   }))
 }
 
-export const submitUserInfo = (params) => async(dispatch) => {
-  const { headImageUrl, nickName = 'zhoufei', phone } = await userInfo(params) || {}
-  const obj = {}
-  headImageUrl && (obj['headImageUrl'] = headImageUrl)
-  nickName && (obj['nickName'] = nickName)
-  phone && (obj['phone'] = phone)
-  if (!Tools.isNullOrEmpty(obj)) {
-    dispatch(globalUpdate(obj))
-  }
+export const addName = (params) => async(dispatch) => {
+  await addNickName(params) || {}
+  dispatch(globalUpdate({
+    ...params,
+    nicknameFlag: true,
+  }))
+}
+export const addPhone = (params) => async (dispatch) => {
+  await addMobile(params) || {}
+  dispatch(globalUpdate({
+    mobileFlag: true,
+  }))
 }

@@ -3,7 +3,7 @@ import { View, Image, Button } from '@tarojs/components'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { submitUserInfo } from '../in/redux'
+import { addName } from '../in/redux'
 import { AtButton, AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
 import PModal from './components/phoneModal'
 import './index.less'
@@ -22,11 +22,11 @@ import gb from './images/gb.png'
 @connect(
   state => ({
     headImageUrl: state.in.headImageUrl,
-    nickName: state.in.nickName,
-    phone: state.in.phone,
+    nicknameFlag: state.in.nicknameFlag,
+    mobileFlag: state.in.mobileFlag,
   }),
   dispatch => bindActionCreators({
-    submitUserInfo,
+    addName,
   }, dispatch),
 )
 class Home extends React.Component {
@@ -40,12 +40,15 @@ class Home extends React.Component {
   }
   getUserInfo() {
     const that = this
-    if (!this.props.nickName) {
+    if (!this.props.nicknameFlag) {
       Taro.getUserProfile({
         desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
         success: async (res) => {
-          await that.props.submitUserInfo(res.userInfo)
-          that.props.phone && that.setState({ isOpened: true })
+          await that.props.addName({
+            headImageUrl: res.userInfo.avatarUrl,
+            nickName: res.userInfo.nickName,
+          })
+          !that.props.mobileFlag && that.setState({ isOpened: true })
         },
         fail: (res) => {
           console.log(res, '-----')
@@ -53,8 +56,7 @@ class Home extends React.Component {
       })
       return
     }
-    if (!this.props.phone) {
-      console.log(2222)
+    if (!this.props.mobileFlag) {
       that.setState({ isOpened: true })
     }
   }
@@ -62,9 +64,11 @@ class Home extends React.Component {
     this.setState({ isOpened: false })
   }
   jumpUrl(url) {
-    Taro.navigateTo({
-      url
-    })
+    if (this.props.mobileFlag && this.props.nicknameFlag) {
+      Taro.navigateTo({
+        url
+      })
+    }
   }
   render() {
     return (

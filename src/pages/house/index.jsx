@@ -22,6 +22,7 @@ class List extends React.Component {
   constructor(props) {
     super(props)
     this.addHouse = this.addHouse.bind(this)
+    this.goDetail = this.goDetail.bind(this)
     this.state = {
     }
   }
@@ -34,6 +35,11 @@ class List extends React.Component {
       url: '/pages/addHouse/index'
     })
   }
+  goDetail() {
+    Taro.navigateTo({
+      url: '/pages/houseDetail/index'
+    })
+  }
   render () {
     return (
       <View className='house'>
@@ -42,7 +48,7 @@ class List extends React.Component {
           <Empty />
           :
           this.props?.list?.map(item => (
-            <HouseList key={item.houseId} {...item} />
+            <HouseList onClick={this.goDetail} key={item.houseId} {...item} />
           ))
         }
         <View className='add-house-btn'>
