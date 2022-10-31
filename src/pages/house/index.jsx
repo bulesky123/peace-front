@@ -37,7 +37,7 @@ class List extends React.Component {
   }
   goDetail() {
     Taro.navigateTo({
-      url: '/pages/houseDetail/index'
+      url: '/pages/floorDetail/index'
     })
   }
   render () {

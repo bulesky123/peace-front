@@ -87,7 +87,7 @@ var List = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
     key: "goDetail",
     value: function goDetail() {
       _tarojs_taro__WEBPACK_IMPORTED_MODULE_6___default.a.navigateTo({
-        url: '/pages/houseDetail/index'
+        url: '/pages/floorDetail/index'
       });
     }
   }, {

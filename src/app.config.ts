@@ -1,5 +1,6 @@
 export default {
   pages: [
+    // "pages/houseDetail/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -8,6 +9,7 @@ export default {
     "pages/my/index",
     "pages/house/index",
     "pages/addHouse/index",
+    "pages/floorDetail/index",
     "pages/houseDetail/index",
   ],
   window: {

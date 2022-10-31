@@ -4,8 +4,8 @@ import { AtButton } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import House from './components/house/index'
-import editImage from './images/edit.png'
+import Tenant from './components/tenant.jsx'
+import rightIcon from './images/right.png'
 
 import './index.less'
 
@@ -30,41 +30,32 @@ class HouseDetail extends React.Component {
       <View className='container'>
         <View className='head'>
           <View className='head-title'>
-            <Text className='title'>红木林南1号楼</Text>
-            <Image className='edit' src={editImage} />
+            红木林南1号楼
           </View>
-          <View className='house-type'>村屋/出租屋</View>
-          <View className='head-box'>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>总房间数</View>
-            </View>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>闲置房间</View>
-            </View>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>租客人数</View>
-            </View>
+          <View className='head-content'>
+            <Text className='house-num'>102</Text>
+            <Text className='house-type'>单间</Text>
+            <Text className='house-type house-moneny'>1000元/月</Text>
+            <View className='house-state'>已预定<Image className='rightIcon' src={rightIcon} /></View>
           </View>
+        </View>
+        <View className='tab'>
+          <View className='active'>租客</View>
+          <View>费用</View>
+          <View>单据</View>
+          <View>招租</View>
         </View>
         <View className='content-box'>
-          <House />
-          <House />
-          <House />
-          <House />
-          <House />
-          <House />
+          <Tenant />
         </View>
-        <View className='add-house-btn'>
+        {/* <View className='add-house-btn'>
           <AtButton
             className='btn'
             onClick={this.onSubmit}
             type='default'
             size='small'
           >添加房间</AtButton>
-        </View>
+        </View> */}
       </View>
     )
   }

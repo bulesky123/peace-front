@@ -1,4 +1,5 @@
 import React from "react";
+import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import more from '../../images/more.png'
@@ -6,8 +7,13 @@ import './index.less'
 
 
 export default () => {
+  const goDetail = () => {
+    Taro.navigateTo({
+      url: '/pages/houseDetail/index'
+    })
+  }
   return (
-    <View className="item-list">
+    <View className="item-list" onClick={goDetail}>
       <View className="item width60">
         <Text className="item-icon colorRed">闲</Text>
       </View>
