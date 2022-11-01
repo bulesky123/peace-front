@@ -58,12 +58,36 @@ var HouseDetail = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* con
     var _this;
     Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(this, HouseDetail);
     _this = _super.call(this, props);
-    _this.state = {};
+    _this.state = {
+      tabActive: 1
+    };
+    _this.tabs = [{
+      key: 1,
+      lable: '租客'
+    }, {
+      key: 2,
+      lable: '费用'
+    }, {
+      key: 3,
+      lable: '单据'
+    }, {
+      key: 4,
+      lable: '招租'
+    }];
     return _this;
   }
   Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(HouseDetail, [{
+    key: "queryTab",
+    value: function queryTab(item) {
+      this.setState({
+        tabActive: item.key
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+      var tabActive = this.state.tabActive;
       return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
         className: "container",
         children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
@@ -90,18 +114,17 @@ var HouseDetail = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* con
               })]
             })]
           })]
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
           className: "tab",
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
-            className: "active",
-            children: "\u79DF\u5BA2"
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
-            children: "\u8D39\u7528"
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
-            children: "\u5355\u636E"
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
-            children: "\u62DB\u79DF"
-          })]
+          children: this.tabs.map(function (item) {
+            return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
+              className: item.key == tabActive ? 'active' : '',
+              onClick: function onClick() {
+                return _this2.queryTab(item);
+              },
+              children: item.lable
+            }, item.key);
+          })
         }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
           className: "content-box",
           children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_tenant_jsx__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {})

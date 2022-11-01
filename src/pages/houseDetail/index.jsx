@@ -22,10 +22,22 @@ class HouseDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      tabActive: 1,
     }
+    this.tabs = [
+      { key: 1, lable: '租客' },
+      { key: 2, lable: '费用' },
+      { key: 3, lable: '单据' },
+      { key: 4, lable: '招租' },
+    ]
+  }
+  queryTab(item) {
+    this.setState({
+      tabActive: item.key
+    })
   }
   render() {
+    const { tabActive } = this.state
     return (
       <View className='container'>
         <View className='head'>
@@ -40,10 +52,15 @@ class HouseDetail extends React.Component {
           </View>
         </View>
         <View className='tab'>
-          <View className='active'>租客</View>
-          <View>费用</View>
-          <View>单据</View>
-          <View>招租</View>
+        {
+            this.tabs.map(item => (
+              <View 
+               key={item.key} 
+               className={item.key == tabActive ? 'active': ''}
+               onClick={() => this.queryTab(item)}
+              >{item.lable}</View>
+            ))
+          }
         </View>
         <View className='content-box'>
           <Tenant />

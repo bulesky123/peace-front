@@ -333,6 +333,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   })]
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/waitElectric/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_daichao_png__WEBPACK_IMPORTED_MODULE_29___default.a

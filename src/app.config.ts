@@ -1,6 +1,6 @@
 export default {
   pages: [
-    // "pages/tenant/index",
+    // "pages/waitElectric/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -13,6 +13,7 @@ export default {
     "pages/houseDetail/index",
     "pages/meterReading/index",
     "pages/tenant/index",
+    "pages/waitElectric/index",
   ],
   window: {
     backgroundTextStyle: "light",

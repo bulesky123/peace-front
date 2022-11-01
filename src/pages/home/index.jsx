@@ -141,7 +141,7 @@ class Home extends React.Component {
                 <Image className='bg' src={kf} />
                 <View className='tips'>空房汇总</View>
               </View>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/waitElectric/index')}>
                 <Image className='bg' src={daichao} />
                 <View className='tips'>待抄水电</View>
               </View>
