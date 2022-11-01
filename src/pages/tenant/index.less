@@ -1,0 +1,254 @@
+.container {
+  padding: 20px 15px;
+  .search-input {
+    height: 50px;
+    background: #F8F8F8;
+    border-radius: 4px;
+    font-size: 15px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #6E717D;
+    line-height: 21px;
+    padding-left: 16px;
+  }
+  .tab {
+    display: flex;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #6E717D;
+    line-height: 25px;
+    padding: 23px 0;
+    border-bottom: 1px solid #EFEFEF;
+    align-items: center;
+    justify-content: space-between;
+    >View {
+      // width: 33.33%;
+      text-align: center;
+    }
+    .active {
+      position: relative;
+      color: #2154F4;
+      &::after {
+        content: ' ';
+        display: inline-block;
+        position: absolute;
+        bottom: -26px;
+        left: 0px;
+        height: 4px;
+        width: 70px;
+        background: #2154F4;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+.tenant-list {
+  .tenant-search-box {
+    padding-top: 9px;
+    padding-bottom: 20px;
+    > Text {
+        display: inline-block;
+        width: calc((100% - 12px) / 4);
+        font-size: 16px;
+        text-align: center;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #2154F4;
+        line-height: 22px;
+        background: rgba(33, 84, 244, 0.1);
+        border-radius: 4px;
+        padding: 8px 0;
+        margin-right: 4px;
+        &:last-child {
+          margin-right: 0;
+        }
+    }
+  }
+  .tenant-list-box {
+    .tenant-box {
+      padding: 22px 15px;
+      background: linear-gradient(180deg, #E8EDFD 0%, #FFFFFF 100%);
+      border-radius: 4px;
+      border: 1px solid #CCD8FF;
+      margin-bottom: 16px;
+      .tenant-head {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .logo {
+          width: 76px;
+          height: 76px;
+          border-radius: 50%;
+          background: #DCDCDC;
+         }
+        .head-des {
+          flex: 1;
+          padding-left: 12px;
+          .name {
+            font-size: 18px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #0A1956;
+            line-height: 25px;
+          }
+          .icon-btn {
+            display: inline-block;
+            border-radius: 16px;
+            border: 1px solid #FFAF53;
+            padding: 1px 6px;
+            font-size: 15px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFAF53;
+            line-height: 21px;
+          }
+          .tenant-phone {
+            margin-top: 8px;
+            font-size: 18px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #6E717D;
+            line-height: 25px;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+      .tenant-content {
+        margin-top: 20px;
+        background: #F8F8F8;
+        padding: 20px 15px;
+        .tenant-tips {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .time-tips {
+            flex: 2;
+            >View {
+              padding-top: 18px;
+              font-size: 16px;
+              font-family: PingFangSC-Regular, PingFang SC;
+              font-weight: 400;
+              color: #0A1956;
+              line-height: 22px;
+            }
+          }
+          .tenant-state {
+            flex: 1;
+            padding-top: 20px;
+            text-align: right;
+          }
+          .yuqi {
+            color: #FB3E26;
+          }
+        }
+      }
+    }
+  }
+  .empty {
+    text-align: center;
+    padding-top: 50px;
+    .empty-img {
+      width: 200px;
+      height: 200px;
+    }
+    .empty-tips {
+      margin-top: 12px;
+      font-size: 17px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #A1A1A1;
+      line-height: 24px;
+    }
+  }
+}
+.floor-list-box {
+  .house-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 23px 16px;
+    background: #F4F4F4;
+    margin-bottom: 20px;
+    // opacity: 0.6;
+    .item-left {
+      .item-title {
+        font-size: 18px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #05203D;
+        line-height: 25px;
+      }
+      .item-tips {
+        margin-top: 10px;
+        font-size: 17px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #6E717D;
+        line-height: 24px;
+        .num {
+          color: #F77C10;
+        }
+      }
+    }
+    .item-right {
+      text-align: right;
+      .item-opts {
+        color: #FF6A6A;
+        padding-right: 10px;
+      }
+      .item-zz {
+        margin-top: 30px;
+        font-size: 16px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #F77C10;
+        line-height: 22px;
+      }
+    }
+  }
+}
+.history-tenant-box {
+  padding-top: 15px;
+  .tenant-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #F0F0F0 0%, #FFFFFF 100%);
+    border-radius: 4px;
+    border: 1px solid #EDEDED;
+    margin-bottom: 15px;
+    padding: 20px 15px;
+    .logo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #DCDCDC;
+     }
+    .head-des {
+      flex: 1;
+      padding-left: 12px;
+      .tenant-name {
+        display: flex;
+        justify-content: space-between;
+      }
+      .name {
+        font-size: 18px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #0A1956;
+        line-height: 25px;
+      }
+      .tenant-phone {
+        margin-top: 8px;
+        font-size: 18px;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #6E717D;
+        line-height: 25px;
+      }
+    }
+  }
+}
+

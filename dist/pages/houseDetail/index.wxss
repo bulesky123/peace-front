@@ -66,6 +66,7 @@
 }
 .container .tab .active {
   position: relative;
+  color: #2154F4;
 }
 .container .tab .active::after {
   content: ' ';

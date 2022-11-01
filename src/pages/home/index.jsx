@@ -18,6 +18,13 @@ import zd from '../../assets/images/shequ.png'
 import fb from './images/fb.png'
 import zz from './images/zz.png'
 import gb from './images/gb.png'
+import yuqi from './images/yuqi.png'
+import dq from './images/dq.png'
+import kf from './images/kf.png'
+import daichao from './images/daichao.png'
+import queren from './images/queren.png'
+import zukebaoxiu from './images/zukebaoxiu.png'
+import daoqi from './images/daoqi.png'
 
 @connect(
   state => ({
@@ -87,14 +94,14 @@ class Home extends React.Component {
                 <View className='item-dsc'>管理所有的房间</View>
               </View>
               </View>
-            <View className='item'>
+            <View className='item' onClick={() => this.jumpUrl('/pages/tenant/index')}>
               <Image className='item-bg' src={zkgl} />
               <View className='item-msg-box'>
                 <View className='item-title'>租客管理</View>
                 <View className='item-dsc'>管理所有的租客</View>
               </View>
             </View>
-            <View className='item'>
+            <View className='item' onClick={() => this.jumpUrl('/pages/meterReading/index')}>
               <Image className='item-bg' src={sdcb} />
               <View className='item-msg-box'>
                 <View className='item-title'>水电抄表</View>
@@ -123,31 +130,31 @@ class Home extends React.Component {
             <View className='title'>提醒事项</View>
             <View className='box'>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={daoqi} />
                 <View className='tips'>到期账单</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={yuqi} />
                 <View className='tips'>逾期账单</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={kf} />
                 <View className='tips'>空房汇总</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={daichao} />
                 <View className='tips'>待抄水电</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={dq} />
                 <View className='tips'>租期到期</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={queren} />
                 <View className='tips'>待确认收款</View>
               </View>
               <View className='item'>
-                <Image className='bg' src={zd} />
+                <Image className='bg' src={zukebaoxiu} />
                 <View className='tips'>租客报修</View>
               </View>
               

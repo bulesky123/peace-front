@@ -1,6 +1,6 @@
 export default {
   pages: [
-    // "pages/houseDetail/index",
+    // "pages/tenant/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -11,6 +11,8 @@ export default {
     "pages/addHouse/index",
     "pages/floorDetail/index",
     "pages/houseDetail/index",
+    "pages/meterReading/index",
+    "pages/tenant/index",
   ],
   window: {
     backgroundTextStyle: "light",

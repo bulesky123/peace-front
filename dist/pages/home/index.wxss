@@ -422,11 +422,11 @@
 }
 .container .content .reminders .box .item .bg {
   margin-top: 46rpx;
-  width: 52rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 .container .content .reminders .box .item .tips {
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   font-size: 30rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

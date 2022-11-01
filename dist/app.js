@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = {"pages":["pages/houseDetail/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index","pages/house/index","pages/addHouse/index","pages/floorDetail/index","pages/houseDetail/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
+var config = {"pages":["pages/tenant/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index","pages/house/index","pages/addHouse/index","pages/floorDetail/index","pages/houseDetail/index","pages/meterReading/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["window"].__taroAppConfig = config
 var inst = App(Object(_tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["createReactApp"])(_node_modules_babel_loader_lib_index_js_app_tsx__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], react__WEBPACK_IMPORTED_MODULE_4__, react_dom__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], config))
 
@@ -154,7 +154,6 @@ Object(_tarojs_taro__WEBPACK_IMPORTED_MODULE_2__["initPxTransform"])({
 
 var map = {
 	"./home/redux.ts": "./src/pages/home/redux.ts",
-	"./house/houseDetail/redux.ts": "./src/pages/house/houseDetail/redux.ts",
 	"./house/redux.ts": "./src/pages/house/redux.ts",
 	"./in/redux.ts": "./src/pages/in/redux.ts"
 };
@@ -219,18 +218,6 @@ var homeUpdate = function homeUpdate(params) {
     type: UPDATE
   };
 };
-
-/***/ }),
-
-/***/ "./src/pages/house/houseDetail/redux.ts":
-/*!**********************************************!*\
-  !*** ./src/pages/house/houseDetail/redux.ts ***!
-  \**********************************************/
-/*! no static exports found */
-/*! all exports used */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 

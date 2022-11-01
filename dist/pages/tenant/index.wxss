@@ -1,0 +1,244 @@
+.container {
+  padding: 40rpx 30rpx;
+}
+.container .search-input {
+  height: 100rpx;
+  background: #F8F8F8;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6E717D;
+  line-height: 42rpx;
+  padding-left: 32rpx;
+}
+.container .tab {
+  display: flex;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6E717D;
+  line-height: 50rpx;
+  padding: 46rpx 0;
+  border-bottom: 2rpx solid #EFEFEF;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .tab > View {
+  text-align: center;
+}
+.container .tab .active {
+  position: relative;
+  color: #2154F4;
+}
+.container .tab .active::after {
+  content: ' ';
+  display: inline-block;
+  position: absolute;
+  bottom: -52rpx;
+  left: 0;
+  height: 8rpx;
+  width: 140rpx;
+  background: #2154F4;
+  border-radius: 6rpx;
+}
+.tenant-list .tenant-search-box {
+  padding-top: 18rpx;
+  padding-bottom: 40rpx;
+}
+.tenant-list .tenant-search-box > Text {
+  display: inline-block;
+  width: calc((100% - 24rpx) / 4);
+  font-size: 32rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #2154F4;
+  line-height: 44rpx;
+  background: rgba(33, 84, 244, 0.1);
+  border-radius: 8rpx;
+  padding: 16rpx 0;
+  margin-right: 8rpx;
+}
+.tenant-list .tenant-search-box > Text:last-child {
+  margin-right: 0;
+}
+.tenant-list .tenant-list-box .tenant-box {
+  padding: 44rpx 30rpx;
+  background: linear-gradient(180deg, #E8EDFD 0%, #FFFFFF 100%);
+  border-radius: 8rpx;
+  border: 2rpx solid #CCD8FF;
+  margin-bottom: 32rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head .logo {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 50%;
+  background: #DCDCDC;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head .head-des {
+  flex: 1;
+  padding-left: 24rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head .head-des .name {
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #0A1956;
+  line-height: 50rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head .head-des .icon-btn {
+  display: inline-block;
+  border-radius: 32rpx;
+  border: 2rpx solid #FFAF53;
+  padding: 2rpx 12rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #FFAF53;
+  line-height: 42rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-head .head-des .tenant-phone {
+  margin-top: 16rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6E717D;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content {
+  margin-top: 40rpx;
+  background: #F8F8F8;
+  padding: 40rpx 30rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content .tenant-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content .tenant-tips .time-tips {
+  flex: 2;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content .tenant-tips .time-tips > View {
+  padding-top: 36rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #0A1956;
+  line-height: 44rpx;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content .tenant-tips .tenant-state {
+  flex: 1;
+  padding-top: 40rpx;
+  text-align: right;
+}
+.tenant-list .tenant-list-box .tenant-box .tenant-content .tenant-tips .yuqi {
+  color: #FB3E26;
+}
+.tenant-list .empty {
+  text-align: center;
+  padding-top: 100rpx;
+}
+.tenant-list .empty .empty-img {
+  width: 400rpx;
+  height: 400rpx;
+}
+.tenant-list .empty .empty-tips {
+  margin-top: 24rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #A1A1A1;
+  line-height: 48rpx;
+}
+.floor-list-box .house-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 46rpx 32rpx;
+  background: #F4F4F4;
+  margin-bottom: 40rpx;
+}
+.floor-list-box .house-item .item-left .item-title {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #05203D;
+  line-height: 50rpx;
+}
+.floor-list-box .house-item .item-left .item-tips {
+  margin-top: 20rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6E717D;
+  line-height: 48rpx;
+}
+.floor-list-box .house-item .item-left .item-tips .num {
+  color: #F77C10;
+}
+.floor-list-box .house-item .item-right {
+  text-align: right;
+}
+.floor-list-box .house-item .item-right .item-opts {
+  color: #FF6A6A;
+  padding-right: 20rpx;
+}
+.floor-list-box .house-item .item-right .item-zz {
+  margin-top: 60rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #F77C10;
+  line-height: 44rpx;
+}
+.history-tenant-box {
+  padding-top: 30rpx;
+}
+.history-tenant-box .tenant-head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #F0F0F0 0%, #FFFFFF 100%);
+  border-radius: 8rpx;
+  border: 2rpx solid #EDEDED;
+  margin-bottom: 30rpx;
+  padding: 40rpx 30rpx;
+}
+.history-tenant-box .tenant-head .logo {
+  width: 152rpx;
+  height: 152rpx;
+  border-radius: 50%;
+  background: #DCDCDC;
+}
+.history-tenant-box .tenant-head .head-des {
+  flex: 1;
+  padding-left: 24rpx;
+}
+.history-tenant-box .tenant-head .head-des .tenant-name {
+  display: flex;
+  justify-content: space-between;
+}
+.history-tenant-box .tenant-head .head-des .name {
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #0A1956;
+  line-height: 50rpx;
+}
+.history-tenant-box .tenant-head .head-des .tenant-phone {
+  margin-top: 16rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6E717D;
+  line-height: 50rpx;
+}
+
