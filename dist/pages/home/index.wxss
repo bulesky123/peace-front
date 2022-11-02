@@ -416,6 +416,7 @@
   background: #FFFFFF;
   box-shadow: 0 4rpx 14rpx 0 rgba(0, 0, 0, 0.05);
   border-radius: 22rpx;
+  margin-bottom: 32rpx;
 }
 .container .content .reminders .box .item:nth-child(4n) {
   margin-right: 0;

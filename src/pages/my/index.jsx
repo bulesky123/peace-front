@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import React from 'react'
@@ -22,6 +23,11 @@ class My extends React.Component {
     // 获取用户的信息
     this.props.getUserInfo()
   }
+  jumpUrl(url) {
+    Taro.navigateTo({
+      url
+    })
+  }
   render() {
     return (
       <View className='my_container'>
@@ -32,19 +38,19 @@ class My extends React.Component {
           </View>
         </View>
         <View className='content'>
-          <View className='list'>
+          <View className='list' onClick={() => this.jumpUrl('/pages/moduleA/pages/commonManager/index')}>
             <View className='item-msg'>添加共同管理人</View>
             <AtIcon value='chevron-right' color='#ccc'></AtIcon>
           </View>
-          <View  className='list'>
+          <View  className='list' onClick={() => this.jumpUrl('/pages/moduleA/pages/tanantRules/index')}>
             <View className='item-msg'>租户须知</View>
             <AtIcon value='chevron-right' color='#ccc'></AtIcon>
           </View>
-          <View  className='list'>
+          <View  className='list' onClick={() => this.jumpUrl('/pages/moduleA/pages/share/index')}>
             <View className='item-msg'>推荐给好友</View>
             <AtIcon value='chevron-right' color='#ccc'></AtIcon>
           </View>
-          <View  className='list'>
+          <View  className='list' onClick={() => this.jumpUrl('/pages/moduleA/pages/about/index')}>
             <View className='item-msg'>关于我们</View>
             <AtIcon value='chevron-right' color='#ccc'></AtIcon>
           </View>

@@ -213,7 +213,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
               children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                 className: "item",
                 onClick: function onClick() {
-                  return _this2.jumpUrl('/pages/house/index');
+                  return _this2.jumpUrl('/pages/moduleA/pages/house/index');
                 },
                 children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                   className: "item-bg",
@@ -231,7 +231,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
               }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                 className: "item",
                 onClick: function onClick() {
-                  return _this2.jumpUrl('/pages/tenant/index');
+                  return _this2.jumpUrl('/pages/moduleA/pages/tenant/index');
                 },
                 children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                   className: "item-bg",
@@ -249,7 +249,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
               }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                 className: "item",
                 onClick: function onClick() {
-                  return _this2.jumpUrl('/pages/meterReading/index');
+                  return _this2.jumpUrl('/pages/moduleA/pages/meterReading/index');
                 },
                 children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                   className: "item-bg",
@@ -306,6 +306,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                 className: "box",
                 children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/moduleA/pages/bill/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_daoqi_png__WEBPACK_IMPORTED_MODULE_32___default.a
@@ -315,6 +318,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   })]
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/moduleA/pages/bill/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_yuqi_png__WEBPACK_IMPORTED_MODULE_26___default.a
@@ -324,6 +330,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   })]
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/moduleA/pages/vacantRoom/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_kf_png__WEBPACK_IMPORTED_MODULE_28___default.a
@@ -334,7 +343,7 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
                   onClick: function onClick() {
-                    return _this2.jumpUrl('/pages/waitElectric/index');
+                    return _this2.jumpUrl('/pages/moduleA/pages/waitElectric/index');
                   },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
@@ -345,6 +354,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   })]
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/moduleA/pages/houseExpires/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_dq_png__WEBPACK_IMPORTED_MODULE_27___default.a
@@ -354,6 +366,9 @@ var Home = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_10__[/* connect *
                   })]
                 }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* View */ "q"], {
                   className: "item",
+                  onClick: function onClick() {
+                    return _this2.jumpUrl('/pages/moduleA/pages/confirmReceipt/index');
+                  },
                   children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_33__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_8__[/* Image */ "c"], {
                     className: "bg",
                     src: _images_queren_png__WEBPACK_IMPORTED_MODULE_30___default.a

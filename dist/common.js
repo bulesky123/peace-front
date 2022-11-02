@@ -138,93 +138,6 @@ module.exports = __webpack_require__.p + "pages/home/images/fb.png";
 
 /***/ }),
 
-/***/ "./src/pages/house/redux.ts":
-/*!**********************************!*\
-  !*** ./src/pages/house/redux.ts ***!
-  \**********************************/
-/*! exports provided: default, houseUpdate, getHouseList */
-/*! all exports used */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "houseUpdate", function() { return houseUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHouseList", function() { return getHouseList; });
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/house */ "./src/api/house.ts");
-
-
-
-
-
-// Actions
-var UPDATE = 'HOUSE_UPDATE';
-
-// Reducer
-var initState = {
-  list: []
-};
-/* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
-  var action = arguments.length > 1 ? arguments[1] : undefined;
-  switch (action.type) {
-    case UPDATE:
-      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
-    default:
-      return state;
-  }
-});
-
-// Action Creators
-var houseUpdate = function houseUpdate(params) {
-  return {
-    payload: params,
-    type: UPDATE
-  };
-};
-
-// "emptyRoomCount": 0,
-//  "houseId": 0,
-//  "name": "string",
-//  "roomCount": 0
-var getHouseList = function getHouseList() {
-  return /*#__PURE__*/function () {
-    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
-      var _yield$getHouse, data;
-      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* getHouse */ "a"])({});
-            case 2:
-              _yield$getHouse = _context.sent;
-              data = _yield$getHouse.data;
-              dispatch(houseUpdate({
-                list: data.data.length > 0 ? data.data : [{
-                  emptyRoomCount: 6,
-                  houseId: 6,
-                  name: "红木林南1号楼",
-                  roomCount: 10
-                }]
-              }));
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }();
-};
-
-/***/ }),
-
 /***/ "./src/pages/in/redux.ts":
 /*!*******************************!*\
   !*** ./src/pages/in/redux.ts ***!
@@ -466,6 +379,93 @@ var addPhone = function addPhone(params) {
     }));
     return function (_x5) {
       return _ref6.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+
+/***/ "./src/pages/moduleA/pages/house/redux.ts":
+/*!************************************************!*\
+  !*** ./src/pages/moduleA/pages/house/redux.ts ***!
+  \************************************************/
+/*! exports provided: default, houseUpdate, getHouseList */
+/*! all exports used */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "houseUpdate", function() { return houseUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHouseList", function() { return getHouseList; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../api/house */ "./src/api/house.ts");
+
+
+
+
+
+// Actions
+var UPDATE = 'HOUSE_UPDATE';
+
+// Reducer
+var initState = {
+  list: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  switch (action.type) {
+    case UPDATE:
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+    default:
+      return state;
+  }
+});
+
+// Action Creators
+var houseUpdate = function houseUpdate(params) {
+  return {
+    payload: params,
+    type: UPDATE
+  };
+};
+
+// "emptyRoomCount": 0,
+//  "houseId": 0,
+//  "name": "string",
+//  "roomCount": 0
+var getHouseList = function getHouseList() {
+  return /*#__PURE__*/function () {
+    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+      var _yield$getHouse, data;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* getHouse */ "a"])({});
+            case 2:
+              _yield$getHouse = _context.sent;
+              data = _yield$getHouse.data;
+              dispatch(houseUpdate({
+                list: data.data.length > 0 ? data.data : [{
+                  emptyRoomCount: 6,
+                  houseId: 6,
+                  name: "红木林南1号楼",
+                  roomCount: 10
+                }]
+              }));
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
     };
   }();
 };

@@ -13,21 +13,23 @@
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
 /* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "./node_modules/@babel/runtime/helpers/esm/createSuper.js");
-/* harmony import */ var _tarojs_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tarojs/components */ "./node_modules/@tarojs/plugin-platform-weapp/dist/components-react.js");
-/* harmony import */ var taro_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! taro-ui */ "./node_modules/taro-ui/dist/index.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/cjs/react.production.min.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _in_redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../in/redux */ "./src/pages/in/redux.ts");
-/* harmony import */ var _images_bg_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./images/bg.png */ "./src/pages/my/images/bg.png");
-/* harmony import */ var _images_bg_png__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_images_bg_png__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./index.less */ "./src/pages/my/index.less");
-/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_index_less__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _home_images_fb_png__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../home/images/fb.png */ "./src/pages/home/images/fb.png");
-/* harmony import */ var _home_images_fb_png__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_home_images_fb_png__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/cjs/react-jsx-runtime.production.min.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _tarojs_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tarojs/components */ "./node_modules/@tarojs/plugin-platform-weapp/dist/components-react.js");
+/* harmony import */ var taro_ui__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! taro-ui */ "./node_modules/taro-ui/dist/index.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/cjs/react.production.min.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _in_redux__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../in/redux */ "./src/pages/in/redux.ts");
+/* harmony import */ var _images_bg_png__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./images/bg.png */ "./src/pages/my/images/bg.png");
+/* harmony import */ var _images_bg_png__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_images_bg_png__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./index.less */ "./src/pages/my/index.less");
+/* harmony import */ var _index_less__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_index_less__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _home_images_fb_png__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../home/images/fb.png */ "./src/pages/home/images/fb.png");
+/* harmony import */ var _home_images_fb_png__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_home_images_fb_png__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/cjs/react-jsx-runtime.production.min.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__);
 
 
 
@@ -44,14 +46,15 @@ var _dec, _class;
 
 
 
-var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "b"])(function (state) {
+
+var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_8__[/* connect */ "b"])(function (state) {
   return {
     headImageUrl: state.in.headImageUrl,
     nickName: state.in.nickName
   };
 }, function (dispatch) {
-  return Object(redux__WEBPACK_IMPORTED_MODULE_8__[/* bindActionCreators */ "b"])({
-    getUserInfo: _in_redux__WEBPACK_IMPORTED_MODULE_9__["getUserInfo"]
+  return Object(redux__WEBPACK_IMPORTED_MODULE_9__[/* bindActionCreators */ "b"])({
+    getUserInfo: _in_redux__WEBPACK_IMPORTED_MODULE_10__["getUserInfo"]
   }, dispatch);
 }), _dec(_class = /*#__PURE__*/function (_React$Component) {
   Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(My, _React$Component);
@@ -67,61 +70,82 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
       this.props.getUserInfo();
     }
   }, {
+    key: "jumpUrl",
+    value: function jumpUrl(url) {
+      _tarojs_taro__WEBPACK_IMPORTED_MODULE_4___default.a.navigateTo({
+        url: url
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this$props, _this$props2;
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+      var _this$props,
+        _this$props2,
+        _this = this;
+      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
         className: "my_container",
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
           className: "heade-container",
-          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+          children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
             className: "head",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "head-image",
-              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* Image */ "c"], {
+              children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* Image */ "c"], {
                 className: "logo",
-                src: ((_this$props = this.props) === null || _this$props === void 0 ? void 0 : _this$props.headImageUrl) || _home_images_fb_png__WEBPACK_IMPORTED_MODULE_12___default.a
+                src: ((_this$props = this.props) === null || _this$props === void 0 ? void 0 : _this$props.headImageUrl) || _home_images_fb_png__WEBPACK_IMPORTED_MODULE_13___default.a
               })
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "name",
               children: ((_this$props2 = this.props) === null || _this$props2 === void 0 ? void 0 : _this$props2.nickName) || '***'
             })]
           })
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
           className: "content",
-          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+          children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
             className: "list",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            onClick: function onClick() {
+              return _this.jumpUrl('/pages/moduleA/pages/commonManager/index');
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "item-msg",
               children: "\u6DFB\u52A0\u5171\u540C\u7BA1\u7406\u4EBA"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_6__[/* AtIcon */ "c"], {
               value: "chevron-right",
               color: "#ccc"
             })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
             className: "list",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            onClick: function onClick() {
+              return _this.jumpUrl('/pages/moduleA/pages/tanantRules/index');
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "item-msg",
               children: "\u79DF\u6237\u987B\u77E5"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_6__[/* AtIcon */ "c"], {
               value: "chevron-right",
               color: "#ccc"
             })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
             className: "list",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            onClick: function onClick() {
+              return _this.jumpUrl('/pages/moduleA/pages/share/index');
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "item-msg",
               children: "\u63A8\u8350\u7ED9\u597D\u53CB"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_6__[/* AtIcon */ "c"], {
               value: "chevron-right",
               color: "#ccc"
             })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
             className: "list",
-            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_4__[/* View */ "q"], {
+            onClick: function onClick() {
+              return _this.jumpUrl('/pages/moduleA/pages/about/index');
+            },
+            children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_5__[/* View */ "q"], {
               className: "item-msg",
               children: "\u5173\u4E8E\u6211\u4EEC"
-            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_5__[/* AtIcon */ "c"], {
+            }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_6__[/* AtIcon */ "c"], {
               value: "chevron-right",
               color: "#ccc"
             })]
@@ -131,7 +155,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__[/* connect */ "
     }
   }]);
   return My;
-}(react__WEBPACK_IMPORTED_MODULE_6___default.a.Component)) || _class);
+}(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component)) || _class);
 /* harmony default export */ __webpack_exports__["a"] = (My);
 
 /***/ }),

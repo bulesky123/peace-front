@@ -7,13 +7,6 @@ export default {
     "pages/community/index",
     "pages/shop/index",
     "pages/my/index",
-    "pages/house/index",
-    "pages/addHouse/index",
-    "pages/floorDetail/index",
-    "pages/houseDetail/index",
-    "pages/meterReading/index",
-    "pages/tenant/index",
-    "pages/waitElectric/index",
   ],
   window: {
     backgroundTextStyle: "light",
@@ -58,12 +51,26 @@ export default {
       }
     ],
   },
-  // "subpackages": [
-  //   {
-  //     "root": "pages/packageA",
-  //     "pages": [
-  //       "pages/house/index",
-  //     ]
-  //   }
-  // ]
+  "subpackages": [
+    {
+      "root": "pages/moduleA",
+      "pages": [
+        "pages/house/index",
+        "pages/addHouse/index",
+        "pages/floorDetail/index",
+        "pages/houseDetail/index",
+        "pages/meterReading/index",
+        "pages/tenant/index",
+        "pages/waitElectric/index",
+        "pages/about/index",
+        "pages/share/index",
+        "pages/bill/index",
+        "pages/commonManager/index",
+        "pages/confirmReceipt/index",
+        "pages/houseExpires/index",
+        "pages/tanantRules/index",
+        "pages/vacantRoom/index",
+      ]
+    }
+  ]
 };

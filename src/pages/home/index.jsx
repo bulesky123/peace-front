@@ -87,21 +87,21 @@ class Home extends React.Component {
         </View>
         <View className='content'>
           <View className='content-list'>
-            <View className='item' onClick={() => this.jumpUrl('/pages/house/index')}>
+            <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/house/index')}>
               <Image className='item-bg' src={fwgl} />
               <View className='item-msg-box'>
                 <View className='item-title'>房屋管理</View>
                 <View className='item-dsc'>管理所有的房间</View>
               </View>
               </View>
-            <View className='item' onClick={() => this.jumpUrl('/pages/tenant/index')}>
+            <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/tenant/index')}>
               <Image className='item-bg' src={zkgl} />
               <View className='item-msg-box'>
                 <View className='item-title'>租客管理</View>
                 <View className='item-dsc'>管理所有的租客</View>
               </View>
             </View>
-            <View className='item' onClick={() => this.jumpUrl('/pages/meterReading/index')}>
+            <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/meterReading/index')}>
               <Image className='item-bg' src={sdcb} />
               <View className='item-msg-box'>
                 <View className='item-title'>水电抄表</View>
@@ -129,27 +129,27 @@ class Home extends React.Component {
           <View className='reminders'>
             <View className='title'>提醒事项</View>
             <View className='box'>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/bill/index')}>
                 <Image className='bg' src={daoqi} />
                 <View className='tips'>到期账单</View>
               </View>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/bill/index')}>
                 <Image className='bg' src={yuqi} />
                 <View className='tips'>逾期账单</View>
               </View>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/vacantRoom/index')}>
                 <Image className='bg' src={kf} />
                 <View className='tips'>空房汇总</View>
               </View>
-              <View className='item' onClick={() => this.jumpUrl('/pages/waitElectric/index')}>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/waitElectric/index')}>
                 <Image className='bg' src={daichao} />
                 <View className='tips'>待抄水电</View>
               </View>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/houseExpires/index')}>
                 <Image className='bg' src={dq} />
                 <View className='tips'>租期到期</View>
               </View>
-              <View className='item'>
+              <View className='item' onClick={() => this.jumpUrl('/pages/moduleA/pages/confirmReceipt/index')}>
                 <Image className='bg' src={queren} />
                 <View className='tips'>待确认收款</View>
               </View>
