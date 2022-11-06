@@ -11,11 +11,11 @@ export default (props) => {
           <View className="item-title">{props.name || '红木林南1号楼'}</View>
           <View className="item-tips">
             共{props.roomCount || 10}间 | 闲置
-            <Text className="num">{props.emptyRoomCount || 2}</Text>间  | {props.emptyRoomCount || 30}间未抄表</View>
+            <Text className="num">{props.emptyRoomCount || 2}</Text>间</View>
         </View>
-        <View className="item-right">
+        {/* <View className="item-right">
           <View className="item-zz"><AtIcon value='chevron-right' color='#ccc'></AtIcon></View>
-        </View>
+        </View> */}
       </View>
     </View>
   )

@@ -1,6 +1,6 @@
 export default {
   pages: [
-    // "pages/waitElectric/index",
+    // "pages/moduleA/pages/tanantRules/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",

@@ -375,7 +375,7 @@
 .container .content .notice-box .notice-img {
   width: 24rpx;
   height: 30rpx;
-  vertical-align: text-bottom;
+  vertical-align: -2rpx;
   margin-right: 8rpx;
 }
 .container .content .notice-box .notice-link {

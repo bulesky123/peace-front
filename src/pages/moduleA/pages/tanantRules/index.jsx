@@ -25,7 +25,17 @@ class Rules extends React.Component {
   render() {
     return (
       <View className='rules'>
-        租客须知
+        <View className='rules-content'>
+          这里是默认的租客须知，同步到租客小程序端这里是默认的租客须知，同步到租客小程序端这里是默认的租客须知，同步到租客小程序端这里是默认的租客须知，同步到租客小程序端这里是默认的租客须知，同步到租客小程序端这里是默认的租客须知，同步到租客小程序端
+        </View>
+        <View className='rules-foot'>
+          <AtButton
+            className='btn'
+            onClick={this.onSubmit}
+            type="primary"
+            size='small'
+          >修改</AtButton>
+        </View>
       </View>
     )
   }

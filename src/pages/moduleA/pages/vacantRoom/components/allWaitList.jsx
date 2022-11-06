@@ -9,15 +9,17 @@ export default (props) => {
       <View className="list-item">
         <View className="item-title">红木林1号楼101</View>
         <View className="item-opts">
-          <Text>去抄水电</Text>
-          <Text>分享给租客</Text>
+          <Text>添加租客</Text>
+          <Text>去招租</Text>
+          <Text>分享空房</Text>
         </View>
       </View>
       <View className="list-item">
         <View className="item-title">红木林1号楼101</View>
         <View className="item-opts">
-          <Text>去抄水电</Text>
-          <Text>分享给租客</Text>
+          <Text>添加租客</Text>
+          <Text>去招租</Text>
+          <Text>分享空房</Text>
         </View>
       </View>
     </View>

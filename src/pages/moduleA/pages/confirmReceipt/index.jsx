@@ -4,6 +4,8 @@ import { AtButton } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Item from './components/item'
+import Empty from './components/empty'
 
 import './index.less'
 
@@ -20,12 +22,18 @@ class ConfirmReceipt extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      list: [1, 2]
     }
   }
   render() {
+    const { list } = this.state
     return (
       <View className='confirmReceipt'>
-        待确认收款
+        {
+          list.length > 0 ? list.map(item => (
+            <Item key={item} />
+          )) : <Empty />
+        }
       </View>
     )
   }

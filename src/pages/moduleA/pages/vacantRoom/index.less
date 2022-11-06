@@ -1,1 +1,126 @@
-.vacantRoom {}
+.vacantRoom {
+  padding: 20px;
+
+  .tab {
+    >View {
+      display: inline-block;
+      width: calc((100% - 6px) / 2);
+      text-align: center;
+      background: rgba(33, 84, 244, 0.1);
+      font-size: 16px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #2154F4;
+      line-height: 22px;
+      border-radius: 4px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      &:first-child {
+        margin-right: 6px;
+      }
+    }
+
+    .active {
+      background: #2154F4;
+      color: #fff;
+    }
+  }
+
+  .floor-list-box {
+    margin-top: 20px;
+
+    .house-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 23px 16px;
+      background: #F4F4F4;
+      margin-bottom: 20px;
+
+      // opacity: 0.6;
+      .item-left {
+        .item-title {
+          font-size: 18px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #05203D;
+          line-height: 25px;
+        }
+
+        .item-tips {
+          margin-top: 10px;
+          font-size: 17px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #6E717D;
+          line-height: 24px;
+
+          .num {
+            color: #F77C10;
+          }
+        }
+      }
+
+      .item-right {
+        text-align: right;
+
+        .item-opts {
+          color: #FF6A6A;
+          padding-right: 10px;
+        }
+
+        .item-zz {
+          margin-top: 30px;
+          font-size: 16px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #F77C10;
+          line-height: 22px;
+        }
+      }
+    }
+  }
+
+  .allWaitList {
+    margin-top: 20px;
+
+    .list-item {
+      background: rgba(244, 244, 244, 0.6);
+      margin-bottom: 20px;
+      padding: 20px 10px;
+
+      .item-title {
+        font-size: 20px;
+        font-family: PingFangSC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #05203D;
+        line-height: 28px;
+      }
+
+      .item-opts {
+        margin-top: 15px;
+
+        >Text {
+          display: inline-block;
+          border-radius: 4px;
+          border: 1px solid #2154F4;
+          padding: 4px 0px;
+          font-size: 15px;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #2154F4;
+          line-height: 21px;
+          width: calc((100% - 26px) / 3);
+          margin-right: 10px;
+          text-align: center;
+
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+  }
+}
