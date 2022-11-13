@@ -1,21 +1,21 @@
+"use strict";
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["common"],{
 
 /***/ "./src/api/home.ts":
 /*!*************************!*\
   !*** ./src/api/home.ts ***!
   \*************************/
-/*! exports provided: userLogin */
-/*! exports used: userLogin */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userLogin; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "userLogin": function() { return /* binding */ userLogin; }
+/* harmony export */ });
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
 
 var userLogin = function userLogin(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/userLogin"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/userLogin"), params);
 };
 
 /***/ }),
@@ -24,26 +24,24 @@ var userLogin = function userLogin(params) {
 /*!**************************!*\
   !*** ./src/api/house.ts ***!
   \**************************/
-/*! exports provided: getHouse, addHouse, queryHouseDetail */
-/*! exports used: getHouse */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getHouse; });
-/* unused harmony export addHouse */
-/* unused harmony export queryHouseDetail */
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getHouse": function() { return /* binding */ getHouse; }
+/* harmony export */ });
+/* unused harmony exports addHouse, queryHouseDetail */
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
 
 var getHouse = function getHouse(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/list"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/list"), params);
 };
 var addHouse = function addHouse(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/add"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/add"), params);
 };
 var queryHouseDetail = function queryHouseDetail(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/detail"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/detail"), params);
 };
 
 /***/ }),
@@ -52,18 +50,17 @@ var queryHouseDetail = function queryHouseDetail(params) {
 /*!***********************!*\
   !*** ./src/api/my.ts ***!
   \***********************/
-/*! exports provided: userInfo */
-/*! exports used: userInfo */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userInfo; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "userInfo": function() { return /* binding */ userInfo; }
+/* harmony export */ });
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
 
 var userInfo = function userInfo(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/user/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/info"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/user/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/info"), params);
 };
 
 /***/ }),
@@ -72,22 +69,21 @@ var userInfo = function userInfo(params) {
 /*!***************************!*\
   !*** ./src/api/weixin.ts ***!
   \***************************/
-/*! exports provided: addNickName, addMobile */
-/*! exports used: addMobile, addNickName */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return addNickName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addMobile; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addNickName": function() { return /* binding */ addNickName; },
+/* harmony export */   "addMobile": function() { return /* binding */ addMobile; }
+/* harmony export */ });
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
 
 var addNickName = function addNickName(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/addNickName"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/addNickName"), params);
 };
 var addMobile = function addMobile(params) {
-  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/bindMobile"), params);
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__["default"].post("/wechat/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_VERSION, "/bindMobile"), params);
 };
 
 /***/ }),
@@ -96,14 +92,13 @@ var addMobile = function addMobile(params) {
 /*!*********************************!*\
   !*** ./src/constants/status.js ***!
   \*********************************/
-/*! exports provided: HTTP_STATUS, REFRESH_STATUS, HTTP_VERSION */
-/*! exports used: HTTP_STATUS, HTTP_VERSION */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HTTP_STATUS; });
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HTTP_STATUS": function() { return /* binding */ HTTP_STATUS; },
+/* harmony export */   "HTTP_VERSION": function() { return /* binding */ HTTP_VERSION; }
+/* harmony export */ });
 /* unused harmony export REFRESH_STATUS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HTTP_VERSION; });
 var HTTP_STATUS = {
   SUCCESS: 200,
   CREATED: 201,
@@ -126,41 +121,28 @@ var HTTP_VERSION = 'v1';
 
 /***/ }),
 
-/***/ "./src/pages/home/images/fb.png":
-/*!**************************************!*\
-  !*** ./src/pages/home/images/fb.png ***!
-  \**************************************/
-/*! no static exports found */
-/*! exports used: default */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "pages/home/images/fb.png";
-
-/***/ }),
-
 /***/ "./src/pages/in/redux.ts":
 /*!*******************************!*\
   !*** ./src/pages/in/redux.ts ***!
   \*******************************/
-/*! exports provided: default, globalUpdate, codeForOpenId, getUserInfo, addName, addPhone */
-/*! all exports used */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "codeForOpenId", function() { return codeForOpenId; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserInfo", function() { return getUserInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addName", function() { return addName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addPhone", function() { return addPhone; });
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
-/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _api_home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../api/home */ "./src/api/home.ts");
-/* harmony import */ var _api_my__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../api/my */ "./src/api/my.ts");
-/* harmony import */ var _api_weixin__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../api/weixin */ "./src/api/weixin.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "globalUpdate": function() { return /* binding */ globalUpdate; },
+/* harmony export */   "codeForOpenId": function() { return /* binding */ codeForOpenId; },
+/* harmony export */   "getUserInfo": function() { return /* binding */ getUserInfo; },
+/* harmony export */   "addName": function() { return /* binding */ addName; },
+/* harmony export */   "addPhone": function() { return /* binding */ addPhone; }
+/* harmony export */ });
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/taro */ "webpack/container/remote/@tarojs/taro");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/home */ "./src/api/home.ts");
+/* harmony import */ var _api_my__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/my */ "./src/api/my.ts");
+/* harmony import */ var _api_weixin__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../api/weixin */ "./src/api/weixin.ts");
 
 
 
@@ -188,7 +170,7 @@ var initState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   switch (action.type) {
     case UPDATE:
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])((0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])({}, state), action.payload);
     default:
       return state;
   }
@@ -203,16 +185,16 @@ var globalUpdate = function globalUpdate(params) {
 };
 var codeForOpenId = function codeForOpenId() {
   return /*#__PURE__*/function () {
-    var _ref = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee2(dispatch) {
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee2$(_context2) {
+    var _ref = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().mark(function _callee2(dispatch) {
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _tarojs_taro__WEBPACK_IMPORTED_MODULE_3___default.a.login({
+              _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().login({
                 success: function () {
-                  var _success = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(res) {
+                  var _success = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().mark(function _callee(res) {
                     var _ref2, data, json;
-                    return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+                    return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().wrap(function _callee$(_context) {
                       while (1) {
                         switch (_context.prev = _context.next) {
                           case 0:
@@ -222,7 +204,7 @@ var codeForOpenId = function codeForOpenId() {
                             }
                             _context.prev = 1;
                             _context.next = 4;
-                            return Object(_api_home__WEBPACK_IMPORTED_MODULE_4__[/* userLogin */ "a"])({
+                            return (0,_api_home__WEBPACK_IMPORTED_MODULE_1__.userLogin)({
                               jsCode: res.code
                             });
                           case 4:
@@ -241,8 +223,8 @@ var codeForOpenId = function codeForOpenId() {
                               nicknameFlag: json.nicknameFlag,
                               mobileFlag: json.mobileFlag
                             }));
-                            _tarojs_taro__WEBPACK_IMPORTED_MODULE_3___default.a.setStorageSync('Peace-X-Token', json.peaceToken);
-                            _tarojs_taro__WEBPACK_IMPORTED_MODULE_3___default.a.switchTab({
+                            _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().setStorageSync('Peace-X-Token', json.peaceToken);
+                            _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().switchTab({
                               url: '/pages/home/index'
                             });
                             _context.next = 18;
@@ -283,14 +265,14 @@ var codeForOpenId = function codeForOpenId() {
 };
 var getUserInfo = function getUserInfo() {
   return /*#__PURE__*/function () {
-    var _ref3 = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee3(dispatch) {
+    var _ref3 = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().mark(function _callee3(dispatch) {
       var _ref4, data, _data$data, headImageUrl, nickName;
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee3$(_context3) {
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return Object(_api_my__WEBPACK_IMPORTED_MODULE_5__[/* userInfo */ "a"])({});
+              return (0,_api_my__WEBPACK_IMPORTED_MODULE_2__.userInfo)({});
             case 2:
               _context3.t0 = _context3.sent;
               if (_context3.t0) {
@@ -320,13 +302,13 @@ var getUserInfo = function getUserInfo() {
 };
 var addName = function addName(params) {
   return /*#__PURE__*/function () {
-    var _ref5 = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee4(dispatch) {
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee4$(_context4) {
+    var _ref5 = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().mark(function _callee4(dispatch) {
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return Object(_api_weixin__WEBPACK_IMPORTED_MODULE_6__[/* addNickName */ "b"])(params);
+              return (0,_api_weixin__WEBPACK_IMPORTED_MODULE_3__.addNickName)(params);
             case 2:
               _context4.t0 = _context4.sent;
               if (_context4.t0) {
@@ -335,7 +317,7 @@ var addName = function addName(params) {
               }
               ({});
             case 5:
-              dispatch(globalUpdate(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, params), {}, {
+              dispatch(globalUpdate((0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])((0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_4__["default"])({}, params), {}, {
                 nicknameFlag: true
               })));
             case 6:
@@ -352,13 +334,13 @@ var addName = function addName(params) {
 };
 var addPhone = function addPhone(params) {
   return /*#__PURE__*/function () {
-    var _ref6 = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee5(dispatch) {
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee5$(_context5) {
+    var _ref6 = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_5__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().mark(function _callee5(dispatch) {
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_6__["default"])().wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return Object(_api_weixin__WEBPACK_IMPORTED_MODULE_6__[/* addMobile */ "a"])(params);
+              return (0,_api_weixin__WEBPACK_IMPORTED_MODULE_3__.addMobile)(params);
             case 2:
               _context5.t0 = _context5.sent;
               if (_context5.t0) {
@@ -385,34 +367,21 @@ var addPhone = function addPhone(params) {
 
 /***/ }),
 
-/***/ "./src/pages/moduleA/pages/floorDetail/images/more.png":
-/*!*************************************************************!*\
-  !*** ./src/pages/moduleA/pages/floorDetail/images/more.png ***!
-  \*************************************************************/
-/*! no static exports found */
-/*! exports used: default */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAICAYAAACYhf2vAAAAAXNSR0IArs4c6QAAAQNJREFUOE/F078rRXEYBvDPlSg/yuLXcEfFIIuUhVHJYjYy3D9A4o9QIrPFYlH8B1JGikGJzSJCzC69dW59O33PNd5Tp07P+7zP9/m+73NqOvzUkvPjewqjeMcdmm38DRX8bjzg5Z+7TGIcH4X2T/BTA6uYSUTucVIhOowN9Bb1EDvCcwV/BbNJ7RHHqYE+bGWad/GdwZcwX8JvcJbh9mAbXaXafky6NYEBbGaa9/CZwZcxV8JvcZrhxpR2MvghXtMVNDCWECMHB/jNNE9grYSf47piBeuoJ7UvxOWaqYFBLGAEQbjAW5tgTSPeCOETrirMhkQ/FouAx0ovW6FNDXTkh/wDOlMsCW3yCSgAAAAASUVORK5CYII="
-
-/***/ }),
-
 /***/ "./src/pages/moduleA/pages/house/redux.ts":
 /*!************************************************!*\
   !*** ./src/pages/moduleA/pages/house/redux.ts ***!
   \************************************************/
-/*! exports provided: default, houseUpdate, getHouseList */
-/*! all exports used */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "houseUpdate", function() { return houseUpdate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHouseList", function() { return getHouseList; });
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../api/house */ "./src/api/house.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "houseUpdate": function() { return /* binding */ houseUpdate; },
+/* harmony export */   "getHouseList": function() { return /* binding */ getHouseList; }
+/* harmony export */ });
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../api/house */ "./src/api/house.ts");
 
 
 
@@ -430,7 +399,7 @@ var initState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   switch (action.type) {
     case UPDATE:
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_1__["default"])({}, state), action.payload);
     default:
       return state;
   }
@@ -450,14 +419,14 @@ var houseUpdate = function houseUpdate(params) {
 //  "roomCount": 0
 var getHouseList = function getHouseList() {
   return /*#__PURE__*/function () {
-    var _ref = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+    var _ref = (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__["default"])( /*#__PURE__*/(0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_3__["default"])().mark(function _callee(dispatch) {
       var _yield$getHouse, data;
-      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+      return (0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_3__["default"])().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* getHouse */ "a"])({});
+              return (0,_api_house__WEBPACK_IMPORTED_MODULE_0__.getHouse)({});
             case 2:
               _yield$getHouse = _context.sent;
               data = _yield$getHouse.data;
@@ -488,14 +457,12 @@ var getHouseList = function getHouseList() {
 /*!*****************************!*\
   !*** ./src/utils/common.ts ***!
   \*****************************/
-/*! exports provided: formatNumber, formatTime, formatTimeStampToTime */
-/*! exports used: formatTime */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* unused harmony export formatNumber */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return formatTime; });
-/* unused harmony export formatTimeStampToTime */
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formatTime": function() { return /* binding */ formatTime; }
+/* harmony export */ });
+/* unused harmony exports formatNumber, formatTimeStampToTime */
 var formatNumber = function formatNumber(n) {
   n = n.toString();
   return n[1] ? n : '0' + n;
@@ -528,11 +495,8 @@ var formatTimeStampToTime = function formatTimeStampToTime(timestamp) {
 /*!**************************!*\
   !*** ./src/utils/env.ts ***!
   \**************************/
-/*! exports provided: default */
-/*! exports used: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__) {
 
-"use strict";
 var config = {
   development: {
     baseUrl: 'https://zfeasy.com'
@@ -542,7 +506,7 @@ var config = {
   }
 };
 var env = config["development"];
-/* harmony default export */ __webpack_exports__["a"] = (env);
+/* harmony default export */ __webpack_exports__["default"] = (env);
 
 /***/ }),
 
@@ -550,14 +514,13 @@ var env = config["development"];
 /*!****************************!*\
   !*** ./src/utils/error.ts ***!
   \****************************/
-/*! exports provided: logError */
-/*! exports used: logError */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return logError; });
-/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
-/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ "./src/utils/common.ts");
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "logError": function() { return /* binding */ logError; }
+/* harmony export */ });
+/* harmony import */ var _Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./src/utils/common.ts");
 
 
 /**
@@ -571,9 +534,9 @@ var logError = function logError(name, action, info) {
   if (!info) {
     info = 'empty';
   }
-  var time = Object(_common__WEBPACK_IMPORTED_MODULE_1__[/* formatTime */ "a"])(new Date());
+  var time = (0,_common__WEBPACK_IMPORTED_MODULE_0__.formatTime)(new Date());
   console.error(time, name, action, info);
-  if (Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_typeof__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(info) === 'object') {
+  if ((0,_Users_liminghua_Desktop_zf_myApp_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__["default"])(info) === 'object') {
     info = JSON.stringify(info);
   }
 };
@@ -584,12 +547,9 @@ var logError = function logError(name, action, info) {
 /*!***************************!*\
   !*** ./src/utils/http.ts ***!
   \***************************/
-/*! exports provided: default */
-/*! exports used: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/taro */ "./node_modules/@tarojs/taro/index.js");
+/* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tarojs/taro */ "webpack/container/remote/@tarojs/taro");
 /* harmony import */ var _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_taro__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 /* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./env */ "./src/utils/env.ts");
@@ -598,8 +558,8 @@ var logError = function logError(name, action, info) {
 
 
 
-var baseUrl = _env__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].baseUrl;
-/* harmony default export */ __webpack_exports__["a"] = ({
+var baseUrl = _env__WEBPACK_IMPORTED_MODULE_2__["default"].baseUrl;
+/* harmony default export */ __webpack_exports__["default"] = ({
   baseOptions: function baseOptions(params) {
     var method = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'GET';
     var url = params.url,
@@ -612,35 +572,35 @@ var baseUrl = _env__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].baseUrl;
       method: method,
       header: {
         'content-type': contentType,
-        'Peace-X-Token': _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default.a.getStorageSync('Peace-X-Token') || 'AAAA'
+        'Peace-X-Token': _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().getStorageSync('Peace-X-Token') || 'AAAA'
       },
       // mode: 'cors',
       xhrFields: {
         withCredentials: true
       },
       success: function success(res) {
-        if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_STATUS */ "a"].NOT_FOUND) {
-          return Object(_error__WEBPACK_IMPORTED_MODULE_3__[/* logError */ "a"])('api', '请求资源不存在');
-        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_STATUS */ "a"].BAD_GATEWAY) {
-          return Object(_error__WEBPACK_IMPORTED_MODULE_3__[/* logError */ "a"])('api', '服务端出现了问题');
-        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_STATUS */ "a"].FORBIDDEN) {
-          return Object(_error__WEBPACK_IMPORTED_MODULE_3__[/* logError */ "a"])('api', '没有权限访问');
-        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_STATUS */ "a"].AUTHENTICATE) {
-          _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default.a.clearStorage();
-          _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default.a.navigateTo({
+        if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_STATUS.NOT_FOUND) {
+          return (0,_error__WEBPACK_IMPORTED_MODULE_3__.logError)('api', '请求资源不存在');
+        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_STATUS.BAD_GATEWAY) {
+          return (0,_error__WEBPACK_IMPORTED_MODULE_3__.logError)('api', '服务端出现了问题');
+        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_STATUS.FORBIDDEN) {
+          return (0,_error__WEBPACK_IMPORTED_MODULE_3__.logError)('api', '没有权限访问');
+        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_STATUS.AUTHENTICATE) {
+          _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().clearStorage();
+          _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().navigateTo({
             url: '/pages/packageA/pages/login/index'
           });
-          return Object(_error__WEBPACK_IMPORTED_MODULE_3__[/* logError */ "a"])('api', '请先登录');
-        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_STATUS */ "a"].SUCCESS) {
+          return (0,_error__WEBPACK_IMPORTED_MODULE_3__.logError)('api', '请先登录');
+        } else if (res.statusCode === _constants_status__WEBPACK_IMPORTED_MODULE_1__.HTTP_STATUS.SUCCESS) {
           return res.data;
         }
       },
       error: function error(e) {
-        Object(_error__WEBPACK_IMPORTED_MODULE_3__[/* logError */ "a"])('api', '请求接口出现问题', e);
+        (0,_error__WEBPACK_IMPORTED_MODULE_3__.logError)('api', '请求接口出现问题', e);
       }
     };
     // eslint-disable-next-line
-    return _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default.a.request(option);
+    return _tarojs_taro__WEBPACK_IMPORTED_MODULE_0___default().request(option);
   },
   get: function get(url, data) {
     var option = {
@@ -672,6 +632,16 @@ var baseUrl = _env__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"].baseUrl;
     return this.baseOptions(option, 'DELETE');
   }
 });
+
+/***/ }),
+
+/***/ "./src/pages/home/images/fb.png":
+/*!**************************************!*\
+  !*** ./src/pages/home/images/fb.png ***!
+  \**************************************/
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pages/home/images/fb.png";
 
 /***/ })
 

@@ -77,6 +77,8 @@ class Home extends React.Component {
       })
     }
   }
+  componentDidMount() {
+  }
   render() {
     return (
       <React.Fragment>

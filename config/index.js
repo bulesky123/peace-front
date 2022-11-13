@@ -1,7 +1,7 @@
 const path = require("path");
 const config = {
-  projectName: "taro-music",
-  date: "2019-3-19",
+  projectName: 'myApp',
+  date: '2022-11-13',
   designWidth: 414,
   deviceRatio: {
     "640": 2.34 / 2,
@@ -9,23 +9,68 @@ const config = {
     "828": 1.81 / 2,
     '414': 2 / 1,
   },
-  onePxTransform: true,
-  sourceRoot: "src",
-  outputRoot: "dist",
+  sourceRoot: 'src',
+  outputRoot: 'dist',
   plugins: [],
-  defineConstants: {},
+  defineConstants: {
+  },
   alias: {
     "@": path.resolve(__dirname, "..", "src")
   },
   copy: {
-    patterns: [],
-    options: {}
+    patterns: [
+    ],
+    options: {
+    }
   },
   framework: 'react',
+  compiler: 'webpack5',
+  cache: {
+    enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
+  },
+  mini: {
+    postcss: {
+      'postcss-px-scale': {
+        enable: true,
+        config: {
+          scale: 0.5,
+          units: 'rpx',
+          includes: ['taro-ui']
+        },
+      },
+      // pxtransform: {
+      //   enable: true,
+      //   config: {
+
+      //   }
+      // },
+      url: {
+        enable: true,
+        config: {
+          limit: 1024 // 设定转换尺寸上限
+        }
+      },
+      cssModules: {
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]'
+        }
+      }
+    }
+  },
   weapp: {
     esnextModules: ["taro-ui"],
     module: {
       postcss: {
+        'postcss-px-scale': {
+          enable: true,
+          config: {
+            scale: 0.5,
+            units: 'rpx',
+            includes: ['taro-ui']
+          },
+        },
         autoprefixer: {
           enable: true,
           config: {
@@ -53,32 +98,36 @@ const config = {
     }
   },
   h5: {
-    publicPath: "/",
-    staticDirectory: "static",
-    esnextModules: ["taro-ui"],
-    module: {
-      postcss: {
-        autoprefixer: {
-          enable: true,
-          config: {
-            browsers: ["last 3 versions", "Android >= 4.1", "ios >= 8"]
-          }
+    publicPath: '/',
+    staticDirectory: 'static',
+    postcss: {
+      'postcss-px-scale': {
+        enable: true,
+        config: {
+          scale: 0.5,
+          units: 'rpx',
+          includes: ['taro-ui']
         },
-        cssModules: {
-          enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
-          config: {
-            namingPattern: "module", // 转换模式，取值为 global/module
-            generateScopedName: "[name]__[local]___[hash:base64:5]"
-          }
+      },
+      autoprefixer: {
+        enable: true,
+        config: {
+        }
+      },
+      cssModules: {
+        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: 'module', // 转换模式，取值为 global/module
+          generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
     }
   }
-};
+}
 
-module.exports = function(merge) {
-  if (process.env.NODE_ENV === "development") {
-    return merge({}, config, require("./dev"));
+module.exports = function (merge) {
+  if (process.env.NODE_ENV === 'development') {
+    return merge({}, config, require('./dev'))
   }
-  return merge({}, config, require("./prod"));
-};
+  return merge({}, config, require('./prod'))
+}

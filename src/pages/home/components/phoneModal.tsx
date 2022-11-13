@@ -4,7 +4,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { addPhone } from '../../in/redux'
-import { AtButton,  AtActionSheet, AtActionSheetItem } from 'taro-ui'
+import { AtButton, AtActionSheet, AtActionSheetItem } from 'taro-ui'
 import "taro-ui/dist/style/components/modal.scss"
 @connect(
   state => ({}),
@@ -19,7 +19,7 @@ class PModal extends React.Component {
   }
   async getPhoneNumber(e) {
     console.log(e)
-    await this.props.addPhone({code: e.detail.code,  encryptedData: e.detail.encryptedData})
+    await this.props.addPhone({ code: e.detail.code, encryptedData: e.detail.encryptedData })
   }
   render() {
     return (
