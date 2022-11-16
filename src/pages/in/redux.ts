@@ -43,6 +43,9 @@ export const codeForOpenId = () => async (dispatch) => {
     success: async function (res) {
       if (res.code) {
         //发起网络请求
+        Taro.switchTab({
+          url: '/pages/home/index'
+        })
         try {
           const { data } = await userLogin({jsCode: res.code}) || {}
           const json = data.data || {}

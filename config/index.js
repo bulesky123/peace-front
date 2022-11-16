@@ -2,7 +2,13 @@ const path = require("path");
 const config = {
   projectName: 'myApp',
   date: '2022-11-13',
-  designWidth: 414,
+  designWidth(input) {
+    // taro-ui 的设计稿是 750
+    if (input.file.indexOf('taro-ui') > -1 ) {
+      return 750
+    }
+    return 414
+  },
   deviceRatio: {
     "640": 2.34 / 2,
     "750": 1,
@@ -30,14 +36,6 @@ const config = {
   },
   mini: {
     postcss: {
-      'postcss-px-scale': {
-        enable: true,
-        config: {
-          scale: 0.5,
-          units: 'rpx',
-          includes: ['taro-ui']
-        },
-      },
       // pxtransform: {
       //   enable: true,
       //   config: {
@@ -63,14 +61,6 @@ const config = {
     esnextModules: ["taro-ui"],
     module: {
       postcss: {
-        'postcss-px-scale': {
-          enable: true,
-          config: {
-            scale: 0.5,
-            units: 'rpx',
-            includes: ['taro-ui']
-          },
-        },
         autoprefixer: {
           enable: true,
           config: {
@@ -101,14 +91,6 @@ const config = {
     publicPath: '/',
     staticDirectory: 'static',
     postcss: {
-      'postcss-px-scale': {
-        enable: true,
-        config: {
-          scale: 0.5,
-          units: 'rpx',
-          includes: ['taro-ui']
-        },
-      },
       autoprefixer: {
         enable: true,
         config: {
