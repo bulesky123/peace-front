@@ -1,7 +1,8 @@
+// @ts-nocheck
 export default class Tools {
 
   static debounce(fn, interval = 600) {
-    let Timer:any = null
+    let Timer: any = null
     return function () {
       clearTimeout(Timer)
       Timer = setTimeout(() => {
@@ -34,10 +35,10 @@ export default class Tools {
   }
 
   static getParameterByName(name) {
-    let location:any = window.location
+    let location: any = window.location
     let values = decodeURIComponent((location.search.match(RegExp("[?|&|/]" + name + '=([^\&|?&]+)')) || [, null])[1])// eslint-disable-line
     if (this.isNullOrEmpty(values)) {
-        values = decodeURIComponent((location.hash.match(RegExp("[?|&|/]" + name + '=([^\&|?&]+)')) || [, null])[1])// eslint-disable-line
+      values = decodeURIComponent((location.hash.match(RegExp("[?|&|/]" + name + '=([^\&|?&]+)')) || [, null])[1])// eslint-disable-line
     }
     return this.isNullOrEmpty(values) || values === 'null' ? '' : values
   }
@@ -48,5 +49,39 @@ export default class Tools {
       return result
     }
     return false
+  }
+  static getZero(num, index) {
+    if ((parseInt(num) != 0) && (typeof num == "undefind" || num == null || num == "" || isNaN(num))) return num;
+    var _num = parseInt(num);
+    if (!index) index = 2;
+    if (_num != 0) {
+      if (_num < 0) {
+        _num = -_num;
+        for (var i = 1; i < parseInt(index); i++) {
+          if (parseInt(_num) < Math.pow(10, i)) {
+            _num = "0" + _num;
+          }
+        }
+        _num = "-" + _num;
+        return _num;
+      }
+      for (var i = 1; i < parseInt(index); i++) {
+        if (parseInt(_num) < Math.pow(10, i)) {
+          _num = "0" + _num;
+        }
+      }
+    }
+    return _num;
+  }
+  static getPlace(i = 0) {
+    let l = 0
+    while (i >= 1) {
+      i = i / 10;
+      l++;
+    }
+    if (l = 1) {
+      return 2
+    }
+    return l
   }
 }

@@ -24,13 +24,14 @@ var userLogin = function userLogin(params) {
 /*!**************************!*\
   !*** ./src/api/house.ts ***!
   \**************************/
-/*! exports provided: getHouse, addHouse, queryHouseDetail */
-/*! exports used: getHouse */
+/*! exports provided: getHouse, addHouse, delHouse, queryHouseDetail */
+/*! exports used: addHouse, delHouse, getHouse */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getHouse; });
-/* unused harmony export addHouse */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getHouse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addHouse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return delHouse; });
 /* unused harmony export queryHouseDetail */
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
@@ -42,6 +43,9 @@ var getHouse = function getHouse(params) {
 var addHouse = function addHouse(params) {
   return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/add"), params);
 };
+var delHouse = function delHouse(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/del"), params);
+};
 var queryHouseDetail = function queryHouseDetail(params) {
   return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/detail"), params);
 };
@@ -52,17 +56,21 @@ var queryHouseDetail = function queryHouseDetail(params) {
 /*!***********************!*\
   !*** ./src/api/my.ts ***!
   \***********************/
-/*! exports provided: userInfo */
-/*! exports used: userInfo */
+/*! exports provided: userInfo, addManager */
+/*! exports used: addManager, userInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return userInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addManager; });
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
 
 var userInfo = function userInfo(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/user/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/info"), params);
+};
+var addManager = function addManager(params) {
   return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/user/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/info"), params);
 };
 
@@ -441,7 +449,7 @@ var getUserInfo = function getUserInfo() {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return Object(_api_my__WEBPACK_IMPORTED_MODULE_5__[/* userInfo */ "a"])({});
+              return Object(_api_my__WEBPACK_IMPORTED_MODULE_5__[/* userInfo */ "b"])({});
             case 2:
               _context3.t0 = _context3.sent;
               if (_context3.t0) {
@@ -536,6 +544,91 @@ var addPhone = function addPhone(params) {
 
 /***/ }),
 
+/***/ "./src/pages/moduleA/pages/commonManager/redux.ts":
+/*!********************************************************!*\
+  !*** ./src/pages/moduleA/pages/commonManager/redux.ts ***!
+  \********************************************************/
+/*! exports provided: default, globalUpdate, getList */
+/*! all exports used */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getList", function() { return getList; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_my__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/my */ "./src/api/my.ts");
+
+
+
+
+// Actions
+var UPDATE = 'LIST_UPDATE';
+
+// Reducer
+var initState = {
+  init: false,
+  list: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  switch (action.type) {
+    case UPDATE:
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+    default:
+      return state;
+  }
+});
+
+// Action Creators
+var globalUpdate = function globalUpdate(params) {
+  return {
+    payload: params,
+    type: UPDATE
+  };
+};
+var getList = function getList() {
+  return /*#__PURE__*/function () {
+    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+      var _ref2, data, _ref3, list;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return Object(_api_my__WEBPACK_IMPORTED_MODULE_3__[/* userInfo */ "b"])({});
+            case 2:
+              _context.t0 = _context.sent;
+              if (_context.t0) {
+                _context.next = 5;
+                break;
+              }
+              _context.t0 = {};
+            case 5:
+              _ref2 = _context.t0;
+              data = _ref2.data;
+              _ref3 = data.data || {}, list = _ref3.list;
+              dispatch(globalUpdate({
+                list: list || [1, 2]
+              }));
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+
 /***/ "./src/pages/moduleA/pages/floorDetail/images/more.png":
 /*!*************************************************************!*\
   !*** ./src/pages/moduleA/pages/floorDetail/images/more.png ***!
@@ -608,7 +701,7 @@ var getHouseList = function getHouseList() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* getHouse */ "a"])({});
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* getHouse */ "c"])({});
             case 2:
               _yield$getHouse = _context.sent;
               data = _yield$getHouse.data;

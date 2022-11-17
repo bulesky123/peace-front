@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import { AtIcon, AtMessage, AtToast, AtModal } from 'taro-ui'
+import { AtIcon, AtMessage } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -77,13 +77,6 @@ class My extends React.Component {
   render() {
     return (
       <View className='my_container'>
-        <AtModal
-          isOpened
-          title='标题'
-          cancelText='取消'
-          confirmText='确认'
-          content='欢迎加入京东凹凸实验室\n\r欢迎加入京东凹凸实验室'
-        />
         <View className='heade-container'>
           <View className='head'>
             <View className='head-image'><Image className='logo' src={this.props?.headImageUrl || logo} /></View>

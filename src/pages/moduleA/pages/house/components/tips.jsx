@@ -24,10 +24,12 @@ class Tips extends React.Component {
       top: 26,
     }
     return (
-      <View className='tips' onClick={this.setVisibable.bind(this, true)}>
-        {
-          this.props.children
-        }
+      <View className='tips'>
+        <View onClick={this.setVisibable.bind(this, true)}>
+          {
+            this.props.children
+          }
+        </View>
         {
           this.state.visiable && <Menu
             style={style}

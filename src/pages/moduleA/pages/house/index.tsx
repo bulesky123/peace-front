@@ -48,7 +48,7 @@ class List extends React.Component {
           <Empty />
           :
           this.props?.list?.map(item => (
-            <HouseList onClick={this.goDetail} key={item.houseId} {...item} />
+            <HouseList getHouseList={this.props.getHouseList} onClick={this.goDetail} key={item.houseId} {...item} />
           ))
         }
         <View className='add-house-btn'>

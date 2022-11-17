@@ -132,13 +132,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__[/* connect */ "
         _this2 = this;
       return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
         className: "my_container",
-        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtModal */ "e"], {
-          isOpened: true,
-          title: "\u6807\u9898",
-          cancelText: "\u53D6\u6D88",
-          confirmText: "\u786E\u8BA4",
-          content: "\u6B22\u8FCE\u52A0\u5165\u4EAC\u4E1C\u51F9\u51F8\u5B9E\u9A8C\u5BA4\\n\\r\u6B22\u8FCE\u52A0\u5165\u4EAC\u4E1C\u51F9\u51F8\u5B9E\u9A8C\u5BA4"
-        }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
+        children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
           className: "heade-container",
           children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsxs"])(_tarojs_components__WEBPACK_IMPORTED_MODULE_6__[/* View */ "q"], {
             className: "head",
@@ -213,7 +207,7 @@ var My = (_dec = Object(react_redux__WEBPACK_IMPORTED_MODULE_9__[/* connect */ "
               value: "chevron-right",
               color: "#ccc"
             })]
-          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtMessage */ "d"], {})]
+          }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__["jsx"])(taro_ui__WEBPACK_IMPORTED_MODULE_7__[/* AtMessage */ "e"], {})]
         })]
       });
     }
