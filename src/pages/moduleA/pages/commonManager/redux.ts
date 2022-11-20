@@ -1,4 +1,4 @@
-import { userInfo } from '@/api/my'
+import { queryManager } from '@/api/my'
 // Actions
 const UPDATE = 'LIST_UPDATE'
 
@@ -26,10 +26,14 @@ export const globalUpdate = params => ({
   type: UPDATE,
 })
 
-export const getList = () => async(dispatch) => {
-  const { data } = await userInfo({}) || {}
-  const { list } = data.data || {}
+export const getList = () => async (dispatch) => {
+  const { data } = await queryManager({}) || {}
+  const list = data.data
   dispatch(globalUpdate({
-    list: list || [1,2]
+    list: list || [{
+      id: 0,
+      mobile: '18510806732',
+      name: 'zhoufe'
+    }]
   }))
 }

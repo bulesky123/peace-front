@@ -148,7 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = {"pages":["pages/moduleA/pages/addHouse/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
+var config = {"pages":["pages/moduleA/pages/floorDetail/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["window"].__taroAppConfig = config
 var inst = App(Object(_tarojs_plugin_framework_react_dist_runtime__WEBPACK_IMPORTED_MODULE_2__[/* createReactApp */ "a"])(_node_modules_tarojs_mini_runner_node_modules_babel_loader_lib_index_js_app_tsx__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], react__WEBPACK_IMPORTED_MODULE_5__, react_dom__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], config))
 
@@ -216,7 +216,7 @@ webpackContext.id = "./src/pages sync recursive redux\\.ts$";
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "homeUpdate", function() { return homeUpdate; });
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 
 // Actions
 var UPDATE = 'HOME_UPDATE';
@@ -230,7 +230,7 @@ var initState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   switch (action.type) {
     case UPDATE:
-      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, state), action.payload);
+      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, state), action.payload);
     default:
       return state;
   }
@@ -258,9 +258,9 @@ var homeUpdate = function homeUpdate(params) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getList", function() { return getList; });
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
 /* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/house */ "./src/api/house.ts");
 
 
@@ -279,7 +279,7 @@ var initState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
   switch (action.type) {
     case UPDATE:
-      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
     default:
       return state;
   }
@@ -294,14 +294,14 @@ var globalUpdate = function globalUpdate(params) {
 };
 var getList = function getList() {
   return /*#__PURE__*/function () {
-    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+    var _ref = Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
       var _ref2, data, _ref3, list;
-      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+      return Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* queryHouseDetail */ "d"])({});
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* queryHouseDetail */ "f"])({});
             case 2:
               _context.t0 = _context.sent;
               if (_context.t0) {
@@ -341,8 +341,8 @@ var getList = function getList() {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(window) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return configStore; });
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/typeof.js */ "./node_modules/@babel/runtime/helpers/esm/typeof.js");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
 /* harmony import */ var _loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loader */ "./src/store/loader.ts");
@@ -351,7 +351,7 @@ var getList = function getList() {
 
 
 
-var composeEnhancers = (typeof window === "undefined" ? "undefined" : Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+var composeEnhancers = (typeof window === "undefined" ? "undefined" : Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_typeof_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
   // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
 }) : redux__WEBPACK_IMPORTED_MODULE_2__[/* compose */ "d"];
 var middlewares = [redux_thunk__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]];
@@ -363,7 +363,7 @@ var enhancer = composeEnhancers(redux__WEBPACK_IMPORTED_MODULE_2__[/* applyMiddl
 );
 
 function configStore() {
-  var store = Object(redux__WEBPACK_IMPORTED_MODULE_2__[/* createStore */ "e"])(Object(redux__WEBPACK_IMPORTED_MODULE_2__[/* combineReducers */ "c"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _loader__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])), enhancer);
+  var store = Object(redux__WEBPACK_IMPORTED_MODULE_2__[/* createStore */ "e"])(Object(redux__WEBPACK_IMPORTED_MODULE_2__[/* combineReducers */ "c"])(Object(_Users_liminghua_Desktop_zf_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, _loader__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])), enhancer);
   return store;
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! @tarojs/runtime */ "./node_modules/@tarojs/runtime/dist/runtime.esm.js")["window"]))

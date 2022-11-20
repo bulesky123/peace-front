@@ -35,21 +35,21 @@ class List extends React.Component {
       url: '/pages/moduleA/pages/addHouse/index'
     })
   }
-  goDetail() {
+  goDetail(houseId) {
     Taro.navigateTo({
-      url: '/pages/moduleA/pages/floorDetail/index'
+      url: `/pages/moduleA/pages/floorDetail/index?houseId=${houseId}`
     })
   }
-  render () {
+  render() {
     return (
       <View className='house'>
         {
-          this.props?.list?.length == 0 ? 
-          <Empty />
-          :
-          this.props?.list?.map(item => (
-            <HouseList getHouseList={this.props.getHouseList} onClick={this.goDetail} key={item.houseId} {...item} />
-          ))
+          this.props?.list?.length == 0 ?
+            <Empty />
+            :
+            this.props?.list?.map(item => (
+              <HouseList getHouseList={this.props.getHouseList} onClick={() => this.goDetail(item.houseId)} key={item.houseId} {...item} />
+            ))
         }
         <View className='add-house-btn'>
           <AtButton onClick={this.addHouse} type='primary' size='small'>添加房屋</AtButton>

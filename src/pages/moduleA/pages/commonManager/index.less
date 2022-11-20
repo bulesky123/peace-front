@@ -1,12 +1,14 @@
 .commonManager {
   padding: 20px;
 
+  .commonManager-content {
+    padding-bottom: 150px;
+  }
+
   .item {
     background: #EFEFEF;
     border-radius: 2px;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 15px 18px;
 
@@ -18,30 +20,40 @@
       line-height: 24px;
 
       .item-name {
-        margin-right: 20px;
+        display: flex;
+        justify-content: space-between;
+        // margin-right: 20px;
         font-size: 18px;
         font-family: PingFangSC-Medium, PingFang SC;
         font-weight: 500;
         color: #05203D;
         line-height: 25px;
-      }
-    }
 
-    .item-right {
-      .more {
-        width: 14px;
-        height: 3px;
-        margin-bottom: 5px;
+        .item-right {
+          display: inline-block;
+          position: relative;
+
+          .more {
+            width: 14px;
+            height: 3px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      .item-content {
+        margin-top: 15px;
       }
     }
   }
 
   .manager-foot {
     position: fixed;
-    bottom: 70px;
+    bottom: 0px;
     left: 20px;
     right: 20px;
     background-color: #fff;
+    padding-bottom: 70px;
 
     .tips {
       font-size: 13px;
@@ -57,6 +69,7 @@
       border: 1px solid #2154F4;
     }
   }
+
   .modal-content {
     .save-btn {
       margin-top: 30px;

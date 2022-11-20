@@ -1,4 +1,4 @@
-import { queryHouseDetail, queryHouseList } from '@/api/house'
+import { queryHouseDetail, queryRoomList } from '@/api/house'
 // Actions
 const UPDATE = 'LIST_UPDATE'
 
@@ -10,6 +10,7 @@ const initState = {
   name: '',
   roomCount: 0,
   tenantCount: 0,
+  total: 0,
   list: [],
 }
 
@@ -31,7 +32,7 @@ export const globalUpdate = params => ({
   type: UPDATE,
 })
 
-export const getDetail = (houseId) => async(dispatch) => {
+export const getDetail = (houseId) => async (dispatch) => {
   const { data } = await queryHouseDetail({
     houseId
   }) || {}
@@ -46,13 +47,17 @@ export const getDetail = (houseId) => async(dispatch) => {
   }))
 }
 
-export const getList = () => async(dispatch) => {
-  const { data } = await queryHouseList({
+export const getList = (houseId) => async (dispatch) => {
+  const { data } = await queryRoomList({
+    houseId,
     pageIndex: 1,
     pageSize: 10000
   }) || {}
-  const { list } = data.data || {}
+  const arr = data.data || {}
+  console.log(arr, '----')
   dispatch(globalUpdate({
-    list: list
+    list: arr,
+    // list: arr.data,
+    // total: arr.total,
   }))
 }

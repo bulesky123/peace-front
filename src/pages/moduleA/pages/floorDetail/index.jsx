@@ -4,8 +4,10 @@ import { AtButton } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import Tools from '@/utils/tools'
 import { getDetail, getList } from './redux'
 import House from './components/house/index'
+import Head from './components/head'
 import editImage from './images/edit.png'
 
 import './index.less'
@@ -28,50 +30,51 @@ import './index.less'
 class HouseDetail extends React.Component {
   constructor(props) {
     super(props)
+    this.addHouse = this.addHouse.bind(this)
     this.state = {
 
     }
   }
+  addHouse() {
+    const houseId = Tools.getParameterByName('houseId') || 1
+    Taro.navigateTo({
+      url: `/pages/moduleA/pages/addRoom/index?roomId=${houseId}`
+    })
+  }
+  getList() {
+    const houseId = Tools.getParameterByName('houseId') || 1
+    this.props.getList(houseId)
+  }
   componentDidMount() {
-    this.props.getDetail()
-    this.props.getList()
+    const houseId = Tools.getParameterByName('houseId') || 1
+    this.props.getDetail(houseId)
+    this.getList()
   }
   render() {
+    const { emptyRoomCount, roomCount, tenantCount, list = [], name } = this.props
     return (
       <View className='container'>
-        <View className='head'>
-          <View className='head-title'>
-            <Text className='title'>红木林南1号楼</Text>
-            <Image className='edit' src={editImage} />
-          </View>
-          <View className='house-type'>村屋/出租屋</View>
-          <View className='head-box'>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>总房间数</View>
-            </View>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>闲置房间</View>
-            </View>
-            <View className='head-item'>
-              <View className='num'>16</View>
-              <View className='tips'>租客人数</View>
-            </View>
-          </View>
-        </View>
+        <Head
+          emptyRoomCount={emptyRoomCount}
+          roomCount={roomCount}
+          tenantCount={tenantCount}
+          name={name}
+        />
         <View className='content-box'>
-          <House />
-          <House />
-          <House />
-          <House />
-          <House />
-          <House />
+          {
+            list && Array.isArray(list) && list.map(item => (
+              <House
+                key={item.houseId}
+                {...item}
+                getList={this.getList}
+              />
+            ))
+          }
         </View>
         <View className='add-house-btn'>
           <AtButton
             className='btn'
-            onClick={this.onSubmit}
+            onClick={this.addHouse}
             type='default'
             size='small'
           >添加房间</AtButton>

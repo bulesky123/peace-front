@@ -30,14 +30,9 @@ export const houseUpdate = params => ({
 //  "houseId": 0,
 //  "name": "string",
 //  "roomCount": 0
-export const getHouseList = () => async(dispatch) => {
+export const getHouseList = () => async (dispatch) => {
   const { data } = await getHouse({})
   dispatch(houseUpdate({
-    list: data.data.length > 0 ?  data.data : [{
-      emptyRoomCount: 6,
-      houseId: 6,
-      name: "红木林南1号楼",
-      roomCount: 10
-    }],
+    list: data.data.length > 0 ? data.data : [1, 2]
   }))
 }
