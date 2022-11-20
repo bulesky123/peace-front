@@ -4,6 +4,7 @@ import { AtButton } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { getDetail, getList } from './redux'
 import House from './components/house/index'
 import editImage from './images/edit.png'
 
@@ -12,10 +13,16 @@ import './index.less'
 
 @connect(
   state => ({
-    // list: state.house?.list,
+    list: state.floorDetail?.list,
+    emptyRoomCount: state.floorDetail?.emptyRoomCount,
+    liveRoomCount: state.floorDetail?.liveRoomCount,
+    name: state.floorDetail?.name,
+    roomCount: state.floorDetail?.roomCount,
+    tenantCount: state.floorDetail?.tenantCount,
   }),
   dispatch => bindActionCreators({
-    // getHouseList,
+    getDetail,
+    getList,
   }, dispatch),
 )
 class HouseDetail extends React.Component {
@@ -24,6 +31,10 @@ class HouseDetail extends React.Component {
     this.state = {
 
     }
+  }
+  componentDidMount() {
+    this.props.getDetail()
+    this.props.getList()
   }
   render() {
     return (

@@ -148,7 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var config = {"pages":["pages/moduleA/pages/house/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
+var config = {"pages":["pages/moduleA/pages/addHouse/index","pages/in/index","pages/home/index","pages/analysis/index","pages/community/index","pages/shop/index","pages/my/index"],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#2154F4","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"requiredBackgroundModes":["audio"],"tabBar":{"color":"#2B2E33","selectedColor":"#2154F4","list":[{"pagePath":"pages/home/index","text":"首页","iconPath":"./assets/images/home.png","selectedIconPath":"./assets/images/home_active.png"},{"pagePath":"pages/analysis/index","text":"统计","iconPath":"./assets/images/tongji.png","selectedIconPath":"./assets/images/tongji_active.png"},{"pagePath":"pages/community/index","text":"社区","iconPath":"./assets/images/shequ.png","selectedIconPath":"./assets/images/shequ_active.png"},{"pagePath":"pages/shop/index","text":"店铺","iconPath":"./assets/images/dianpu.png","selectedIconPath":"./assets/images/dianpu_active.png"},{"pagePath":"pages/my/index","text":"我的","iconPath":"./assets/images/my.png","selectedIconPath":"./assets/images/my_active.png"}]}};
 _tarojs_runtime__WEBPACK_IMPORTED_MODULE_1__["window"].__taroAppConfig = config
 var inst = App(Object(_tarojs_plugin_framework_react_dist_runtime__WEBPACK_IMPORTED_MODULE_2__[/* createReactApp */ "a"])(_node_modules_tarojs_mini_runner_node_modules_babel_loader_lib_index_js_app_tsx__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], react__WEBPACK_IMPORTED_MODULE_5__, react_dom__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"], config))
 
@@ -178,7 +178,9 @@ var map = {
 	"./home/redux.ts": "./src/pages/home/redux.ts",
 	"./in/redux.ts": "./src/pages/in/redux.ts",
 	"./moduleA/pages/commonManager/redux.ts": "./src/pages/moduleA/pages/commonManager/redux.ts",
-	"./moduleA/pages/house/redux.ts": "./src/pages/moduleA/pages/house/redux.ts"
+	"./moduleA/pages/floorDetail/redux.ts": "./src/pages/moduleA/pages/floorDetail/redux.ts",
+	"./moduleA/pages/house/redux.ts": "./src/pages/moduleA/pages/house/redux.ts",
+	"./moduleA/pages/houseDetail/redux.ts": "./src/pages/moduleA/pages/houseDetail/redux.ts"
 };
 
 
@@ -240,6 +242,91 @@ var homeUpdate = function homeUpdate(params) {
     payload: params,
     type: UPDATE
   };
+};
+
+/***/ }),
+
+/***/ "./src/pages/moduleA/pages/houseDetail/redux.ts":
+/*!******************************************************!*\
+  !*** ./src/pages/moduleA/pages/houseDetail/redux.ts ***!
+  \******************************************************/
+/*! exports provided: default, globalUpdate, getList */
+/*! all exports used */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getList", function() { return getList; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/house */ "./src/api/house.ts");
+
+
+
+
+// Actions
+var UPDATE = 'LIST_UPDATE';
+
+// Reducer
+var initState = {
+  init: false,
+  list: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  switch (action.type) {
+    case UPDATE:
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+    default:
+      return state;
+  }
+});
+
+// Action Creators
+var globalUpdate = function globalUpdate(params) {
+  return {
+    payload: params,
+    type: UPDATE
+  };
+};
+var getList = function getList() {
+  return /*#__PURE__*/function () {
+    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+      var _ref2, data, _ref3, list;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* queryHouseDetail */ "d"])({});
+            case 2:
+              _context.t0 = _context.sent;
+              if (_context.t0) {
+                _context.next = 5;
+                break;
+              }
+              _context.t0 = {};
+            case 5:
+              _ref2 = _context.t0;
+              data = _ref2.data;
+              _ref3 = data.data || {}, list = _ref3.list;
+              dispatch(globalUpdate({
+                list: list || [1, 2]
+              }));
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
 };
 
 /***/ }),

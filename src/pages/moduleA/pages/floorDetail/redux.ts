@@ -1,0 +1,58 @@
+import { queryHouseDetail, queryHouseList } from '@/api/house'
+// Actions
+const UPDATE = 'LIST_UPDATE'
+
+// Reducer
+const initState = {
+  init: false,
+  emptyRoomCount: 0,
+  liveRoomCount: 0,
+  name: '',
+  roomCount: 0,
+  tenantCount: 0,
+  list: [],
+}
+
+export default (state = initState, action) => {
+  switch (action.type) {
+    case UPDATE:
+      return {
+        ...state,
+        ...action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+// Action Creators
+export const globalUpdate = params => ({
+  payload: params,
+  type: UPDATE,
+})
+
+export const getDetail = (houseId) => async(dispatch) => {
+  const { data } = await queryHouseDetail({
+    houseId
+  }) || {}
+  const json = data.data || {}
+  dispatch(globalUpdate({
+    emptyRoomCount: json.emptyRoomCount,
+    houseId: json.houseId,
+    liveRoomCount: json.liveRoomCount,
+    name: json.name,
+    roomCount: json.roomCount,
+    tenantCount: json.tenantCount
+  }))
+}
+
+export const getList = () => async(dispatch) => {
+  const { data } = await queryHouseList({
+    pageIndex: 1,
+    pageSize: 10000
+  }) || {}
+  const { list } = data.data || {}
+  dispatch(globalUpdate({
+    list: list
+  }))
+}

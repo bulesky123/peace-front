@@ -24,15 +24,17 @@ var userLogin = function userLogin(params) {
 /*!**************************!*\
   !*** ./src/api/house.ts ***!
   \**************************/
-/*! exports provided: getHouse, addHouse, delHouse, queryHouseDetail */
-/*! exports used: addHouse, delHouse, getHouse */
+/*! exports provided: getHouse, addHouse, delHouse, queryHouseDetail, queryHouseList, setHouseCost */
+/*! exports used: addHouse, delHouse, getHouse, queryHouseDetail, queryHouseList */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getHouse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return addHouse; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return delHouse; });
-/* unused harmony export queryHouseDetail */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return queryHouseDetail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return queryHouseList; });
+/* unused harmony export setHouseCost */
 /* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
 /* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
 
@@ -48,6 +50,12 @@ var delHouse = function delHouse(params) {
 };
 var queryHouseDetail = function queryHouseDetail(params) {
   return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/detail"), params);
+};
+var queryHouseList = function queryHouseList(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/list"), params);
+};
+var setHouseCost = function setHouseCost(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/house/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/setHouseCost"), params);
 };
 
 /***/ }),
@@ -638,6 +646,143 @@ var getList = function getList() {
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAICAYAAACYhf2vAAAAAXNSR0IArs4c6QAAAQNJREFUOE/F078rRXEYBvDPlSg/yuLXcEfFIIuUhVHJYjYy3D9A4o9QIrPFYlH8B1JGikGJzSJCzC69dW59O33PNd5Tp07P+7zP9/m+73NqOvzUkvPjewqjeMcdmm38DRX8bjzg5Z+7TGIcH4X2T/BTA6uYSUTucVIhOowN9Bb1EDvCcwV/BbNJ7RHHqYE+bGWad/GdwZcwX8JvcJbh9mAbXaXafky6NYEBbGaa9/CZwZcxV8JvcZrhxpR2MvghXtMVNDCWECMHB/jNNE9grYSf47piBeuoJ7UvxOWaqYFBLGAEQbjAW5tgTSPeCOETrirMhkQ/FouAx0ovW6FNDXTkh/wDOlMsCW3yCSgAAAAASUVORK5CYII="
+
+/***/ }),
+
+/***/ "./src/pages/moduleA/pages/floorDetail/redux.ts":
+/*!******************************************************!*\
+  !*** ./src/pages/moduleA/pages/floorDetail/redux.ts ***!
+  \******************************************************/
+/*! exports provided: default, globalUpdate, getDetail, getList */
+/*! all exports used */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDetail", function() { return getDetail; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getList", function() { return getList; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_house__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/house */ "./src/api/house.ts");
+
+
+
+
+// Actions
+var UPDATE = 'LIST_UPDATE';
+
+// Reducer
+var initState = {
+  init: false,
+  emptyRoomCount: 0,
+  liveRoomCount: 0,
+  name: '',
+  roomCount: 0,
+  tenantCount: 0,
+  list: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  switch (action.type) {
+    case UPDATE:
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])({}, state), action.payload);
+    default:
+      return state;
+  }
+});
+
+// Action Creators
+var globalUpdate = function globalUpdate(params) {
+  return {
+    payload: params,
+    type: UPDATE
+  };
+};
+var getDetail = function getDetail(houseId) {
+  return /*#__PURE__*/function () {
+    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee(dispatch) {
+      var _ref2, data, json;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* queryHouseDetail */ "d"])({
+                houseId: houseId
+              });
+            case 2:
+              _context.t0 = _context.sent;
+              if (_context.t0) {
+                _context.next = 5;
+                break;
+              }
+              _context.t0 = {};
+            case 5:
+              _ref2 = _context.t0;
+              data = _ref2.data;
+              json = data.data || {};
+              dispatch(globalUpdate({
+                emptyRoomCount: json.emptyRoomCount,
+                houseId: json.houseId,
+                liveRoomCount: json.liveRoomCount,
+                name: json.name,
+                roomCount: json.roomCount,
+                tenantCount: json.tenantCount
+              }));
+            case 9:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+var getList = function getList() {
+  return /*#__PURE__*/function () {
+    var _ref3 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().mark(function _callee2(dispatch) {
+      var _ref4, data, _ref5, list;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return Object(_api_house__WEBPACK_IMPORTED_MODULE_3__[/* queryHouseList */ "e"])({
+                pageIndex: 1,
+                pageSize: 10000
+              });
+            case 2:
+              _context2.t0 = _context2.sent;
+              if (_context2.t0) {
+                _context2.next = 5;
+                break;
+              }
+              _context2.t0 = {};
+            case 5:
+              _ref4 = _context2.t0;
+              data = _ref4.data;
+              _ref5 = data.data || {}, list = _ref5.list;
+              dispatch(globalUpdate({
+                list: list
+              }));
+            case 9:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+    return function (_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
 
 /***/ }),
 

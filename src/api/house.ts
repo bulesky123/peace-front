@@ -5,3 +5,5 @@ export const getHouse = params => Http.post(`/house/${HTTP_VERSION}/list`, param
 export const addHouse = params => Http.post(`/house/${HTTP_VERSION}/add`, params)
 export const delHouse = params => Http.post(`/house/${HTTP_VERSION}/del`, params)
 export const queryHouseDetail = params => Http.post(`/house/${HTTP_VERSION}/detail`, params)
+export const queryHouseList = params => Http.post(`/house/${HTTP_VERSION}/list`, params)
+export const setHouseCost = params => Http.post(`/house/${HTTP_VERSION}/setHouseCost`, params)
