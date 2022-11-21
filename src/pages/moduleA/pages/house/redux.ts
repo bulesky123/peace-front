@@ -32,7 +32,8 @@ export const houseUpdate = params => ({
 //  "roomCount": 0
 export const getHouseList = () => async (dispatch) => {
   const { data } = await getHouse({})
+  const json = data.data || {}
   dispatch(houseUpdate({
-    list: data.data.length > 0 ? data.data : [1, 2]
+    list: json.data || []
   }))
 }

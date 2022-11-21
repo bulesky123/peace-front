@@ -1,10 +1,9 @@
-import Taro from '@tarojs/taro'
+import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Tools from '@/utils/tools'
 import { getDetail, getList } from './redux'
 import House from './components/house/index'
 import Head from './components/head'
@@ -31,22 +30,27 @@ class HouseDetail extends React.Component {
   constructor(props) {
     super(props)
     this.addHouse = this.addHouse.bind(this)
+    this.getList = this.getList.bind(this)
     this.state = {
 
     }
   }
   addHouse() {
-    const houseId = Tools.getParameterByName('houseId') || 1
+    const { houseId } = this.getQuery()
+    const { name } = this.props
     Taro.navigateTo({
-      url: `/pages/moduleA/pages/addRoom/index?roomId=${houseId}`
+      url: `/pages/moduleA/pages/addRoom/index?roomId=${houseId}&name=${name}`
     })
   }
   getList() {
-    const houseId = Tools.getParameterByName('houseId') || 1
+    const { houseId } = this.getQuery()
     this.props.getList(houseId)
   }
+  getQuery() {
+    return getCurrentInstance().router.params
+  }
   componentDidMount() {
-    const houseId = Tools.getParameterByName('houseId') || 1
+    const { houseId } = this.getQuery()
     this.props.getDetail(houseId)
     this.getList()
   }

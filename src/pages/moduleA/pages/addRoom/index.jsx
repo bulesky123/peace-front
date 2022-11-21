@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { getCurrentInstance } from '@tarojs/taro'
 import React from 'react'
 import { View, Input, Text, Image } from "@tarojs/components"
 import { AtButton } from 'taro-ui'
@@ -22,25 +22,32 @@ class AddHouse extends React.Component {
       [key]: value
     })
   }
+  getQuery() {
+    return getCurrentInstance().router.params
+  }
   async onSubmit() {
-    // houseId
-    const houseId = Tools.getParameterByName('houseId') || 1
+    const { roomId } = this.getQuery()
     const { roomName, layerNum } = this.state
     await addRoom({
-      houseId,
+      houseId: roomId,
       roomName,
       layerNum,
     })
-    Taro.navigateBack({
-      delta: 1
+    // 注意：此处会有页面跳转问题
+    Taro.redirectTo({
+      url: `/pages/moduleA/pages/floorDetail/index?houseId=${roomId}`
     })
+    // Taro.navigateBack({
+    //   delta: 1
+    // })
   }
   render() {
+    const { name } = this.getQuery()
     return (
       <View>
         <View className="head">
           <Image className="img" src={room_icon} />
-          红木林南1号楼
+          {name}
         </View>
         <View className='add-house-container'>
           <View className='input-item'>
