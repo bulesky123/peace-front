@@ -111,7 +111,9 @@ class CommonManager extends React.Component {
         <AtModal isOpened={isOpened}>
           <AtModalHeader>添加共同管理人</AtModalHeader>
           <AtModalContent>
-            <View className='modal-content'>
+            {
+              isOpened && 
+              <View className='modal-content'>
               <AtInput
                 name='name'
                 type='text'
@@ -133,6 +135,7 @@ class CommonManager extends React.Component {
                 <AtButton onClick={this.submit} type="primary" size="small">保存</AtButton>
               </View>
             </View>
+            }
           </AtModalContent>
         </AtModal>
       </View>
