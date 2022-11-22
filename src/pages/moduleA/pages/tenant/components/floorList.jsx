@@ -5,9 +5,18 @@ import Item from './floorItem.jsx'
 
 
 export default (props) => {
+  const { list = [] } = props
   return (
     <View className="floor-list-box">
-      <Item />
+      {
+        Array.isArray(list) && list.length > 0 &&
+        list.map(item => (
+          <Item
+            key={item.houseId}
+            {...item}
+          />
+        ))
+      }
     </View>
   )
 }

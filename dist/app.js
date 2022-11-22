@@ -180,7 +180,8 @@ var map = {
 	"./moduleA/pages/commonManager/redux.ts": "./src/pages/moduleA/pages/commonManager/redux.ts",
 	"./moduleA/pages/floorDetail/redux.ts": "./src/pages/moduleA/pages/floorDetail/redux.ts",
 	"./moduleA/pages/house/redux.ts": "./src/pages/moduleA/pages/house/redux.ts",
-	"./moduleA/pages/houseDetail/redux.ts": "./src/pages/moduleA/pages/houseDetail/redux.ts"
+	"./moduleA/pages/houseDetail/redux.ts": "./src/pages/moduleA/pages/houseDetail/redux.ts",
+	"./moduleA/pages/tenant/redux.ts": "./src/pages/moduleA/pages/tenant/redux.ts"
 };
 
 

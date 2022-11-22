@@ -30,10 +30,6 @@ export const getList = () => async (dispatch) => {
   const { data } = await queryManager({}) || {}
   const list = data.data
   dispatch(globalUpdate({
-    list: list || [{
-      id: 0,
-      mobile: '18510806732',
-      name: 'zhoufe'
-    }]
+    list: list
   }))
 }

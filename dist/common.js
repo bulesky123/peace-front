@@ -108,6 +108,34 @@ var queryManager = function queryManager(params) {
 
 /***/ }),
 
+/***/ "./src/api/tenant.ts":
+/*!***************************!*\
+  !*** ./src/api/tenant.ts ***!
+  \***************************/
+/*! exports provided: querySelHoldTenantPage, querySelHousePage, queryTarDetail */
+/*! exports used: querySelHoldTenantPage, querySelHousePage, queryTarDetail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return querySelHoldTenantPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return querySelHousePage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return queryTarDetail; });
+/* harmony import */ var _utils_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/http */ "./src/utils/http.ts");
+/* harmony import */ var _constants_status__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants/status */ "./src/constants/status.js");
+
+
+var querySelHoldTenantPage = function querySelHoldTenantPage(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/tenant/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/selHoldTenantPage"), params);
+};
+var querySelHousePage = function querySelHousePage(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/tenant/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/selHousePage"), params);
+};
+var queryTarDetail = function queryTarDetail(params) {
+  return _utils_http__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"].post("/user/".concat(_constants_status__WEBPACK_IMPORTED_MODULE_1__[/* HTTP_VERSION */ "b"], "/tarDetail"), params);
+};
+
+/***/ }),
+
 /***/ "./src/api/weixin.ts":
 /*!***************************!*\
   !*** ./src/api/weixin.ts ***!
@@ -644,11 +672,7 @@ var getList = function getList() {
               data = _ref2.data;
               list = data.data;
               dispatch(globalUpdate({
-                list: list || [{
-                  id: 0,
-                  mobile: '18510806732',
-                  name: 'zhoufe'
-                }]
+                list: list
               }));
             case 9:
             case "end":
@@ -975,6 +999,207 @@ var getHouseList = function getHouseList() {
     }));
     return function (_x) {
       return _ref.apply(this, arguments);
+    };
+  }();
+};
+
+/***/ }),
+
+/***/ "./src/pages/moduleA/pages/tenant/redux.ts":
+/*!*************************************************!*\
+  !*** ./src/pages/moduleA/pages/tenant/redux.ts ***!
+  \*************************************************/
+/*! exports provided: default, globalUpdate, getTabNum, getList */
+/*! all exports used */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "globalUpdate", function() { return globalUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTabNum", function() { return getTabNum; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getList", function() { return getList; });
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/defineProperty.js */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js */ "./node_modules/@babel/runtime/helpers/esm/regeneratorRuntime.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ "./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _api_tenant__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/api/tenant */ "./src/api/tenant.ts");
+
+
+
+
+
+// Actions
+var UPDATE = 'LIST_UPDATE';
+
+// Reducer
+var initState = {
+  init: false,
+  currentList: [],
+  roomTenantList: [],
+  historyList: [],
+  historyTenantNum: 0,
+  holdTenantNum: 0,
+  houseNum: 0,
+  tabs: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  switch (action.type) {
+    case UPDATE:
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, state), action.payload);
+    default:
+      return state;
+  }
+});
+
+// Action Creators
+var globalUpdate = function globalUpdate(params) {
+  return {
+    payload: params,
+    type: UPDATE
+  };
+};
+var getTabNum = function getTabNum() {
+  return /*#__PURE__*/function () {
+    var _ref = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().mark(function _callee(dispatch) {
+      var _yield$queryTarDetail, data, _ref2, historyTenantNum, holdTenantNum, houseNum;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return Object(_api_tenant__WEBPACK_IMPORTED_MODULE_4__[/* queryTarDetail */ "c"])();
+            case 2:
+              _yield$queryTarDetail = _context.sent;
+              data = _yield$queryTarDetail.data;
+              console.log(data, '---data---');
+              _ref2 = data || {}, historyTenantNum = _ref2.historyTenantNum, holdTenantNum = _ref2.holdTenantNum, houseNum = _ref2.houseNum;
+              dispatch(globalUpdate({
+                historyTenantNum: historyTenantNum,
+                holdTenantNum: holdTenantNum,
+                houseNum: houseNum,
+                tabs: [{
+                  key: 'currentList',
+                  lable: "\u73B0\u6709\u79DF\u5BA2(".concat(holdTenantNum, ")")
+                }, {
+                  key: 'roomTenantList',
+                  lable: "\u6309\u623F\u5C4B(".concat(houseNum, ")")
+                }, {
+                  key: 'historyList',
+                  lable: "\u5386\u53F2\u79DF\u5BA2(".concat(historyTenantNum, ")")
+                }]
+              }));
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+var getList = function getList(type, params) {
+  return /*#__PURE__*/function () {
+    var _ref3 = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().mark(function _callee5(dispatch) {
+      var mapApi, _yield$mapApi$type, data, json;
+      return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              mapApi = {
+                currentList: function () {
+                  var _currentList = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().mark(function _callee2() {
+                    return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().wrap(function _callee2$(_context2) {
+                      while (1) {
+                        switch (_context2.prev = _context2.next) {
+                          case 0:
+                            _context2.next = 2;
+                            return Object(_api_tenant__WEBPACK_IMPORTED_MODULE_4__[/* querySelHoldTenantPage */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, params), {}, {
+                              pageIndex: 1,
+                              pageSize: 10000
+                            }));
+                          case 2:
+                            return _context2.abrupt("return", _context2.sent);
+                          case 3:
+                          case "end":
+                            return _context2.stop();
+                        }
+                      }
+                    }, _callee2);
+                  }));
+                  function currentList() {
+                    return _currentList.apply(this, arguments);
+                  }
+                  return currentList;
+                }(),
+                roomTenantList: function () {
+                  var _roomTenantList = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().mark(function _callee3() {
+                    return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().wrap(function _callee3$(_context3) {
+                      while (1) {
+                        switch (_context3.prev = _context3.next) {
+                          case 0:
+                            _context3.next = 2;
+                            return Object(_api_tenant__WEBPACK_IMPORTED_MODULE_4__[/* querySelHousePage */ "b"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_objectSpread2_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])({}, params), {}, {
+                              pageIndex: 1,
+                              pageSize: 10000
+                            }));
+                          case 2:
+                            return _context3.abrupt("return", _context3.sent);
+                          case 3:
+                          case "end":
+                            return _context3.stop();
+                        }
+                      }
+                    }, _callee3);
+                  }));
+                  function roomTenantList() {
+                    return _roomTenantList.apply(this, arguments);
+                  }
+                  return roomTenantList;
+                }(),
+                historyList: function () {
+                  var _historyList = Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])( /*#__PURE__*/Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().mark(function _callee4() {
+                    return Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_regeneratorRuntime_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])().wrap(function _callee4$(_context4) {
+                      while (1) {
+                        switch (_context4.prev = _context4.next) {
+                          case 0:
+                            return _context4.abrupt("return", []);
+                          case 1:
+                          case "end":
+                            return _context4.stop();
+                        }
+                      }
+                    }, _callee4);
+                  }));
+                  function historyList() {
+                    return _historyList.apply(this, arguments);
+                  }
+                  return historyList;
+                }()
+              };
+              _context5.next = 3;
+              return mapApi[type]();
+            case 3:
+              _yield$mapApi$type = _context5.sent;
+              data = _yield$mapApi$type.data;
+              json = data === null || data === void 0 ? void 0 : data.data;
+              dispatch(globalUpdate(Object(E_zufang_peace_front_node_modules_babel_runtime_helpers_esm_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({}, type, (json === null || json === void 0 ? void 0 : json.data) || [{
+                name: '红木林南区-1号楼102',
+                tenantName: '张悦'
+              }])));
+            case 7:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5);
+    }));
+    return function (_x2) {
+      return _ref3.apply(this, arguments);
     };
   }();
 };
