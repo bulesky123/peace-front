@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, Picker } from "@tarojs/components"
 import { AtIcon } from 'taro-ui'
+import './index.less'
 
 export default (props) => {
   const [stateValue, setState] = useState('')

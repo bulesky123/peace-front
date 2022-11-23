@@ -1,6 +1,6 @@
 export default {
   pages: [
-    // "pages/moduleA/pages/floorDetail/index",
+    // "pages/moduleA/pages/meterReadingDetails/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -61,6 +61,7 @@ export default {
         "pages/floorDetail/index",
         "pages/houseDetail/index",
         "pages/meterReading/index",
+        "pages/meterReadingDetails/index",
         "pages/tenant/index",
         "pages/waitElectric/index",
         "pages/about/index",

@@ -24,10 +24,15 @@ class HouseDetail extends React.Component {
 
     }
   }
+  onClick() {
+    Taro.redirectTo({
+      url: `/pages/moduleA/pages/meterReadingDetails/index`
+    })
+  }
   render() {
     return (
       <View className='container'>
-        <Item />
+        <Item onClick={this.onClick} />
         <Item />
       </View>
     )
