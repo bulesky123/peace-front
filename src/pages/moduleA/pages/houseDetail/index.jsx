@@ -52,18 +52,18 @@ class HouseDetail extends React.Component {
           </View>
         </View>
         <View className='tab'>
-        {
+          {
             this.tabs.map(item => (
-              <View 
-               key={item.key} 
-               className={item.key == tabActive ? 'active': ''}
-               onClick={() => this.queryTab(item)}
+              <View
+                key={item.key}
+                className={item.key == tabActive ? 'active' : ''}
+                onClick={() => this.queryTab(item)}
               >{item.lable}</View>
             ))
           }
         </View>
         <View className='content-box'>
-          <Tenant />
+          {tabActive == 1 && <Tenant />}
         </View>
         {/* <View className='add-house-btn'>
           <AtButton

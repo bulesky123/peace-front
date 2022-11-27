@@ -32,7 +32,7 @@ export const globalUpdate = params => ({
   type: UPDATE,
 })
 export const getTabNum = () => async (dispatch) => {
-  const { data } = await queryTarDetail()
+  const { data } = await queryTarDetail({})
   console.log(data, '---data---')
   const {
     historyTenantNum,
@@ -67,6 +67,6 @@ export const getList = (type, params) => async (dispatch) => {
   const { data } = await mapApi[type]()
   const json = data?.data
   dispatch(globalUpdate({
-    [type]: json?.data || [{name: '红木林南区-1号楼102', tenantName: '张悦'}]
+    [type]: json?.data || [{ name: '红木林南区-1号楼102', tenantName: '张悦' }]
   }))
 }

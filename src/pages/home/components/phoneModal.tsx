@@ -18,7 +18,7 @@ class PModal extends React.Component {
     this.getPhoneNumber = this.getPhoneNumber.bind(this)
   }
   async getPhoneNumber(e) {
-    console.log(e)
+    console.log(e, '------')
     await this.props.addPhone({ code: e.detail.code, encryptedData: e.detail.encryptedData })
   }
   render() {

@@ -1,6 +1,6 @@
 export default {
   pages: [
-    // "pages/moduleA/pages/meterReadingDetails/index",
+    "pages/moduleA/pages/addTanant/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -51,28 +51,30 @@ export default {
       }
     ],
   },
-  "subpackages": [
-    {
-      "root": "pages/moduleA",
-      "pages": [
-        "pages/house/index",
-        "pages/addHouse/index",
-        "pages/addRoom/index",
-        "pages/floorDetail/index",
-        "pages/houseDetail/index",
-        "pages/meterReading/index",
-        "pages/meterReadingDetails/index",
-        "pages/tenant/index",
-        "pages/waitElectric/index",
-        "pages/about/index",
-        "pages/share/index",
-        "pages/bill/index",
-        "pages/commonManager/index",
-        "pages/confirmReceipt/index",
-        "pages/houseExpires/index",
-        "pages/tanantRules/index",
-        "pages/vacantRoom/index",
-      ]
-    }
-  ]
+  // "subpackages": [
+  //   {
+  //     "root": "pages/moduleA",
+  //     "pages": [
+  //       "pages/house/index",
+  //       "pages/addHouse/index",
+  //       "pages/addRoom/index",
+  //       "pages/floorDetail/index",
+  //       "pages/houseDetail/index",
+  //       "pages/meterReading/index",
+  //       "pages/meterReadingDetails/index",
+  //       "pages/tenant/index",
+  //       "pages/waitElectric/index",
+  //       "pages/about/index",
+  //       "pages/share/index",
+  //       "pages/bill/index",
+  //       "pages/commonManager/index",
+  //       "pages/confirmReceipt/index",
+  //       "pages/houseExpires/index",
+  //       "pages/tanantRules/index",
+  //       "pages/vacantRoom/index",
+  //       "pages/reserveRoom/index",
+  //        "pages/addTanant/index",
+  //     ]
+  //   }
+  // ]
 };
