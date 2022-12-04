@@ -1,10 +1,12 @@
 .container {
   padding: 15px 20px;
+
   .head {
     background: url('./images/bg.png') no-repeat;
     background-size: 100% 100%;
     border-radius: 4px;
     padding: 15px;
+
     .head-title {
       font-size: 20px;
       font-family: PingFangSC-Regular, PingFang SC;
@@ -13,10 +15,12 @@
       line-height: 28px;
       padding-top: 5px;
     }
+
     .head-content {
       font-family: PingFangSC-Regular, PingFang SC;
       color: #FFFFFF;
       padding-top: 9px;
+
       .house-num {
         font-size: 34px;
         font-weight: bold;
@@ -24,24 +28,28 @@
         line-height: 40px;
         vertical-align: sub;
       }
+
       .house-type {
         margin-left: 20px;
         display: inline-block;
         padding: 2px 10px;
         text-align: center;
         font-size: 15px;
-        background: rgba(255,255,255,0.3);
+        background: rgba(255, 255, 255, 0.3);
         border-radius: 13px;
       }
+
       .house-moneny {
         margin: 0 5px;
       }
+
       .house-state {
         display: inline-block;
         padding: 2px 10px;
         padding-right: 6px;
         border-radius: 13px;
         border: 1px solid #FFFFFF;
+
         .rightIcon {
           width: 16px;
           height: 16px;
@@ -50,6 +58,7 @@
       }
     }
   }
+
   .tab {
     display: flex;
     font-size: 18px;
@@ -59,12 +68,15 @@
     line-height: 25px;
     padding: 23px 0;
     border-bottom: 1px solid #EFEFEF;
+
     >View {
       width: 25%;
     }
+
     .active {
       position: relative;
       color: #2154F4;
+
       &::after {
         content: ' ';
         display: inline-block;
@@ -78,8 +90,9 @@
       }
     }
   }
+
   .content-box {
-    padding-top: 9px;
+    // padding-top: 9px;
   }
 }
 
@@ -88,19 +101,23 @@
   background: #F8F8F8;
   border-radius: 4px;
   margin-bottom: 16px;
+
   .tenant-head {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .logo {
       width: 76px;
       height: 76px;
       border-radius: 50%;
       background: #DCDCDC;
-     }
+    }
+
     .head-des {
       flex: 1;
       padding-left: 12px;
+
       .name {
         font-size: 18px;
         font-family: PingFangSC-Regular, PingFang SC;
@@ -108,6 +125,7 @@
         color: #0A1956;
         line-height: 25px;
       }
+
       .icon-btn {
         display: inline-block;
         border-radius: 16px;
@@ -119,9 +137,11 @@
         color: #FFAF53;
         line-height: 21px;
       }
+
       .weixin {
         margin: 0 8px;
       }
+
       .tenant-phone {
         margin-top: 8px;
         font-size: 18px;
@@ -132,6 +152,7 @@
       }
     }
   }
+
   .tenant-content {
     margin-top: 18px;
     background: #E8EDFD;
@@ -142,16 +163,20 @@
     font-weight: 400;
     color: #0A1956;
     line-height: 24px;
+
     >View {
       padding-bottom: 15px;
     }
   }
+
   .tenant-tips {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .time-tips {
       flex: 2;
+
       >View {
         padding-top: 18px;
         font-size: 16px;
@@ -161,12 +186,14 @@
         line-height: 22px;
       }
     }
+
     .tenant-state {
       flex: 1;
       padding-top: 20px;
     }
   }
 }
+
 .add-user-box {
   margin-top: 30px;
   font-size: 17px;
@@ -174,6 +201,7 @@
   font-weight: 400;
   color: #2154F4;
   line-height: 24px;
+
   >Image {
     width: 20px;
     height: 20px;
@@ -181,9 +209,11 @@
     vertical-align: middle;
   }
 }
+
 .add-house-btn {
   background-color: #fff;
   padding-top: 30px;
+
   .btn {
     color: #2154F4;
     border: 1px solid #2154F4;

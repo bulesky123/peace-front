@@ -2,6 +2,7 @@ $primary-color: #2154F4;
 $color-brand: #2154f4;
 $color-brand-light: #597ff7;
 $color-brand-dark: #1a43c3;
+
 @mixin text-ellipsis {
   overflow: hidden;
   /*文本不会换行*/
@@ -9,9 +10,18 @@ $color-brand-dark: #1a43c3;
   /*当文本溢出包含元素时，以省略号表示超出的文本*/
   text-overflow: ellipsis;
 }
+
 .at-button {
   height: 48px !important;
   line-height: 48px !important;
   border-radius: 4px !important;
   font-size: 17px !important;
+  border: 1px solid #2154F4 !important;
+  color: #2154F4;
+}
+
+.at-button--primary {
+  color: #FFF;
+  border: 1px solid #2154F4 !important;
+  background: #2154F4 !important;
 }

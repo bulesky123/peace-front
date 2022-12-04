@@ -1,0 +1,162 @@
+.head-box {
+  background: #F4F4F4;
+  padding: 20px 14px;
+
+  .head {
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #05203D;
+    line-height: 28px;
+
+    .img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+  }
+
+  .head-tips {
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #FF6A6A;
+    line-height: 28px;
+  }
+}
+
+.add-house-container {
+  padding: 0px 20px;
+
+  .input-item {
+    display: flex;
+    height: 65px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EFEFEF;
+
+    .input-label {
+      font-size: 17px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #05203D;
+      line-height: 24px;
+
+      .label-tips {
+        font-size: 13px;
+      }
+    }
+
+    .input-test {
+      font-size: 17px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #A1A1A1;
+      line-height: 24px;
+      text-align: right;
+      flex: 1;
+    }
+
+    .danwei {
+      width: 50px;
+      text-align: right;
+    }
+  }
+
+  .at-list__item {
+    padding: 21px 0;
+  }
+
+  .at-list__item::after {
+    display: none;
+  }
+
+}
+
+.house-list {
+  display: flex;
+  height: 65px;
+  justify-content: space-between;
+  align-items: center;
+  background: #F4F4F4;
+  padding: 0 20px;
+  margin-bottom: 16px;
+
+  .house-head {
+    font-size: 18px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #05203D;
+    line-height: 25px;
+
+    .tips {
+      font-size: 17px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #A1A1A1;
+      line-height: 24px;
+    }
+  }
+
+  .house-num {
+    font-size: 16px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #F77C10;
+    line-height: 22px;
+  }
+}
+
+.house-container {
+  padding: 0 20px;
+  padding-top: 20px;
+
+  .lease-container {
+    font-size: 17px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #05203D;
+    line-height: 24px;
+  }
+
+  .box {
+    margin-top: 20px;
+
+    >Text {
+      display: inline-block;
+      width: calc((100% - 15px) / 4);
+      background: rgba(33, 84, 244, 0.1);
+      border-radius: 4px;
+      padding: 8px 0px;
+      font-size: 16px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #2154F4;
+      line-height: 22px;
+      margin-right: 5px;
+      text-align: center;
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+
+    .active {
+      background: #2154F4;
+      color: #fff;
+    }
+  }
+
+  .add-house-btn {
+    margin-top: 20px;
+    padding: 20px 0;
+
+    .btn {
+      border-radius: 4px;
+      border: 1px solid #2154F4;
+      color: #2154F4;
+    }
+  }
+}

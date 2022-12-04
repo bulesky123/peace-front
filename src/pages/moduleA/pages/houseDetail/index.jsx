@@ -5,6 +5,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Tenant from './components/tenant.jsx'
+import Cost from './components/cost'
 import rightIcon from './images/right.png'
 
 import './index.less'
@@ -22,7 +23,7 @@ class HouseDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabActive: 1,
+      tabActive: 2,
     }
     this.tabs = [
       { key: 1, lable: '租客' },
@@ -64,6 +65,9 @@ class HouseDetail extends React.Component {
         </View>
         <View className='content-box'>
           {tabActive == 1 && <Tenant />}
+          {tabActive == 2 && <Cost />}
+          {tabActive == 3 && <View>单据</View>}
+          {tabActive == 4 && <View>招租</View>}
         </View>
         {/* <View className='add-house-btn'>
           <AtButton
