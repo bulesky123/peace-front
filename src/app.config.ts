@@ -1,6 +1,6 @@
 export default {
   pages: [
-    "pages/moduleA/pages/houseDetail/index",
+    "pages/moduleA/pages/reserveRoom/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",

@@ -31,6 +31,8 @@ export default {
       // mode: 'cors',
       xhrFields: { withCredentials: true },
       success(res) {
+        const { code, msg, data } = res.data || {}
+        console.log(data, '----')
         if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
           return logError('api', '请求资源不存在')
         } else if (res.statusCode === HTTP_STATUS.BAD_GATEWAY) {
@@ -44,7 +46,15 @@ export default {
           })
           return logError('api', '请先登录')
         } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
-          return res.data
+          if (code == HTTP_STATUS.SUCCESS) {
+            return data
+          } else {
+            Taro.showToast({
+              title: msg,
+              // icon: 'error',
+              duration: 2000
+            })
+          }
         }
       },
       error(e) {

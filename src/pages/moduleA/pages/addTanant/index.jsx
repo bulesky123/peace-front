@@ -1,10 +1,11 @@
 import Taro from '@tarojs/taro'
 import React from 'react'
-import { View, Input, Text, Picker } from "@tarojs/components"
+import { View, Input, Text, Picker, Textarea } from "@tarojs/components"
 import { AtIcon, AtInput, AtButton, AtModal, AtModalHeader, AtModalContent, AtList, AtListItem } from 'taro-ui'
 import { FormPicker } from '@/components'
 import Tools from '@/utils/tools'
 import { addHouse } from '@/api/house'
+import Upload from './components/upload'
 import './index.less'
 
 
@@ -152,6 +153,39 @@ class AddHouse extends React.Component {
               onInput={(e) => this.handleChange('contactName', e.detail.value)}
             />
           </View>
+          <View className='input-item'>
+            <Text className='input-label'>电话</Text>
+            <Input
+              value={this.state.contactName}
+              className='input-test'
+              type='text'
+              placeholder='承租人电话'
+              onInput={(e) => this.handleChange('contactName', e.detail.value)}
+            />
+          </View>
+          <View className='input-item' style={{ borderBottom: 'none' }}>
+            <Text className='input-label'>身份照片</Text>
+          </View>
+          <View className='card-box'>
+            <Upload
+              tips="添加正面"
+              style={{
+                width: 'calc(( 100% - 4px ) / 2)',
+                display: 'inline-block',
+                marginRight: 4,
+              }}
+            />
+            <Upload
+              tips="添加反面"
+              style={{
+                width: 'calc(( 100% - 4px ) / 2)',
+                display: 'inline-block',
+              }}
+            />
+          </View>
+          <View className='add-self-btn'>
+            <View><AtIcon value='add-circle' size='19' color='#2154F4' /> 添加同住人</View>
+          </View>
           <View className='house-title'>
             <View className='title'>租约详情</View>
           </View>
@@ -214,11 +248,34 @@ class AddHouse extends React.Component {
           </View>
           <View className='input-item' style={{ borderBottom: 'none' }}>
             <Text className='input-label'>添加合同照片</Text>
-            合同照片
+          </View>
+          <View>
+            <Upload
+              style={{
+                width: 'calc(( 100% - 4px ) / 2)',
+                display: 'inline-block',
+              }}
+            />
           </View>
           <View className='input-item' style={{ borderBottom: 'none' }}>
             <Text className='input-label'>备注</Text>
-            备注
+          </View>
+          <View>
+            <Textarea
+              style={{
+                background: '#fff',
+                minHeight: 100,
+                padding: '16px 10px',
+                border: '1px solid #E2E2E2',
+                borderRadius: 2,
+                fontSize: 18,
+                color: '#05203D',
+                width: '100%',
+                boxSizing: 'border-box',
+              }}
+              autoHeight
+              placeholder='备注信息，例如定金，交租日期等'
+            />
           </View>
         </View>
         <View className='house-container'>

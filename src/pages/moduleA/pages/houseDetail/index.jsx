@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
 import React from 'react'
@@ -23,7 +23,8 @@ class HouseDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tabActive: 2,
+      tabActive: 1,
+      roomId: '',
     }
     this.tabs = [
       { key: 1, lable: '租客' },
@@ -32,13 +33,22 @@ class HouseDetail extends React.Component {
       { key: 4, lable: '招租' },
     ]
   }
+  getQuery() {
+    return getCurrentInstance().router.params
+  }
   queryTab(item) {
     this.setState({
       tabActive: item.key
     })
   }
+  componentDidMount() {
+    const { roomId } = this.getQuery()
+    this.setState({
+      roomId
+    })
+  }
   render() {
-    const { tabActive } = this.state
+    const { tabActive, roomId } = this.state
     return (
       <View className='container'>
         <View className='head'>
@@ -64,10 +74,10 @@ class HouseDetail extends React.Component {
           }
         </View>
         <View className='content-box'>
-          {tabActive == 1 && <Tenant />}
-          {tabActive == 2 && <Cost />}
-          {tabActive == 3 && <View>单据</View>}
-          {tabActive == 4 && <View>招租</View>}
+          {tabActive == 1 && <Tenant roomId={roomId} />}
+          {tabActive == 2 && <Cost roomId={roomId} />}
+          {tabActive == 3 && <View roomId={roomId}>单据</View>}
+          {tabActive == 4 && <View roomId={roomId}>招租</View>}
         </View>
         {/* <View className='add-house-btn'>
           <AtButton
