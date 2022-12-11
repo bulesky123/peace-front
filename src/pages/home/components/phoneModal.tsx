@@ -20,6 +20,7 @@ class PModal extends React.Component {
   async getPhoneNumber(e) {
     console.log(e, '------')
     await this.props.addPhone({ code: e.detail.code, encryptedData: e.detail.encryptedData })
+    this.props.handleClose()
   }
   render() {
     return (
@@ -31,8 +32,6 @@ class PModal extends React.Component {
         // onCancel={this.handleCancel}
         onClose={this.props.handleClose}>
         <AtButton
-          customStyle={{ border: 'none' }}
-          onClick={this.props.handleClose}
           openType="getPhoneNumber"
           onGetPhoneNumber={this.getPhoneNumber}>确定</AtButton>
       </AtActionSheet>

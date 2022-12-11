@@ -35,7 +35,9 @@ class AddHouse extends React.Component {
   async onSubmit() {
     const { roomId } = this.getQuery()
     await reserve({ ...this.state, roomId })
-    console.log(this.state)
+    Taro.navigateTo({
+      url: `/pages/moduleA/pages/houseDetail/index?roomId=${roomId}`
+    })
   }
   render() {
     const { rooms, isOpened, customRoomNumber } = this.state

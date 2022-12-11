@@ -33,10 +33,9 @@ export const globalUpdate = params => ({
 })
 
 export const getDetail = (houseId) => async (dispatch) => {
-  const { data } = await queryHouseDetail({
+  const json = await queryHouseDetail({
     houseId
   }) || {}
-  const json = data.data || {}
   dispatch(globalUpdate({
     emptyRoomCount: json.emptyRoomCount,
     houseId: json.houseId,
@@ -48,12 +47,11 @@ export const getDetail = (houseId) => async (dispatch) => {
 }
 
 export const getList = (houseId) => async (dispatch) => {
-  const { data } = await queryRoomList({
+  const arr = await queryRoomList({
     houseId,
     pageIndex: 1,
     pageSize: 10000
   }) || {}
-  const arr = data.data || {}
   console.log(arr, '----')
   dispatch(globalUpdate({
     list: arr,

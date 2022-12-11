@@ -23,25 +23,25 @@ class AddHouse extends React.Component {
       area: '', // 所在区
       contactMobile: '', // 看房联系人手机号
       contactName: '', // 看房人联系人姓名
-      contactSex: '', // 性别
+      contactSex: 1, // 性别
       floorNum: '', // 楼层数
-      heatingType: '', // 供暖类型
-      hotWaterFlag: '', // 热水开关
-      houseType: '', //
-      ielevatorStatus: '', // 电梯状态：是/否
+      heatingType: 1, // 供暖类型
+      hotWaterFlag: 1, // 热水开关
+      houseType: 1, //
+      elevatorStatus: 1, // 电梯状态：是/否
       layerList: '',
       roomNamePrefix: '', // 房间名称前缀
       roomNum: '', // 房间数
       rooms: [],
       isOpened: false,
       customRoomNumber: '', // 自定义房间号
-      activeFlod: '', // 自定义房间的楼层
+      activeFloor: '', // 自定义房间的楼层
     }
   }
-  delRoom(flod, room) {
+  delRoom(floor, room) {
     const { rooms = [] } = this.state
     const newRooms = rooms.map(item => {
-      if (item.flod == flod) {
+      if (item.floor == floor) {
         item.rooms.map(i => {
           if (i.value == room.value) {
             i.disable = !i.disable
@@ -55,16 +55,17 @@ class AddHouse extends React.Component {
       rooms: newRooms,
     })
   }
-  addRoom(flod) {
+  addRoom(floor) {
+    console.log(2222)
     this.setState({
       isOpened: !this.state.isOpened,
-      activeFlod: flod,
+      activeFloor: floor,
     })
   }
   addRoomFun() {
-    const { activeFlod, customRoomNumber, rooms } = this.state
+    const { activeFloor, customRoomNumber, rooms } = this.state
     const newRooms = rooms.map(item => {
-      if (item.flod == activeFlod) {
+      if (item.floor == activeFloor) {
         item.rooms.push({
           value: customRoomNumber,
           disable: false,
@@ -86,14 +87,14 @@ class AddHouse extends React.Component {
     this.getRooms()
   }
   getRooms() {
-    const { floorNum , roomNum, roomNamePrefix } = this.state
+    const { floorNum, roomNum, roomNamePrefix } = this.state
     if (!!floorNum && !!roomNum) {
-      let arr = Array.from({ length: floorNum }, (v, k) => ({ flod: k + 1 }))
+      let arr = Array.from({ length: floorNum }, (v, k) => ({ floor: k + 1 }))
         .map(item => {
           return {
-            flod: item.flod,
+            floor: item.floor,
             rooms: Array.from({ length: roomNum }, (v, k) => ({
-              value: `${item.flod}${Tools.getZero(k + 1, Tools.getPlace(roomNum))}`,
+              value: `${item.floor}${Tools.getZero(k + 1, Tools.getPlace(roomNum))}`,
               disable: false,
             }))
           }
@@ -105,15 +106,51 @@ class AddHouse extends React.Component {
   }
   chooseRooms() {
     const { rooms = [] } = this.state
-    const num = rooms.length > 0 && rooms.reduce((prev, next) => {
-      const prevRooms = prev.rooms.filter(i => !i.disable)
-      const nextRooms = next.rooms.filter(i => !i.disable)
-      return prevRooms.length + nextRooms.length
-    })
+    let num = 0
+    const length = rooms.length || 0
+    for (let i = 0; i < length; i++) {
+      const len = rooms[i]?.rooms?.filter(item => !item.disable).length
+      num = num + len
+    }
     return num
   }
   async onSubmit() {
-    await addHouse(this.state)
+    const {
+      rooms,
+      address,
+      area,
+      contactMobile,
+      contactName,
+      contactSex,
+      floorNum,
+      heatingType,
+      hotWaterFlag,
+      houseType,
+      elevatorStatus,
+      name,
+      roomNamePrefix,
+      roomNum,
+    } = this.state
+    const params = {
+      address,
+      area,
+      contactMobile,
+      contactName,
+      contactSex,
+      elevatorStatus,
+      floorNum,
+      heatingType,
+      hotWaterFlag: hotWaterFlag ? 1 : 0,
+      houseType,
+      layerList: rooms.map(item => {
+        item.rooms = item.rooms?.filter(i => !i.disable).map(i => i.value)
+        return item
+      }),
+      name,
+      roomNamePrefix,
+      roomNum,
+    }
+    await addHouse(params)
     console.log(this.state)
   }
   render() {
@@ -155,42 +192,69 @@ class AddHouse extends React.Component {
           <FormPicker
             lable="性别"
             placeholder='请输入（必填）'
-            range={['男士', '女士']}
+            range={[{ lable: '男士', value: 1 }, { lable: '女士', value: 2 }]}
             onChange={(val) => this.handleChange('contactSex', val)}
             state={this.state.contactSex}
           />
-          <FormPicker
+          <View className='input-item'>
+            <Text className='input-label'>所属地区</Text>
+            <Input
+              value={this.state.area}
+              onInput={(e) => this.handleChange('area', e.detail.value)}
+              className='input-test'
+              type='text'
+              placeholder='请输入（必填）'
+            />
+          </View>
+          {/* <FormPicker
             lable="所属地区"
             placeholder='请输入（必填）'
             range={['男', '女']}
             onChange={(val) => this.handleChange('area', val)}
             state={this.state.area}
-          />
-          <FormPicker
+          /> */}
+          <View className='input-item'>
+            <Text className='input-label'>位置(招租用)</Text>
+            <Input
+              value={this.state.address}
+              onInput={(e) => this.handleChange('address', e.detail.value)}
+              className='input-test'
+              type='text'
+              placeholder='请输入（必填）'
+            />
+          </View>
+          {/* <FormPicker
             lable="位置(招租用)"
             placeholder='请输入（必填）'
             range={['男', '女']}
             onChange={(val) => this.handleChange('address', val)}
             state={this.state.address}
-          />
+          /> */}
           <FormPicker
             lable="房屋类型"
             placeholder='请输入（必填）'
-            range={['村屋/自建公寓', '市区/独栋品质社区','小区/公寓', '其他类型']}
+            range={[{
+              lable: '村屋/自建公寓', value: 1
+            }, {
+              lable: '市区/独栋品质社区', value: 2
+            }, {
+              lable: '小区/公寓', value: 3
+            }, { lable: '其他类型', value: 4 }
+            ]}
             onChange={(val) => this.handleChange('houseType', val)}
             state={this.state.houseType}
           />
           <FormPicker
             lable="电梯"
             placeholder='请输入（必填）'
-            range={['有', '无']}
-            onChange={(val) => this.handleChange('ielevatorStatus', val)}
-            state={this.state.ielevatorStatus}
+            range={[{ lable: '有', value: 1 }, { lable: '无', value: 0 }]}
+            onChange={(val) => this.handleChange('elevatorStatus', val)}
+            state={this.state.elevatorStatus}
           />
           <FormPicker
             lable="供暖"
             placeholder='请输入（必填）'
-            range={['自产暖', '集中供暖', '无暖气']}
+            range={[{ lable: '自产暖', value: 1 }, { lable: '集中供暖', value: 2 }, { lable: '无暖气', value: 3 }]}
             onChange={(val) => this.handleChange('heatingType', val)}
             state={this.state.heatingType}
           />
@@ -244,7 +308,7 @@ class AddHouse extends React.Component {
           {
             rooms.map(item => (
               <Fold
-                key={item.flod}
+                key={item.floor}
                 {...item}
                 addRoom={this.addRoom}
                 delRoom={this.delRoom}
@@ -255,24 +319,33 @@ class AddHouse extends React.Component {
             <AtButton onClick={this.onSubmit} type='default' size='small'>保存</AtButton>
           </View>
         </View>
-        <AtModal isOpened={isOpened}>
-          <AtModalHeader>添加房间号</AtModalHeader>
-          <AtModalContent>
-            <View className='modal-content'>
-              <AtInput
-                name='customRoomNumber'
-                type='text'
-                placeholder='自定义房间号'
-                border={false}
-                value={customRoomNumber}
-                onChange={val => this.handleChange('customRoomNumber', val)}
-              />
-              <View className='save-btn'>
-                <AtButton onClick={this.addRoomFun} type="primary" size="small">保存</AtButton>
-              </View>
-            </View>
-          </AtModalContent>
-        </AtModal>
+        {
+          isOpened &&
+          <AtModal
+            isOpened={isOpened}
+            onClose={() => this.setState({ isOpened: false })}
+          >
+            <AtModalHeader>添加房间号</AtModalHeader>
+            <AtModalContent>
+              {
+                isOpened &&
+                <View className='modal-content'>
+                  <AtInput
+                    name='customRoomNumber'
+                    type='text'
+                    placeholder='自定义房间号'
+                    border={false}
+                    value={customRoomNumber}
+                    onChange={val => this.handleChange('customRoomNumber', val)}
+                  />
+                  <View className='save-btn'>
+                    <AtButton onClick={this.addRoomFun} type="primary" size="small">保存</AtButton>
+                  </View>
+                </View>
+              }
+            </AtModalContent>
+          </AtModal>
+        }
       </View>
     )
   }

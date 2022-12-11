@@ -43,6 +43,7 @@ class HouseDetail extends React.Component {
   }
   componentDidMount() {
     const { roomId } = this.getQuery()
+    console.log(roomId, roomId)
     this.setState({
       roomId
     })

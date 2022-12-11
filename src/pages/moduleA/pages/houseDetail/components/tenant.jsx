@@ -7,7 +7,7 @@ import addIcon from '../images/add.png'
 import '../index.less'
 
 export default (props) => {
-  const { list } = props
+  const { list, roomId } = props
   return (
     <View>
       {
@@ -23,7 +23,7 @@ export default (props) => {
               >退租</AtButton>
             </View>
           </View>
-          : <TenantEmpty />
+          : <TenantEmpty roomId={roomId} />
       }
     </View>
   )

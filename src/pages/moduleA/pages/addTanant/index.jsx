@@ -13,105 +13,36 @@ class AddHouse extends React.Component {
   constructor(props) {
     super(props)
     this.onSubmit = this.onSubmit.bind(this)
-    this.delRoom = this.delRoom.bind(this)
-    this.addRoom = this.addRoom.bind(this)
-    this.addRoomFun = this.addRoomFun.bind(this)
-    this.blur = this.blur.bind(this)
     this.state = {
-      name: '', // 房屋名称
-      address: '', // 地址
-      area: '', // 所在区
-      contactMobile: '', // 看房联系人手机号
-      contactName: '', // 看房人联系人姓名
-      contactSex: '', // 性别
-      floorNum: '', // 楼层数
-      heatingType: '', // 供暖类型
-      hotWaterFlag: '', // 热水开关
-      houseType: '', //
-      ielevatorStatus: '', // 电梯状态：是/否
-      layerList: '',
-      roomNamePrefix: '', // 房间名称前缀
-      roomNum: '', // 房间数
-      rooms: [],
-      isOpened: false,
-      customRoomNumber: '', // 自定义房间号
-      activeFlod: '', // 自定义房间的楼层
-      dateSel: '2022-11-26',
+      contractUrl: '', // 合同地址
+      houseId: 0, // 房屋ID
+      leaseType: 0, // 租期 1 一季度 2 半年 3 一年 4 两年 5不限
+      leaveDate: "2022-12-11", // 合同终止日
+      liveDate: "2022-12-11", // 入住日期
+      liveFinishDate: "2022-12-11", // 到租日期
+      mortgageAmount: 0, // 押金
+      networkCost: 0, // 网费
+      remark: '', // 备注
+      rentAmount: 0, // 租金
+      rentDay: 0, // 收租日
+      rentPeriod: 0, // 收租周期
+      rentUnit: 0, // 收租周期单位
+      roomId: 0, // 房间ID
+      tenantResps: [ // 租客列表
+        {
+          idcard: '', // 租客身份证号
+          idcardDownUrl: '', // 租客身份证下面url地址
+          idcardUpUrl: '', // 租客身份证正面url地址
+          mobile: '', // 租客手机号
+          name: '' // 租客姓名
+        }
+      ],
     }
-  }
-  delRoom(flod, room) {
-    const { rooms = [] } = this.state
-    const newRooms = rooms.map(item => {
-      if (item.flod == flod) {
-        item.rooms.map(i => {
-          if (i.value == room.value) {
-            i.disable = !i.disable
-          }
-          return i
-        })
-      }
-      return item
-    })
-    this.setState({
-      rooms: newRooms,
-    })
-  }
-  addRoom(flod) {
-    this.setState({
-      isOpened: !this.state.isOpened,
-      activeFlod: flod,
-    })
-  }
-  addRoomFun() {
-    const { activeFlod, customRoomNumber, rooms } = this.state
-    const newRooms = rooms.map(item => {
-      if (item.flod == activeFlod) {
-        item.rooms.push({
-          value: customRoomNumber,
-          disable: false,
-        })
-      }
-      return item
-    })
-    this.setState({
-      rooms: newRooms,
-      isOpened: false,
-    })
   }
   handleChange(key, value) {
     this.setState({
       [key]: value
     })
-  }
-  blur() {
-    this.getRooms()
-  }
-  getRooms() {
-    const { floorNum, roomNum, roomNamePrefix } = this.state
-    if (!!floorNum && !!roomNum) {
-      let arr = Array.from({ length: floorNum }, (v, k) => ({ flod: k + 1 }))
-        .map(item => {
-          return {
-            flod: item.flod,
-            rooms: Array.from({ length: roomNum }, (v, k) => ({
-              value: `${item.flod}${Tools.getZero(k + 1, Tools.getPlace(roomNum))}`,
-              disable: false,
-            }))
-          }
-        })
-      this.setState({
-        rooms: arr,
-      })
-    }
-  }
-  chooseRooms() {
-    const { rooms = [] } = this.state
-    const num = rooms.length > 0 && rooms.reduce((prev, next) => {
-      const prevRooms = prev.rooms.filter(i => !i.disable)
-      const nextRooms = next.rooms.filter(i => !i.disable)
-      return prevRooms.length + nextRooms.length
-    })
-    return num
   }
   async onSubmit() {
     await addHouse(this.state)
@@ -122,9 +53,37 @@ class AddHouse extends React.Component {
       dateSel: e.detail.value
     })
   }
+  upload(type) {
+    console.log(type)
+    Taro.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有，在H5浏览器端支持使用 `user` 和 `environment`分别指定为前后摄像头
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths
+      }
+    })
+  }
   render() {
-    const { rooms, isOpened, customRoomNumber } = this.state
-    const chooseRoom = this.chooseRooms()
+    const {
+      name,
+      idcard,
+      mobile,
+      idcardUpUrl,
+      idcardDownUrl,
+      liveDate,
+      liveFinishDate,
+      leaseType,
+      leaveDate,
+      rentPeriod,
+      rentDay,
+      rentAmount,
+      mortgageAmount,
+      networkCost,
+      contractUrl,
+      remark
+    } = this.state
     return (
       <View>
         <View className='room-head'>红木林南1号楼-102</View>
@@ -136,7 +95,7 @@ class AddHouse extends React.Component {
           <View className='input-item'>
             <Text className='input-label'>姓名</Text>
             <Input
-              value={this.state.name}
+              value={name}
               onInput={(e) => this.handleChange('name', e.detail.value)}
               className='input-test'
               type='text'
@@ -146,21 +105,21 @@ class AddHouse extends React.Component {
           <View className='input-item'>
             <Text className='input-label'>身份证号</Text>
             <Input
-              value={this.state.contactName}
+              value={idcard}
               className='input-test'
               type='text'
               placeholder='承租人身份证号'
-              onInput={(e) => this.handleChange('contactName', e.detail.value)}
+              onInput={(e) => this.handleChange('idcard', e.detail.value)}
             />
           </View>
           <View className='input-item'>
             <Text className='input-label'>电话</Text>
             <Input
-              value={this.state.contactName}
+              value={mobile}
               className='input-test'
               type='text'
               placeholder='承租人电话'
-              onInput={(e) => this.handleChange('contactName', e.detail.value)}
+              onInput={(e) => this.handleChange('mobile', e.detail.value)}
             />
           </View>
           <View className='input-item' style={{ borderBottom: 'none' }}>
@@ -169,6 +128,8 @@ class AddHouse extends React.Component {
           <View className='card-box'>
             <Upload
               tips="添加正面"
+              upload={this.upload.bind(this, 'idcardUp')}
+              url={idcardUpUrl}
               style={{
                 width: 'calc(( 100% - 4px ) / 2)',
                 display: 'inline-block',
@@ -177,6 +138,8 @@ class AddHouse extends React.Component {
             />
             <Upload
               tips="添加反面"
+              upload={this.upload.bind(this, 'idcardDown')}
+              url={idcardDownUrl}
               style={{
                 width: 'calc(( 100% - 4px ) / 2)',
                 display: 'inline-block',
@@ -189,61 +152,61 @@ class AddHouse extends React.Component {
           <View className='house-title'>
             <View className='title'>租约详情</View>
           </View>
-          <Picker mode='date' onChange={(e) => this.handleChange('name', e.detail.value)}>
+          <Picker mode='date' onChange={(e) => this.handleChange('liveDate', e.detail.value)}>
             <AtList>
-              <AtListItem title='入住日期' extraText={this.state.dateSel} />
+              <AtListItem title='入住日期' extraText={liveDate} />
             </AtList>
           </Picker>
-          <Picker mode='date' onChange={(e) => this.handleChange('name', e.detail.value)}>
+          <Picker mode='date' onChange={(e) => this.handleChange('leaseType', e.detail.value)}>
             <AtList>
-              <AtListItem title='租期' extraText={this.state.dateSel} />
+              <AtListItem title='租期' extraText={leaseType} />
             </AtList>
           </Picker>
-          <Picker mode='date' onChange={(e) => this.handleChange('name', e.detail.value)}>
+          <Picker mode='date' onChange={(e) => this.handleChange('leaveDate', e.detail.value)}>
             <AtList>
-              <AtListItem title='到期日期' extraText={this.state.dateSel} />
+              <AtListItem title='到期日期' extraText={leaveDate} />
             </AtList>
           </Picker>
-          <Picker mode='date' onChange={(e) => this.handleChange('name', e.detail.value)}>
+          <Picker mode='date' onChange={(e) => this.handleChange('rentDay', e.detail.value)}>
             <AtList>
-              <AtListItem title='收租日' extraText={this.state.dateSel} />
+              <AtListItem title='收租日' extraText={rentDay} />
             </AtList>
           </Picker>
           <FormPicker
             lable="收租周期"
             placeholder='请选择收租周期'
             range={['一月一次', '三月一次']}
-            onChange={(val) => this.handleChange('contactSex', val)}
-            state={this.state.contactSex}
+            onChange={(val) => this.handleChange('rentPeriod', val)}
+            state={rentPeriod}
           />
           <View className='input-item'>
             <Text className='input-label'>租金</Text>
             <Input
-              value={this.state.contactMobile}
+              value={rentAmount}
               className='input-test'
               type='text'
               placeholder='请输入租金'
-              onInput={(e) => this.handleChange('contactMobile', e.detail.value)}
+              onInput={(e) => this.handleChange('rentAmount', e.detail.value)}
             />
           </View>
           <View className='input-item'>
             <Text className='input-label'>押金</Text>
             <Input
-              value={this.state.contactMobile}
+              value={mortgageAmount}
               className='input-test'
               type='text'
               placeholder='请输入押金'
-              onInput={(e) => this.handleChange('contactMobile', e.detail.value)}
+              onInput={(e) => this.handleChange('mortgageAmount', e.detail.value)}
             />
           </View>
           <View className='input-item'>
             <Text className='input-label'>网费</Text>
             <Input
-              value={this.state.contactMobile}
+              value={networkCost}
               className='input-test'
               type='text'
               placeholder='请输入网费'
-              onInput={(e) => this.handleChange('contactMobile', e.detail.value)}
+              onInput={(e) => this.handleChange('networkCost', e.detail.value)}
             />
           </View>
           <View className='input-item' style={{ borderBottom: 'none' }}>
@@ -251,6 +214,8 @@ class AddHouse extends React.Component {
           </View>
           <View>
             <Upload
+              upload={this.upload.bind(this, 'contract')}
+              url={contractUrl}
               style={{
                 width: 'calc(( 100% - 4px ) / 2)',
                 display: 'inline-block',
@@ -262,6 +227,7 @@ class AddHouse extends React.Component {
           </View>
           <View>
             <Textarea
+              value={remark}
               style={{
                 background: '#fff',
                 minHeight: 100,
@@ -284,24 +250,6 @@ class AddHouse extends React.Component {
             <AtButton onClick={this.onSubmit} type="primary" size='small'>确定</AtButton>
           </View>
         </View>
-        <AtModal isOpened={isOpened}>
-          <AtModalHeader>添加房间号</AtModalHeader>
-          <AtModalContent>
-            <View className='modal-content'>
-              <AtInput
-                name='customRoomNumber'
-                type='text'
-                placeholder='自定义房间号'
-                border={false}
-                value={customRoomNumber}
-                onChange={val => this.handleChange('customRoomNumber', val)}
-              />
-              <View className='save-btn'>
-                <AtButton onClick={this.addRoomFun} type="primary" size="small">保存</AtButton>
-              </View>
-            </View>
-          </AtModalContent>
-        </AtModal>
       </View>
     )
   }

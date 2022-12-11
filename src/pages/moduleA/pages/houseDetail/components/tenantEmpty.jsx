@@ -11,7 +11,7 @@ export default (props) => {
   const { roomId } = props
   const jumpUrl = (url) => {
     Taro.navigateTo({
-      url: `url?roomId=${id}`
+      url: `${url}?roomId=${roomId}`
     })
   }
   return (

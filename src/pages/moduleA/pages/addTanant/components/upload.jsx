@@ -8,9 +8,10 @@ export default (props) => {
   const {
     style = {},
     tips,
+    upload = () => null,
   } = props
   return (
-    <View style={style}>
+    <View style={style} onClick={upload}>
       <View className="upload-box">
         <View>
           <View className="image-tips"><AtIcon value='add' size='30' color='#ccc'></AtIcon></View>

@@ -2,7 +2,6 @@ import Taro from '@tarojs/taro'
 import { userLogin } from '../../api/home'
 import { userInfo } from '../../api/my'
 import { addNickName, addMobile } from '../../api/weixin'
-import Tools from '../../utils/tools'
 
 // Actions
 const UPDATE = 'GLOBAL_UPDATE'
@@ -47,8 +46,7 @@ export const codeForOpenId = () => async (dispatch) => {
           url: '/pages/home/index'
         })
         try {
-          const { data } = await userLogin({jsCode: res.code}) || {}
-          const json = data.data || {}
+          const json = await userLogin({ jsCode: res.code }) || {}
           dispatch(globalUpdate({
             token: json.peaceToken,
             nicknameFlag: json.nicknameFlag,
@@ -69,16 +67,15 @@ export const codeForOpenId = () => async (dispatch) => {
 }
 
 
-export const getUserInfo = () => async(dispatch) => {
-  const { data } = await userInfo({}) || {}
-  const { headImageUrl, nickName } = data.data
+export const getUserInfo = () => async (dispatch) => {
+  const { headImageUrl, nickName } = await userInfo({}) || {}
   dispatch(globalUpdate({
     headImageUrl,
     nickName,
   }))
 }
 
-export const addName = (params) => async(dispatch) => {
+export const addName = (params) => async (dispatch) => {
   await addNickName(params) || {}
   dispatch(globalUpdate({
     ...params,

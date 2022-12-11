@@ -1,6 +1,6 @@
 export default {
   pages: [
-    "pages/moduleA/pages/reserveRoom/index",
+    "pages/moduleA/pages/addTanant/index",
     "pages/in/index",
     "pages/home/index",
     "pages/analysis/index",
@@ -73,8 +73,8 @@ export default {
   //       "pages/tanantRules/index",
   //       "pages/vacantRoom/index",
   //       "pages/reserveRoom/index",
-  //        "pages/addTanant/index",
-  //        "pages/batchSetting/index",
+  //       "pages/addTanant/index",
+  //       "pages/batchSetting/index",
   //     ]
   //   }
   // ]

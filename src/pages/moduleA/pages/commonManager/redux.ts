@@ -27,9 +27,8 @@ export const globalUpdate = params => ({
 })
 
 export const getList = () => async (dispatch) => {
-  const { data } = await queryManager({}) || {}
-  const list = data.data
+  const data = await queryManager({}) || {}
   dispatch(globalUpdate({
-    list: list
+    list: data
   }))
 }

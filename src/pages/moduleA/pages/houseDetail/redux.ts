@@ -26,10 +26,9 @@ export const globalUpdate = params => ({
   type: UPDATE,
 })
 
-export const getList = () => async(dispatch) => {
-  const { data } = await queryHouseDetail({}) || {}
-  const { list } = data.data || {}
+export const getList = () => async (dispatch) => {
+  const { list } = await queryHouseDetail({}) || {}
   dispatch(globalUpdate({
-    list: list || [1,2]
+    list: list || [1, 2]
   }))
 }

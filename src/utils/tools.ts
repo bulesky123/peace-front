@@ -1,3 +1,5 @@
+import { isObject } from "lodash"
+
 // @ts-nocheck
 export default class Tools {
 
@@ -83,5 +85,8 @@ export default class Tools {
       return 2
     }
     return l
+  }
+  static isObject(obj) {
+    return Object.prototype.toString.call(obj) === '[object Object]'
   }
 }
